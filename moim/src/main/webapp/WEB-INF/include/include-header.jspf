@@ -2,14 +2,40 @@
  
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title>moim</title>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta content="Preview page of Metronic Admin Theme #4 for statistics, charts, recent events and reports" name="description" />
+<meta content="" name="author" />
+
+<title>M.O.I.M</title>
  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %> 
  
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
- 
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
+<!-- GLOBAL MANDATORY STYLES : START -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/assets/plugins/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/assets/plugins/simple-line-icons/simple-line-icons.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet'/>" type="text/css" />
+<link href="<c:url value='/assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css'/>" rel="stylesheet" type="text/css" />
+<!-- GLOBAL MANDATORY STYLES : END -->
+
+<!-- PAGE LEVEL PLUGINS : BEGIN -->
+<link href="<c:url value='/plugins/bootstrap-daterangepicker/daterangepicker.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/plugins/morris/morris.css" rel="stylesheet" type="text/css'/>" />
+<link href="<c:url value='/plugins/fullcalendar/fullcalendar.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/plugins/jqvmap/jqvmap/jqvmap.css'/>" rel="stylesheet" type="text/css" />
+<!-- PAGE LEVEL PLUGINS : END -->
+
+<!-- THEME GLOBAL STYLES : START -->
+<link href="<c:url value='/assets/global/css/components.min.css'/>" rel="stylesheet" id="style_components" type="text/css" />
+<link href="<c:url value='/assets/global/css/plugins.min.css'/>" rel="stylesheet" type="text/css" />
+<!-- THEME GLOBAL STYLES : END -->
+
+<!-- BEGIN THEME LAYOUT STYLES -->
+<link href="<c:url value='/assets/layout/css/layout.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/assets/layout/css/themes/default.min.css'/>" rel="stylesheet" type="text/css" id="style_color" />
+<link href="<c:url value='/assets/layout/css/custom.min.css'/>" rel="stylesheet" type="text/css" />
+<!-- END THEME LAYOUT STYLES -->
+
+<link rel="shortcut icon" href="favicon.ico" />
