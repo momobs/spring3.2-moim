@@ -22,7 +22,8 @@ public class UserController{
 
 	@RequestMapping(value="/user/login.do")
 	public ModelAndView userLogin(HttpServletRequest request) {
-		
+		ModelAndView mv = new ModelAndView("/user/user_login");
+		/*
 		ModelAndView mv = new ModelAndView("/user/user_login");
 		
 		String userId = request.getParameter("id");
@@ -38,7 +39,7 @@ public class UserController{
 		map.put("userId", userId);
 		map.put("userPwd", userPwd);
 		request.getSession().setAttribute("user", map);
-		
+		*/
 		return mv;
 	}
 }

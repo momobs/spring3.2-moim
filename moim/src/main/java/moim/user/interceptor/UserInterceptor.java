@@ -1,18 +1,28 @@
 package moim.user.interceptor;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class UserInterceptor  extends HandlerInterceptorAdapter{
-
+	protected Log log = LogFactory.getLog(this.getClass());
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws  Exception{
+		HashMap<String, Object> user = (HashMap<String,Object>) request.getSession().getAttribute("user");
+		
+		if (user==null) {
+			log.debug("return fals2e");
+			response.sendRedirect(request.getContextPath()+"/user/login.do");
+			return false;
+		}
+		
 		return true;
 		/*
 		@SuppressWarnings("unchecked")

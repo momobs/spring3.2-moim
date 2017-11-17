@@ -22,14 +22,16 @@
     <body class=" login">
         <!-- BEGIN LOGO -->
         <div class="logo">
-            <a href="index.html">
-                <img src="../assets/pages/img/logo-big.png" alt="" /> </a>
+            <a href="${pageContext.request.contextPath }">
+                <img src="<c:url value='/resource/img/common/logo-default.png'/>" alt="" /> </a>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
         <div class="content">
-            <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="index.html" method="post">
+            
+            
+            <!-- LOGIN FORM: BEGIN -->
+            <form id="login-form" name="login-form" class="login-form" action="index.html" method="post">
                 <h3 class="form-title">Login to your account</h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
@@ -37,23 +39,23 @@
                 </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">Username</label>
+                    <label class="control-label visible-ie8 visible-ie9">ID</label>
                     <div class="input-icon">
                         <i class="fa fa-user"></i>
-                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" /> </div>
+                        <input name="userid" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="ID"  /> </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>
                     <div class="input-icon">
                         <i class="fa fa-lock"></i>
-                        <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" /> </div>
+                        <input name="userpwd" class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password"  /> </div>
                 </div>
                 <div class="form-actions">
                     <label class="rememberme mt-checkbox mt-checkbox-outline">
                         <input type="checkbox" name="remember" value="1" /> Remember me
                         <span></span>
                     </label>
-                    <button type="submit" class="btn green pull-right"> Login </button>
+                    <button id="loginBtn" type="button" class="btn green pull-right"> Login2</button>
                 </div>
                 <div class="login-options">
                     <h4>Or login with</h4>
@@ -83,7 +85,10 @@
                     </p>
                 </div>
             </form>
-            <!-- END LOGIN FORM -->
+            <!-- LOGIN FORM: END -->
+            
+            
+            
             <!-- BEGIN FORGOT PASSWORD FORM -->
             <form class="forget-form" action="index.html" method="post">
                 <h3>Forget Password ?</h3>
@@ -432,14 +437,25 @@
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- END THEME LAYOUT SCRIPTS -->
-        <script>
-            $(document).ready(function()
-            {
+        <script type="text/javascript">
+            $(document).ready(function() {
+            	$('#loginBtn').on("click", function(e){
+            		alert("123");
+            		e.preventDefault();
+            		fn_login();
+            	});
                 $('#clickmewow').click(function()
                 {
                     $('#radio1003').attr('checked', 'checked');
                 });
             })
+            
+            function fn_login(){
+            	var comSubmit = new ComSubmit("login-form");
+            	var userId = $("input[name='userid']").val();
+            	var userpwd = $("input[name='userpwd']").val();
+            	alert(userId+", "+userpwd);
+            }
         </script>
     </body>
 

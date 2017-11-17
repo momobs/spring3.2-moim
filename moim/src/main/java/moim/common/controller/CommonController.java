@@ -25,9 +25,9 @@ public class CommonController{
 	@Resource(name="commonService")
 	private CommonService commonService;
 	
-	@RequestMapping(value="/common/initMain.do")
+	@RequestMapping(value="/common/login.do")
     public ModelAndView openBoardUpdate(CommandMap commandMap) throws Exception{
-    	ModelAndView mv = new ModelAndView("/index");
+    	ModelAndView mv = new ModelAndView("/common/login");
     	//Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap());
     	//mv.addObject("map", map.get("map"));
     	//mv.addObject("list", map.get("list"));

@@ -3584,6 +3584,43 @@
         <!-- END QUICK NAV -->
 
 		<%@ include file="/WEB-INF/include/include-body.jspf" %>
+		<!-- PAGE LEVEL PLUGINS : BEGIN -->
+		<script src="<c:url value='/resource/plugins/moment.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/bootstrap-daterangepicker/daterangepicker.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/morris/morris.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/morris/raphael-min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/counterup/jquery.waypoints.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/counterup/jquery.counterup.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/amcharts/amcharts/amcharts.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/amcharts/amcharts/serial.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/amcharts/amcharts/pie.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/amcharts/amcharts/radar.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/amcharts/amcharts/themes/light.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/amcharts/amcharts/themes/patterns.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/amcharts/amcharts/themes/chalk.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/amcharts/ammap/ammap.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/amcharts/ammap/maps/js/worldLow.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/amcharts/amstockcharts/amstock.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/fullcalendar/fullcalendar.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/horizontal-timeline/horizontal-timeline.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/flot/jquery.flot.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/flot/jquery.flot.resize.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/flot/jquery.flot.categories.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/jquery-easypiechart/jquery.easypiechart.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/jquery.sparkline.min.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/jqvmap/jqvmap/jquery.vmap.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/resource/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js'/>" type="text/javascript"></script>
+		<!-- PAGE LEVEL PLUGINS : END -->
+		
+		<!-- PAGE LEVEL SCRIPTS : START -->
+		<script src="<c:url value='/resource/js/global/dashboard.min.js'/>" type="text/javascript"></script>
+		<!-- PAGE LEVEL SCRIPTS : BEGIN -->
+
         <script>
             $(document).ready(function()
             {
