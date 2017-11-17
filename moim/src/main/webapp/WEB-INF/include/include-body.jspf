@@ -19,9 +19,9 @@
 <script src="<c:url value='/resource/js/global/common.js'/>" type="text/javascript"></script>
 <!-- GLOBAL SCRIPTS : END -->
 
-<!-- THEME SCRIPTS : START -->
+<!-- GLOBAL THEME SCRIPTS : START -->
 <script src="<c:url value='/resource/js/global/app.min.js'/>" type="text/javascript"></script>
-<!-- THEME SCRIPTS : END -->
+<!-- GLOBAL THEME SCRIPTS : END -->
 
 <!-- THEME LAYOUT SCRIPTS : BEGIN -->
 <script src="<c:url value='/resource/js/layout/layout.min.js'/>" type="text/javascript"></script>

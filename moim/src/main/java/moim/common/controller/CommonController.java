@@ -2,12 +2,12 @@ package moim.common.controller;
 
 import java.io.File;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -26,8 +26,20 @@ public class CommonController{
 	private CommonService commonService;
 	
 	@RequestMapping(value="/common/login.do")
-    public ModelAndView openBoardUpdate(CommandMap commandMap) throws Exception{
+    public ModelAndView openBoardUpdate(HttpServletRequest request, CommandMap commandMap) throws Exception{
     	ModelAndView mv = new ModelAndView("/common/login");
+    	String inputId = request.getParameter("username");
+    	String inputPwd = request.getParameter("password");
+    	commandMap.put("USER_ID", inputId);
+    	
+    	if ( inputId!=null ) {
+    		Map<String,Object> user = commonService.selectUser(commandMap.getMap());
+    		if (user.get("USER_PWD").equals(inputPwd)) {
+    			request.getSession().setAttribute("user", user);
+    			mv.setViewName("redirect:/");
+    		}
+    	}
+    	//new ModelAndView("/common/login");
     	//Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap());
     	//mv.addObject("map", map.get("map"));
     	//mv.addObject("list", map.get("list"));

@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="common">
+	<select id="selectUser" parameterType="hashmap" resultType="hashMap">
+		<![CDATA[
+			SELECT
+				USER_ID,
+				USER_PWD,
+				USER_NAME
+			FROM
+				USER
+			WHERE
+				USER_ID = #{USER_ID}
+		]]>
+	</select>
  	<select id="selectFileInfo" parameterType="hashmap" resultType="hashMap">
  		<![CDATA[
  			SELECT

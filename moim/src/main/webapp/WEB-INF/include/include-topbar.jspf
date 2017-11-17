@@ -366,12 +366,12 @@
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user dropdown-dark">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <span class="username username-hide-on-mobile"> ${sessionScope.user.userId} </span>
+                                    <span class="username username-hide-on-mobile"> ${sessionScope.user.USER_ID} </span>
                                     <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                                     <img alt="" class="img-circle" src="<c:url value='/resource/img/profile/avatar.png'/>" /> </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
 									<c:choose>        
-                                    <c:when test="${sessionScope.user.user_id ne null}">
+                                    <c:when test="${sessionScope.user.USER_ID ne null}">
                                     <li>
                                         <a href="page_user_profile_1.html">
                                             <i class="icon-user"></i> My Profile </a>

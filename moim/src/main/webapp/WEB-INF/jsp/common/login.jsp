@@ -20,42 +20,41 @@
     <!-- END HEAD -->
 
     <body class=" login">
+    	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
         <!-- BEGIN LOGO -->
         <div class="logo">
-            <a href="${pageContext.request.contextPath }">
+            <a href="${contextPath }">
                 <img src="<c:url value='/resource/img/common/logo-default.png'/>" alt="" /> </a>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
         <div class="content">
-            
-            
-            <!-- LOGIN FORM: BEGIN -->
-            <form id="login-form" name="login-form" class="login-form" action="index.html" method="post">
+            <!-- LOGIN FORM:BEGIN -->
+            <form class="login-form" action="${contextPath }/common/login.do" method="post">
                 <h3 class="form-title">Login to your account</h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
-                    <span> Enter any username and password. </span>
+                    <span> ID/PASSWORD의 입력이 필요합니다. </span>
                 </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">ID</label>
                     <div class="input-icon">
                         <i class="fa fa-user"></i>
-                        <input name="userid" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="ID"  /> </div>
+                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="ID" name="username"/> </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Password</label>
-                    <div class="input-icon">
+                    <label class="control-label visible-ie8 visible-ie9">PASSWORD</label>
+                    <div class="input-icon"> 
                         <i class="fa fa-lock"></i>
-                        <input name="userpwd" class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password"  /> </div>
+                        <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="PASSWORD" name="password" /> </div>
                 </div>
                 <div class="form-actions">
                     <label class="rememberme mt-checkbox mt-checkbox-outline">
                         <input type="checkbox" name="remember" value="1" /> Remember me
                         <span></span>
                     </label>
-                    <button id="loginBtn" type="button" class="btn green pull-right"> Login2</button>
+                    <button type="submit" class="btn green pull-right"> 로그인 </button>
                 </div>
                 <div class="login-options">
                     <h4>Or login with</h4>
@@ -85,10 +84,8 @@
                     </p>
                 </div>
             </form>
-            <!-- LOGIN FORM: END -->
-            
-            
-            
+            <!-- LOGIN FORM:END -->
+ 
             <!-- BEGIN FORGOT PASSWORD FORM -->
             <form class="forget-form" action="index.html" method="post">
                 <h3>Forget Password ?</h3>
@@ -104,6 +101,7 @@
                 </div>
             </form>
             <!-- END FORGOT PASSWORD FORM -->
+            
             <!-- BEGIN REGISTRATION FORM -->
             <form class="register-form" action="index.html" method="post">
                 <h3>Sign Up</h3>
@@ -411,36 +409,22 @@
             <!-- END REGISTRATION FORM -->
         </div>
         <!-- END LOGIN -->
-        <!--[if lt IE 9]>
-<script src="../assets/global/plugins/respond.min.js"></script>
-<script src="../assets/global/plugins/excanvas.min.js"></script> 
-<script src="../assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
-        <!-- BEGIN CORE PLUGINS -->
-        <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="../assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <!-- END THEME GLOBAL SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="../assets/pages/scripts/login.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <!-- END THEME LAYOUT SCRIPTS -->
+
+		<%@ include file="/WEB-INF/include/include-body.jspf" %>
+		
+        <!-- PAGE LEVEL PLUGINS: BEGIN -->
+        <script src="<c:url value='/resource/plugins/jquery-validation/js/jquery.validate.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/resource/plugins/jquery-validation/js/additional-methods.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/resource/plugins/select2/js/select2.full.min.js" type="text/javascript'/>"></script>
+        <!-- PAGE LEVEL PLUGINS: END -->
+        
+        <!-- PAGE LEVEL SCRIPTS: BEGIN -->
+        <script src="<c:url value='/resource/js/pages/login.js'/>" type="text/javascript"></script>
+        <!-- PAGE LEVEL SCRIPTS: END -->
+        
         <script type="text/javascript">
             $(document).ready(function() {
             	$('#loginBtn').on("click", function(e){
-            		alert("123");
             		e.preventDefault();
             		fn_login();
             	});
@@ -454,7 +438,8 @@
             	var comSubmit = new ComSubmit("login-form");
             	var userId = $("input[name='userid']").val();
             	var userpwd = $("input[name='userpwd']").val();
-            	alert(userId+", "+userpwd);
+            	comSubmit.setUrl("<c:url value='/common/login.do'/>");
+            	comSubmit.submit();
             }
         </script>
     </body>
