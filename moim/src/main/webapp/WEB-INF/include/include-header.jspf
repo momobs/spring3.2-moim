@@ -14,28 +14,28 @@
  
 <!-- GLOBAL MANDATORY STYLES : START -->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/assets/plugins/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/assets/plugins/simple-line-icons/simple-line-icons.min.css'/>" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet'/>" type="text/css" />
-<link href="<c:url value='/assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resource/plugins/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resource/plugins/simple-line-icons/simple-line-icons.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resource/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet'/>" type="text/css" />
+<link href="<c:url value='/resource/plugins/bootstrap-switch/css/bootstrap-switch.min.css'/>" rel="stylesheet" type="text/css" />
 <!-- GLOBAL MANDATORY STYLES : END -->
 
 <!-- PAGE LEVEL PLUGINS : BEGIN -->
-<link href="<c:url value='/plugins/bootstrap-daterangepicker/daterangepicker.min.css'/>" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/plugins/morris/morris.css" rel="stylesheet" type="text/css'/>" />
-<link href="<c:url value='/plugins/fullcalendar/fullcalendar.min.css'/>" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/plugins/jqvmap/jqvmap/jqvmap.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resource/plugins/bootstrap-daterangepicker/daterangepicker.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resource/plugins/morris/morris.css" rel="stylesheet" type="text/css'/>" />
+<link href="<c:url value='/resource/plugins/fullcalendar/fullcalendar.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resource/plugins/jqvmap/jqvmap/jqvmap.css'/>" rel="stylesheet" type="text/css" />
 <!-- PAGE LEVEL PLUGINS : END -->
 
 <!-- THEME GLOBAL STYLES : START -->
-<link href="<c:url value='/assets/global/css/components.min.css'/>" rel="stylesheet" id="style_components" type="text/css" />
-<link href="<c:url value='/assets/global/css/plugins.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resource/css/global/components.min.css'/>" rel="stylesheet" id="style_components" type="text/css" />
+<link href="<c:url value='/resource/css/global/plugins.min.css'/>" rel="stylesheet" type="text/css" />
 <!-- THEME GLOBAL STYLES : END -->
 
-<!-- BEGIN THEME LAYOUT STYLES -->
-<link href="<c:url value='/assets/layout/css/layout.min.css'/>" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/assets/layout/css/themes/default.min.css'/>" rel="stylesheet" type="text/css" id="style_color" />
-<link href="<c:url value='/assets/layout/css/custom.min.css'/>" rel="stylesheet" type="text/css" />
-<!-- END THEME LAYOUT STYLES -->
+<!-- THEME LAYOUT STYLES: START -->
+<link href="<c:url value='/resource/css/layout/layout.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resource/css/layout/themes/default.min.css'/>" rel="stylesheet" type="text/css" id="style_color" />
+<link href="<c:url value='/resource/css/layout/custom.min.css'/>" rel="stylesheet" type="text/css" />
+<!-- THEME LAYOUT STYLES: END -->
 
 <link rel="shortcut icon" href="favicon.ico" />

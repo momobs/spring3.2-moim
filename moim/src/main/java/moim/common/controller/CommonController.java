@@ -2,15 +2,18 @@ package moim.common.controller;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import moim.common.common.CommandMap;
 import moim.common.service.CommonService;
@@ -21,6 +24,15 @@ public class CommonController{
 	
 	@Resource(name="commonService")
 	private CommonService commonService;
+	
+	@RequestMapping(value="/common/initMain.do")
+    public ModelAndView openBoardUpdate(CommandMap commandMap) throws Exception{
+    	ModelAndView mv = new ModelAndView("/index");
+    	//Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap());
+    	//mv.addObject("map", map.get("map"));
+    	//mv.addObject("list", map.get("list"));
+    	return mv;
+	}
 	
 	@RequestMapping(value="/common/downloadFile.do")
 	public void downloadFile(CommandMap commandMap, HttpServletResponse response) throws Exception{
