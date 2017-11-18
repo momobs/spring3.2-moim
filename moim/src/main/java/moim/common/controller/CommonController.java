@@ -25,8 +25,14 @@ public class CommonController{
 	@Resource(name="commonService")
 	private CommonService commonService;
 	
+	@RequestMapping(value="/common/init.do")
+	public ModelAndView init() throws Exception{
+		ModelAndView mv = new ModelAndView("/common/dashboard");
+		return mv;
+	}
+	
 	@RequestMapping(value="/common/login.do")
-    public ModelAndView openBoardUpdate(HttpServletRequest request, CommandMap commandMap) throws Exception{
+    public ModelAndView login(HttpServletRequest request, CommandMap commandMap) throws Exception{
     	ModelAndView mv = new ModelAndView("/common/login");
     	String inputId = request.getParameter("username");
     	String inputPwd = request.getParameter("password");
@@ -39,12 +45,17 @@ public class CommonController{
     			mv.setViewName("redirect:/");
     		}
     	}
-    	//new ModelAndView("/common/login");
-    	//Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap());
-    	//mv.addObject("map", map.get("map"));
-    	//mv.addObject("list", map.get("list"));
     	return mv;
 	}
+	
+	@RequestMapping(value="/common/logout.do")
+    public ModelAndView logout(HttpServletRequest request) throws Exception{
+    	ModelAndView mv = new ModelAndView("redirect:/");
+    	request.getSession().removeAttribute("user");
+    	
+    	return mv;
+	}
+	
 	
 	@RequestMapping(value="/common/downloadFile.do")
 	public void downloadFile(CommandMap commandMap, HttpServletResponse response) throws Exception{

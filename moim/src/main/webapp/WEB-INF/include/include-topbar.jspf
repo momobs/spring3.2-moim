@@ -365,51 +365,56 @@
                             <!-- BEGIN USER LOGIN DROPDOWN -->
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user dropdown-dark">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <span class="username username-hide-on-mobile"> ${sessionScope.user.USER_ID} </span>
-                                    <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                    <img alt="" class="img-circle" src="<c:url value='/resource/img/profile/avatar.png'/>" /> </a>
-                                <ul class="dropdown-menu dropdown-menu-default">
-									<c:choose>        
-                                    <c:when test="${sessionScope.user.USER_ID ne null}">
-                                    <li>
-                                        <a href="page_user_profile_1.html">
-                                            <i class="icon-user"></i> My Profile </a>
-                                    </li>
-                                    <li>
-                                        <a href="app_calendar.html">
-                                            <i class="icon-calendar"></i> My Calendar </a>
-                                    </li>
-                                    <li>
-                                        <a href="app_inbox.html">
-                                            <i class="icon-envelope-open"></i> My Inbox
-                                            <span class="badge badge-danger"> 3 </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="app_todo_2.html">
-                                            <i class="icon-rocket"></i> My Tasks
-                                            <span class="badge badge-success"> 7 </span>
-                                        </a>
-                                    </li>
-                                    <li class="divider"> </li>
-                                    <li>
-                                        <a href="page_user_lock_1.html">
-                                            <i class="icon-lock"></i> Lock Screen </a>
-                                    </li>
-                                    <li>
-                                        <a href="page_user_login_1.html">
-                                            <i class="icon-key"></i> Log Out </a>
-                                    </li>
-                                    </c:when>
-                                    <c:otherwise>
-                                    	<li>
-                                        	<a href="<c:url value='/common/login.do'/>">
-											<i class="icon-key"></i> Log In </a>
-										</li>
-                                    </c:otherwise>
-                                    </c:choose>
-                                </ul>
+                            	<c:choose>        
+									<c:when test="${sessionScope.user ne null}">
+		                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+		                                    <span class="username username-hide-on-mobile"> ${sessionScope.user.USER_ID} </span>
+		                                    <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
+		                                    <img alt="" class="img-circle" src="<c:url value='/resource/img/profile/avatar.png'/>" /> </a>
+		                                <ul class="dropdown-menu dropdown-menu-default">
+		                                    <li>
+		                                        <a href="page_user_profile_1.html">
+		                                            <i class="icon-user"></i> My Profile </a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="app_calendar.html">
+		                                            <i class="icon-calendar"></i> My Calendar </a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="app_inbox.html">
+		                                            <i class="icon-envelope-open"></i> My Inbox
+		                                            <span class="badge badge-danger"> 3 </span>
+		                                        </a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="app_todo_2.html">
+		                                            <i class="icon-rocket"></i> My Tasks
+		                                            <span class="badge badge-success"> 7 </span>
+		                                        </a>
+		                                    </li>
+		                                    <li class="divider"> </li>
+		                                    <li>
+		                                        <a href="page_user_lock_1.html">
+		                                            <i class="icon-lock"></i> Lock Screen </a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="<c:url value='/common/logout.do'/> ">
+		                                            <i class="icon-key"></i> Log Out </a>
+		                                    </li>
+		                                </ul>
+                                	</c:when>
+                                	<c:otherwise>
+		                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+		                                    <span class="username username-hide-on-mobile"> unknown </span>
+		                                    <img alt="" class="img-circle" src="<c:url value='/resource/img/profile/avatar.png'/>" /> </a>
+		                                <ul class="dropdown-menu dropdown-menu-default">
+		                                    <li>
+		                                        <a href="<c:url value='/common/login.do'/>">
+		                                            <i class="icon-key"></i> Log In </a>
+		                                    </li>
+		                                </ul>
+                                	</c:otherwise>                               	
+                               	</c:choose>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
                             <!-- BEGIN QUICK SIDEBAR TOGGLER -->
