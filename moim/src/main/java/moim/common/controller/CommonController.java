@@ -51,7 +51,7 @@ public class CommonController{
 	@RequestMapping(value="/common/logout.do")
     public ModelAndView logout(HttpServletRequest request) throws Exception{
     	ModelAndView mv = new ModelAndView("redirect:/");
-    	request.getSession().removeAttribute("user");
+    	request.getSession().invalidate();
     	
     	return mv;
 	}
