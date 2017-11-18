@@ -33,25 +33,25 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-        <link href="<c:url value='/resource/plugins/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css" />
-        <link href="<c:url value='/resource/plugins/simple-line-icons/simple-line-icons.min.css'/>" rel="stylesheet" type="text/css" />
-        <link href="<c:url value='/resource/plugins/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css" />
-        <link href="<c:url value='/resource/plugins/bootstrap-switch/css/bootstrap-switch.min.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/plugin/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/plugin/simple-line-icons/simple-line-icons.min.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/plugin/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/plugin/bootstrap-switch/css/bootstrap-switch.min.css'/>" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <link href="<c:url value='/resource/plugins/bootstrap-daterangepicker/daterangepicker.min.css'/>" rel="stylesheet" type="text/css" />
-        <link href="<c:url value='/resource/plugins/morris/morris.css'/>" rel="stylesheet" type="text/css" />
-        <link href="<c:url value='/resource/plugins/fullcalendar/fullcalendar.min.css'/>" rel="stylesheet" type="text/css" />
-        <link href="<c:url value='/resource/plugins/jqvmap/jqvmap/jqvmap.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/plugin/bootstrap-daterangepicker/daterangepicker.min.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/plugin/morris/morris.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/plugin/fullcalendar/fullcalendar.min.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/plugin/jqvmap/jqvmap/jqvmap.css'/>" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
-        <link href="<c:url value='/resource/css/global/components-rounded.css'/>" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="<c:url value='/resource/css/global/plugins.min.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/css/global/components-rounded.css'/>" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="<c:url value='/asset/css/global/plugins.min.css'/>" rel="stylesheet" type="text/css" />
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
-        <link href="<c:url value='/resource/css/layout/layout.min.css'/>" rel="stylesheet" type="text/css" />
-        <link href="<c:url value='/resource/css/layout/themes/darkblue.min.css'/>" rel="stylesheet" type="text/css" id="style_color" />
-        <link href="<c:url value='/resource/css/layout/custom.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/css/layout/layout.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/asset/css/layout/darkblue.min.css'/>" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="<c:url value='/asset/css/layout/custom.css'/>" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
@@ -5789,61 +5789,61 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="quick-nav-overlay"></div>
         <!-- END QUICK NAV -->
         <!--[if lt IE 9]>
-<script src="<c:url value='/resource/plugins/respond.min.js'/>"></script>
-<script src="<c:url value='/resource/plugins/excanvas.min.js'/>"></script> 
-<script src="<c:url value='/resource/plugins/ie8.fix.min.js'/>"></script> 
+<script src="<c:url value='/asset/plugin/respond.min.js'/>"></script>
+<script src="<c:url value='/asset/plugin/excanvas.min.js'/>"></script> 
+<script src="<c:url value='/asset/plugin/ie8.fix.min.js'/>"></script> 
 <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
-        <script src="<c:url value='/resource/plugins/jquery.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/js.cookie.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jquery-slimscroll/jquery.slimscroll.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jquery.blockui.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/bootstrap-switch/js/bootstrap-switch.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jquery.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/js.cookie.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jquery-slimscroll/jquery.slimscroll.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jquery.blockui.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/bootstrap-switch/js/bootstrap-switch.min.js'/>" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="<c:url value='/resource/plugins/moment.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/bootstrap-daterangepicker/daterangepicker.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/morris/morris.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/morris/raphael-min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/counterup/jquery.waypoints.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/counterup/jquery.counterup.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/amcharts/amcharts/amcharts.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/amcharts/amcharts/serial.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/amcharts/amcharts/pie.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/amcharts/amcharts/radar.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/amcharts/amcharts/themes/light.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/amcharts/amcharts/themes/patterns.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/amcharts/amcharts/themes/chalk.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/amcharts/ammap/ammap.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/amcharts/ammap/maps/js/worldLow.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/amcharts/amstockcharts/amstock.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/fullcalendar/fullcalendar.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/horizontal-timeline/horizontal-timeline.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/flot/jquery.flot.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/flot/jquery.flot.resize.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/flot/jquery.flot.categories.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jquery-easypiechart/jquery.easypiechart.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jquery.sparkline.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jqvmap/jqvmap/jquery.vmap.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/moment.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/bootstrap-daterangepicker/daterangepicker.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/morris/morris.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/morris/raphael-min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/counterup/jquery.waypoints.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/counterup/jquery.counterup.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/amcharts/amcharts/amcharts.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/amcharts/amcharts/serial.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/amcharts/amcharts/pie.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/amcharts/amcharts/radar.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/amcharts/amcharts/themes/light.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/amcharts/amcharts/themes/patterns.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/amcharts/amcharts/themes/chalk.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/amcharts/ammap/ammap.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/amcharts/ammap/maps/js/worldLow.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/amcharts/amstockcharts/amstock.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/fullcalendar/fullcalendar.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/horizontal-timeline/horizontal-timeline.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/flot/jquery.flot.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/flot/jquery.flot.resize.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/flot/jquery.flot.categories.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jquery-easypiechart/jquery.easypiechart.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jquery.sparkline.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jqvmap/jqvmap/jquery.vmap.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jqvmap/jqvmap/maps/jquery.vmap.russia.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jqvmap/jqvmap/maps/jquery.vmap.world.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jqvmap/jqvmap/maps/jquery.vmap.europe.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jqvmap/jqvmap/maps/jquery.vmap.germany.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jqvmap/jqvmap/maps/jquery.vmap.usa.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/plugin/jqvmap/jqvmap/data/jquery.vmap.sampledata.js'/>" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="<c:url value='/resource/js/global/app.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/js/global/app.min.js'/>" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS --> 
-        <script src="<c:url value='/resource/js/pages/dashboard.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/js/page/dashboard.min.js'/>" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <script src="<c:url value='/resource/js/layout/layout.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/js/layout/demo.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/js/layout/quick-sidebar.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/resource/js/layout/quick-nav.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/js/layout/layout.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/js/layout/demo.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/js/layout/quick-sidebar.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/js/layout/quick-nav.min.js'/>" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
         <script>
             $(document).ready(function()
