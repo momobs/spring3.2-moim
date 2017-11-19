@@ -2,18 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="common">
-	<select id="selectUser" parameterType="hashmap" resultType="hashMap">
+	<select id="selectGroupList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT
-				USER_ID,
-				USER_PWD,
-				USER_NAME
-			FROM
-				USER
-			WHERE
-				USER_ID = #{USER_ID}
+			SELECT A.GROUP_IDX, A.GROUP_NAME, B.USER_ID
+			FROM GROUP_HEADER A, GROUP_MEMBER B	
+			WHERE A.GROUP_IDX = B.GROUP_IDX
+			AND B.USER_ID = #{USER_ID}
+			ORDER BY A.GROUP_IDX
 		]]>
 	</select>
+	
+	<select id="selectOverview" resultType="hashmap">
+		<![CDATA[
+			SELECT A.USER_CNT, B.GROUP_CNT
+			FROM 
+				(SELECT COUNT(*) USER_CNT FROM USER) A,
+				(SELECT COUNT(*) GROUP_CNT FROM GROUP_HEADER) B
+		]]>
+	</select>
+	
  	<select id="selectFileInfo" parameterType="hashmap" resultType="hashMap">
  		<![CDATA[
  			SELECT

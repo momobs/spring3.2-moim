@@ -29,12 +29,23 @@
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- LOGIN FORM:BEGIN -->
-            <form class="login-form" action="<c:url value='/common/login.do'/>" method="post">
+            <form class="login-form" action="<c:url value='/user/login.do'/>" method="post">
                 <h3 class="form-title font-green">Sign In</h3>
-                <div class="alert alert-danger display-hide">
-                    <button class="close" data-close="alert"></button>
-                    <span> 아이디와 비밀번호를 입력하세요. </span>
-                </div>
+                <c:choose>
+                <c:when test="${msg eq null }">
+	                <div class="alert alert-danger display-hide">
+	                    <button class="close" data-close="alert"></button>
+	                    <span> 아이디와 비밀번호를 입력하세요. </span>
+	                </div>                	
+              	</c:when>
+              	<c:otherwise>
+	              	<div class="alert alert-danger">
+	                    <button class="close" data-close="alert"></button>
+	                    <span> ${msg} </span>
+	               	</div>
+               	</c:otherwise>
+               	</c:choose>
+               	
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">ID</label>
@@ -383,7 +394,7 @@
         <!-- END PAGE LEVEL PLUGINS -->
         
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="<c:url value='/asset/js/page/login.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/js/page/login.js?ver=1'/>" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
 
         <script>

@@ -10,7 +10,7 @@ import moim.common.dao.AbstractDAO;
 public class UserDAO extends AbstractDAO{
 	
 	@SuppressWarnings("unchecked")
-	public Map<String,Object> selectFileInfo(Map<String, Object> map) throws Exception{
-		return (Map<String, Object>)selectOne("common.selectFileInfo", map);
+	public Map<String,Object> selectUser(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>)selectOne("user.selectUser", map);
 	}
 }

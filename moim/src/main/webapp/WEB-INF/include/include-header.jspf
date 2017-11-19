@@ -20,6 +20,12 @@
 <link href="<c:url value='/asset/plugin/bootstrap-switch/css/bootstrap-switch.min.css'/>" rel="stylesheet" type="text/css" />
 <!-- GLOBAL MANDATORY STYLES: END -->
 
+<!-- THEME LAYOUT STYLES:START -->
+<link href="<c:url value='/asset/css/layout/layout.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/asset/css/layout/darkblue.min.css'/>" rel="stylesheet" type="text/css" id="style_color" />
+<link href="<c:url value='/asset/css/layout/custom.css'/>" rel="stylesheet" type="text/css" />
+<!-- THEME LAYOUT STYLES:END -->
+
 <!-- THEME GLOBAL STYLES:START -->
 <link href="<c:url value='/asset/css/global/components-rounded.css'/>" rel="stylesheet" id="style_components" type="text/css" />
 <link href="<c:url value='/asset/css/global/plugins.min.css'/>" rel="stylesheet" type="text/css" />

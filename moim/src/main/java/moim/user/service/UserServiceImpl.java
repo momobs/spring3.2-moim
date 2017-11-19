@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService{
 	private UserDAO userDAO;
 	
 	@Override
-	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception{
-		return userDAO.selectFileInfo(map);
+	public Map<String, Object> selectUser(Map<String, Object> map) throws Exception{
+		return userDAO.selectUser(map);
 	}
 	
 }

@@ -20,15 +20,15 @@ var Login = function() {
 
             messages: {
                 username: {
-                    required: "Username is required."
+                    required: "아이디가 필요합니다."
                 },
                 password: {
-                    required: "Password is required."
+                    required: "비밀번호가 필요합니다."
                 }
             },
 
-            invalidHandler: function(event, validator) { //display error alert on form submit   
-                $('.alert-danger', $('.login-form')).show();
+            invalidHandler: function(event, validator) { //display error alert on form submit
+            	$('.alert-danger', $('.login-form')).show();
             },
 
             highlight: function(element) { // hightlight error inputs
@@ -75,7 +75,7 @@ var Login = function() {
 
             messages: {
                 email: {
-                    required: "Email is required."
+                    required: "이메일 주소가 필요합니다."
                 }
             },
 
@@ -157,7 +157,15 @@ var Login = function() {
             focusInvalid: false, // do not focus the last invalid input
             ignore: "",
             rules: {
-
+            	username: {
+                    required: true
+                },
+                password: {
+                    required: true
+                },
+                rpassword: {
+                    equalTo: "#register_password"
+                },
                 fullname: {
                     required: true
                 },
@@ -168,23 +176,6 @@ var Login = function() {
                 address: {
                     required: true
                 },
-                city: {
-                    required: true
-                },
-                country: {
-                    required: true
-                },
-
-                username: {
-                    required: true
-                },
-                password: {
-                    required: true
-                },
-                rpassword: {
-                    equalTo: "#register_password"
-                },
-
                 tnc: {
                     required: true
                 }
@@ -192,7 +183,7 @@ var Login = function() {
 
             messages: { // custom messages for radio buttons and checkboxes
                 tnc: {
-                    required: "Please accept TNC first."
+                    required: "약관에 동의하세요."
                 }
             },
 

@@ -2,6 +2,7 @@ package moim.common.controller;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -25,37 +26,20 @@ public class CommonController{
 	@Resource(name="commonService")
 	private CommonService commonService;
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/common/init.do")
-	public ModelAndView init() throws Exception{
-		ModelAndView mv = new ModelAndView("/common/dashboard");
+	public ModelAndView init(HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/common/main");
+		
+		mv.addObject("overview", (Map<String,Object>)commonService.selectOverview());
+		
+		HttpSession session = request.getSession();
+		Map<String,Object> user = (Map<String,Object>) session.getAttribute("user");
+		if (user != null) {
+			session.setAttribute("groupList", (List<Map<String,Object>>)commonService.selectGroupList(user));
+		}
 		return mv;
-	}
-	
-	@RequestMapping(value="/common/login.do")
-    public ModelAndView login(HttpServletRequest request, CommandMap commandMap) throws Exception{
-    	ModelAndView mv = new ModelAndView("/common/login");
-    	String inputId = request.getParameter("username");
-    	String inputPwd = request.getParameter("password");
-    	commandMap.put("USER_ID", inputId);
-    	
-    	if ( inputId!=null ) {
-    		Map<String,Object> user = commonService.selectUser(commandMap.getMap());
-    		if (user.get("USER_PWD").equals(inputPwd)) {
-    			request.getSession().setAttribute("user", user);
-    			mv.setViewName("redirect:/");
-    		}
-    	}
-    	return mv;
-	}
-	
-	@RequestMapping(value="/common/logout.do")
-    public ModelAndView logout(HttpServletRequest request) throws Exception{
-    	ModelAndView mv = new ModelAndView("redirect:/");
-    	request.getSession().invalidate();
-    	
-    	return mv;
-	}
-	
+	}	
 	
 	@RequestMapping(value="/common/downloadFile.do")
 	public void downloadFile(CommandMap commandMap, HttpServletResponse response) throws Exception{

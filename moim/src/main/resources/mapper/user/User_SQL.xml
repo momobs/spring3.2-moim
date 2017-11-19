@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="user">
+	<select id="selectUser" parameterType="hashmap" resultType="hashMap">
+		<![CDATA[
+			SELECT
+				USER_ID,
+				USER_PWD,
+				USER_NAME
+			FROM
+				USER
+			WHERE
+				USER_ID = #{USER_ID}
+		]]>
+	</select>
+</mapper>
