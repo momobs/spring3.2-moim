@@ -1,13 +1,12 @@
 package moim.user.service;
 
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import moim.user.dao.UserDAO;
+import moim.user.vo.UserVO;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -17,8 +16,13 @@ public class UserServiceImpl implements UserService{
 	private UserDAO userDAO;
 	
 	@Override
-	public Map<String, Object> selectUser(Map<String, Object> map) throws Exception{
-		return userDAO.selectUser(map);
+	public UserVO selectUser(UserVO user) throws Exception{
+		return userDAO.selectUser(user);
+	}
+	
+	@Override
+	public void insertUser(UserVO user) throws Exception{
+		userDAO.insertUser(user);
 	}
 	
 }

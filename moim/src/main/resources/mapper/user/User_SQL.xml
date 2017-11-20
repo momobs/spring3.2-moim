@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="user">
-	<select id="selectUser" parameterType="hashmap" resultType="hashMap">
+	<select id="selectUser" parameterType="moim.user.vo.UserVO" resultType="moim.user.vo.UserVO">
 		<![CDATA[
 			SELECT
 				USER_ID,
@@ -11,7 +11,33 @@
 			FROM
 				USER
 			WHERE
-				USER_ID = #{USER_ID}
+				USER_ID = #{user_id}
+			AND USER_PWD = #{user_pwd}
 		]]>
 	</select>
+	
+	<insert id="insertUser" parameterType="moim.user.vo.UserVO" >
+		<![CDATA[
+			INSERT INTO USER
+			(
+				USER_ID,
+				USER_PWD,
+				USER_NAME,
+				EMAIL,
+				PHONE,
+				ADDRESS,
+				CREATE_DATE
+			)
+			VALUES
+			(
+				#{user_id},
+				#{user_pwd},
+				#{user_name},
+				#{email},
+				#{phone},
+				#{address},
+				now()
+			)
+		]]>
+	</insert>
 </mapper>

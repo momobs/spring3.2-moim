@@ -25,12 +25,12 @@
             <mvc:mapping path="/**"/>
             <bean id="loggerInterceptor" class="moim.common.logger.LoggerInterceptor"></bean>
         </mvc:interceptor>
-        <!--
+
         <mvc:interceptor>
-            <mvc:mapping path="/user/ *"/>
+            <mvc:mapping path="/user/*"/>
             <bean id="UserInterceptor" class="moim.user.interceptor.UserInterceptor"></bean>
         </mvc:interceptor>
-         -->
+        
     </mvc:interceptors>
      
     <aop:aspectj-autoproxy/>

@@ -5,12 +5,14 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import moim.user.vo.UserVO;
+
 @Repository("commonDAO")
 public class CommonDAO extends AbstractDAO{
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String,Object>> selectGroupList(Map<String,Object> map) throws Exception{
-		return (List<Map<String,Object>>)selectList("common.selectGroupList", map);
+	public List<Map<String,Object>> selectGroupList(UserVO user) throws Exception{
+		return (List<Map<String,Object>>)selectList("common.selectGroupList", user);
 	}
 	
 	@SuppressWarnings("unchecked")

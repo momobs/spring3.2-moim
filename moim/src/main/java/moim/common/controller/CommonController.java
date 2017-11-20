@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import moim.common.common.CommandMap;
 import moim.common.service.CommonService;
+import moim.user.vo.UserVO;
 
 @Controller
 public class CommonController{
@@ -34,7 +35,7 @@ public class CommonController{
 		mv.addObject("overview", (Map<String,Object>)commonService.selectOverview());
 		
 		HttpSession session = request.getSession();
-		Map<String,Object> user = (Map<String,Object>) session.getAttribute("user");
+		UserVO user = (UserVO) session.getAttribute("user");
 		if (user != null) {
 			session.setAttribute("groupList", (List<Map<String,Object>>)commonService.selectGroupList(user));
 		}

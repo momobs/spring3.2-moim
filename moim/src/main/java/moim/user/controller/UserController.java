@@ -1,11 +1,9 @@
 package moim.user.controller;
 
-import java.io.PrintWriter;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -14,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import moim.common.common.CommandMap;
 import moim.user.service.UserService;
+import moim.user.vo.UserVO;
 
 @Controller
 public class UserController{
@@ -22,25 +21,40 @@ public class UserController{
 	@Resource(name="userService")
 	private UserService userService;
 
-	@RequestMapping(value="/user/login.do")
-    public ModelAndView login(HttpServletRequest request,  CommandMap commandMap) throws Exception{
+	@RequestMapping(value="/login.do")
+    public ModelAndView login(HttpServletRequest request, UserVO user) throws Exception{
     	ModelAndView mv = new ModelAndView("/user/login");
-    	String inputId = request.getParameter("username");
-    	String inputPwd = request.getParameter("password");
-    	commandMap.put("USER_ID", inputId);
     	
-    	if ( inputId!=null ) {
-    		Map<String,Object> user = userService.selectUser(commandMap.getMap());
-    		if (user!=null && user.get("USER_PWD").equals(inputPwd)) {
+    	UserVO loginUser = (UserVO) request.getSession().getAttribute("user");
+
+    	if ( user.getUser_id()==null && loginUser!=null ) {
+    		user = loginUser;
+    	}
+    	
+    	if ( user.getUser_id()!=null ) {
+    		user = userService.selectUser(user);
+    		if (user!=null) {
     			request.getSession().setAttribute("user", user);
     			mv.setViewName("redirect:/");
-    			mv.addObject("msg", "");
+    			mv.addObject("msg", null);
     		} else {
-        		mv.addObject("msg", "ID/PASSWORD를 확인하세요");
+        		mv.addObject("msg", "유효하지 않은 계정입니다.");
         	} 
     	} 
     	return mv;
 	}
+	
+	@RequestMapping(value="/joinus.do")
+    public ModelAndView joinus(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
+    	ModelAndView mv = new ModelAndView("redirect:/login.do");
+
+    	userService.insertUser(user);
+    	
+    	request.getSession().setAttribute("user", user);
+    	
+    	return mv;
+	}
+	
 	
 	@RequestMapping(value="/user/logout.do")
     public ModelAndView logout(HttpServletRequest request) throws Exception{
@@ -50,20 +64,7 @@ public class UserController{
     	return mv;
 	}
 	
-	@RequestMapping(value="/user/joinus.do")
-    public ModelAndView joinus(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
-    	ModelAndView mv = new ModelAndView("redirect:/");
-    	
-    	commandMap.put("userId", request.getParameter("username"));
-    	commandMap.put("userPwd", request.getParameter("password"));
-    	commandMap.put("userName", request.getParameter("fullname"));
-    	commandMap.put("userEmail", request.getParameter("email"));
-    	commandMap.put("userAddr", request.getParameter("address"));
-    	
-    	log.debug(commandMap.get("userId")+"/"+commandMap.get("userPwd"));
-    	
-    	return mv;
-	}
+
 	
 	@RequestMapping(value="/user/myprofile.do")
     public ModelAndView myprofile(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{

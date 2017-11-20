@@ -29,7 +29,7 @@
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- LOGIN FORM:BEGIN -->
-            <form class="login-form" action="<c:url value='/user/login.do'/>" method="post">
+            <form class="login-form" action="<c:url value='/login.do'/>" method="post">
                 <h3 class="form-title font-green">Sign In</h3>
                 <c:choose>
                 <c:when test="${msg eq null }">
@@ -49,11 +49,11 @@
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">ID</label>
-                    <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="ID" name="username" /> 
+                    <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="ID" name="user_id" /> 
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">PASSWORD</label>
-                    <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="PASSWORD" name="password" />
+                    <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="PASSWORD" name="user_pwd" />
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn green uppercase">Login</button>
@@ -102,37 +102,42 @@
             <!-- END FORGOT PASSWORD FORM -->
             
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="<c:url value='/user/joinus.do'/>" method="post">
+            <form class="register-form" action="<c:url value='/joinus.do'/>" method="post">
                 <h3 class="font-green">Sign Up</h3>
-                <p class="hint"> 필수입력사항 </p>
+                <p class="hint"> 필수입력사항 (Essential) </p>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">아이디</label>
-                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="아이디" name="username" />
+                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="아이디" name="user_id" />
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">비밀번호</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="비밀번호" name="password" />
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="비밀번호" name="user_pwd" />
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">비밀번호 재입력</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="비밀번호 재입력" name="rpassword" />
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="비밀번호 재입력" name="user_pwd2" />
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">사용자명</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="사용자명" name="fullname" /> 
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="사용자명" name="user_name" /> 
 				</div>
                 
-                <p class="hint"> 선택입력사항 </p>
+                <p class="hint"> 선택입력사항 (Optional)</p>
 
                 <div class="form-group">
-                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">Email</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="E-MAIL" name="email" /> </div>
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="E-MAIL" name="email" /> 
+				</div>
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">연락처</label>
+                    <input class="form-control placeholder-no-fix" type="tel" placeholder="연락처(00*-000*-0000)" name="phone" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" maxlength="15" />
+				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">주소</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="주소" name="address" /> </div>
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="주소" name="address" />
+				</div>
                 
-                
+                <!-- 
                 <div class="form-group margin-top-20 margin-bottom-20">
                     <label class="mt-checkbox mt-checkbox-outline">
                         <input type="checkbox" name="tnc" checked="checked"/> 약관에 동의합니다.   
@@ -142,7 +147,7 @@
                     </label>
                     <div id="register_tnc_error"> </div>
                 </div>
-
+ 				-->
                 <div class="form-actions">
                     <button type="button" id="register-back-btn" class="btn green btn-outline">Back</button>
                     <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
@@ -161,7 +166,7 @@
         <!-- END PAGE LEVEL PLUGINS -->
         
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="<c:url value='/asset/js/page/login.js?ver=1'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/js/page/login.js?ver=2'/>" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
 
         <script>

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import moim.common.dao.CommonDAO;
+import moim.user.vo.UserVO;
 
 @Service("commonService")
 public class CommonServiceImpl implements CommonService{
@@ -18,8 +19,8 @@ public class CommonServiceImpl implements CommonService{
 	private CommonDAO commonDAO;
 	
 	@Override
-	public List<Map<String, Object>> selectGroupList(Map<String, Object> map) throws Exception{
-		return (List<Map<String,Object>>)commonDAO.selectGroupList(map);
+	public List<Map<String, Object>> selectGroupList(UserVO user) throws Exception{
+		return (List<Map<String,Object>>)commonDAO.selectGroupList(user);
 	}
 	
 	@Override

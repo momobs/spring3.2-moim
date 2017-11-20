@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="common">
-	<select id="selectGroupList" parameterType="hashmap" resultType="hashmap">
+	<select id="selectGroupList" parameterType="moim.user.vo.UserVO" resultType="hashmap">
 		<![CDATA[
 			SELECT A.GROUP_IDX, A.GROUP_NAME, B.USER_ID
 			FROM GROUP_HEADER A, GROUP_MEMBER B	
 			WHERE A.GROUP_IDX = B.GROUP_IDX
-			AND B.USER_ID = #{USER_ID}
+			AND B.USER_ID = #{user_id}
 			ORDER BY A.GROUP_IDX
 		]]>
 	</select>

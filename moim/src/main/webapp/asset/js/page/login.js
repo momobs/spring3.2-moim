@@ -7,10 +7,10 @@ var Login = function() {
             errorClass: 'help-block', // default input error message class
             focusInvalid: false, // do not focus the last invalid input
             rules: {
-                username: {
+                user_id: {
                     required: true
                 },
-                password: {
+                user_pwd: {
                     required: true
                 },
                 remember: {
@@ -19,10 +19,10 @@ var Login = function() {
             },
 
             messages: {
-                username: {
+                user_id: {
                     required: "아이디가 필요합니다."
                 },
-                password: {
+                user_pwd: {
                     required: "비밀번호가 필요합니다."
                 }
             },
@@ -157,16 +157,16 @@ var Login = function() {
             focusInvalid: false, // do not focus the last invalid input
             ignore: "",
             rules: {
-            	username: {
+            	user_id: {
                     required: true
                 },
-                password: {
+                user_pwd: {
                     required: true
                 },
-                rpassword: {
+                user_pwd2: {
                     equalTo: "#register_password"
                 },
-                fullname: {
+                user_name: {
                     required: true
                 },
                 email: {
@@ -177,7 +177,7 @@ var Login = function() {
                     required: true
                 },
                 tnc: {
-                    required: true
+                    required: false
                 }
             },
 

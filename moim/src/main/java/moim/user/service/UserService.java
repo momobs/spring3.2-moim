@@ -1,9 +1,10 @@
 package moim.user.service;
 
-import java.util.Map;
+import moim.user.vo.UserVO;
 
 public interface UserService {
-	Map<String, Object> selectUser(Map<String, Object> map) throws Exception;
-
+	UserVO selectUser(UserVO user) throws Exception;
+	
+	void insertUser(UserVO user) throws Exception;
 	
 }

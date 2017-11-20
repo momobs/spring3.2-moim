@@ -314,7 +314,7 @@
 		                        <li class="dropdown dropdown-user">
 		                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 		                                <img alt="" class="img-circle" src="<c:url value='/asset/img/avatar/avatar.png'/>" />
-		                                <span class="username username-hide-on-mobile"> ${sessionScope.user.USER_ID } </span>
+		                                <span class="username username-hide-on-mobile"> ${sessionScope.user.user_id } </span>
 		                                <i class="fa fa-angle-down"></i>
 		                            </a>
 		                            <ul class="dropdown-menu dropdown-menu-default">
@@ -358,8 +358,9 @@
 		                            </a>
 		                            <ul class="dropdown-menu dropdown-menu-default">
 		                                <li>
-		                                    <a href="<c:url value='/user/login.do'/>"> 
-		                                        <i class="icon-key"></i> Log In </a>
+		                                    <a href="<c:url value='/login.do'/>"> 
+		                                        <i class="icon-key"></i> Log In 
+		                                    </a>
 		                                </li>
 		                            </ul>
 		                        </li>

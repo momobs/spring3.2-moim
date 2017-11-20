@@ -26,7 +26,6 @@ public class SampleDAO  extends AbstractDAO{
 	}
 	
 	public void insertBoard(Map<String, Object> map) throws Exception{
-		log.debug("ineEEE");
 		insert("sample.insertBoard", map);
 	}
 
