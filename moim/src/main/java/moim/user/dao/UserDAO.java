@@ -13,7 +13,7 @@ public class UserDAO extends AbstractDAO{
 		return (UserVO)selectOne("user.selectUser", user);
 	}
 	
-	public void insertUser(UserVO user) throws Exception{
+	public void insertUser(UserVO user){
 		insert("user.insertUser", user);
 	}
 }
