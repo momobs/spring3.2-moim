@@ -3,6 +3,7 @@ package moim.user.service;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import moim.user.dao.UserDAO;
@@ -22,7 +23,12 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void insertUser(UserVO user) throws Exception{
-		userDAO.insertUser(user);
+		try {
+			userDAO.insertUser(user);
+		} catch (DuplicateKeyException e) {
+			log.debug("중복키");
+		}
+		
 	}
 	
 }

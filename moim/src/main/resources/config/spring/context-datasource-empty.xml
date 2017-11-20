@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:tx="http://www.springframework.org/schema/tx"
 		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-							http://www.springframework.org/schema/jdbc	http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+							http://www.springframework.org/schema/jdbc	http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+							http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://##address##:##port##/##database##" />
@@ -19,4 +21,31 @@
 			</bean>
 		</property>
 	</bean>
+	
+    <!-- Transaction Manager 설정 commit, rollback --> 
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <property name="dataSource" ref="dataSource" />
+    </bean>
+    
+	<!-- Transaction 대상 설정 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*" rollback-for="RuntimeException" />
+			<tx:method name="write*" rollback-for="RuntimeException" />
+			<tx:method name="add*" rollback-for="RuntimeException" />
+			<tx:method name="create*" rollback-for="RuntimeException" />
+			<tx:method name="regist*" rollback-for="RuntimeException" />
+			<tx:method name="set*" rollback-for="RuntimeException" />
+			<tx:method name="update*" rollback-for="RuntimeException" />
+			<tx:method name="modify*" rollback-for="RuntimeException" />
+			<tx:method name="edit*" rollback-for="RuntimeException" />
+			<tx:method name="change*" rollback-for="RuntimeException" />
+			<tx:method name="delete*" rollback-for="RuntimeException"/>
+			<tx:method name="remove" rollback-for="RuntimeException" />
+			<tx:method name="terminate*" rollback-for="RuntimeException" />
+			<tx:method name="read*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
 </beans>

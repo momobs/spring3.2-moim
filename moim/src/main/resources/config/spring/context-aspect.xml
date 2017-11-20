@@ -11,12 +11,12 @@
      
     <aop:aspectj-autoproxy/>
     <bean id="loggerAspect" class="moim.common.logger.LoggerAspect" />
-    
-
-	<aop:config proxy-target-class="true">
+     
+	<aop:config>
 		<aop:pointcut id="serviceOperation" expression="execution(public * moim..service.*Service.*(..))" />
-		<aop:advisor id="transactionAdvisor" pointcut-ref="serviceOperation" advice-ref="txAdvice"/>
+		<aop:advisor id="transactionAdvisor" advice-ref="txAdvice" pointcut-ref="serviceOperation" />
 	</aop:config>
+
     
 </beans>
 
