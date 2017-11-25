@@ -24,23 +24,20 @@ public class UserController{
 	@RequestMapping(value="/login.do")
     public ModelAndView login(HttpServletRequest request, UserVO user) throws Exception{
     	ModelAndView mv = new ModelAndView("/user/login");
-    	
-    	UserVO loginUser = (UserVO) request.getSession().getAttribute("user");
-
-    	if ( user.getUser_id()==null && loginUser!=null ) {
-    		user = loginUser;
-    	}
+    	HttpSession session = request.getSession();
+    	String rtnMsg = (String) session.getAttribute("msg");
     	
     	if ( user.getUser_id()!=null ) {
     		user = userService.selectUser(user);
     		if (user!=null) {
     			request.getSession().setAttribute("user", user);
     			mv.setViewName("redirect:/");
-    			mv.addObject("msg", null);
+    			rtnMsg = null;
     		} else {
-        		mv.addObject("msg", "유효하지 않은 계정입니다.");
+        		rtnMsg = "유효하지 않은 계정입니다.";
         	} 
     	} 
+    	mv.addObject("msg", rtnMsg);
     	return mv;
 	}
 	

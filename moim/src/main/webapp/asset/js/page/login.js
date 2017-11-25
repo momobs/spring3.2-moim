@@ -28,6 +28,7 @@ var Login = function() {
             },
 
             invalidHandler: function(event, validator) { //display error alert on form submit
+            	$('#alertMsg').text('ID/PWD를 입력하세요.');
             	$('.alert-danger', $('.login-form')).show();
             },
 

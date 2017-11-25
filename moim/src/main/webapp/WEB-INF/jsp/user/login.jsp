@@ -31,20 +31,11 @@
             <!-- LOGIN FORM:BEGIN -->
             <form class="login-form" action="<c:url value='/login.do'/>" method="post">
                 <h3 class="form-title font-green">Sign In</h3>
-                <c:choose>
-                <c:when test="${msg eq null }">
-	                <div class="alert alert-danger display-hide">
+				
+				<div class="alert alert-danger <c:if test='${msg eq null }'>display-hide</c:if>">
 	                    <button class="close" data-close="alert"></button>
-	                    <span> 아이디와 비밀번호를 입력하세요. </span>
-	                </div>                	
-              	</c:when>
-              	<c:otherwise>
-	              	<div class="alert alert-danger">
-	                    <button class="close" data-close="alert"></button>
-	                    <span> ${msg} </span>
-	               	</div>
-               	</c:otherwise>
-               	</c:choose>
+	                    <span id="alertMsg">${msg}</span>
+				</div>                	
                	
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -166,17 +157,59 @@
         <!-- END PAGE LEVEL PLUGINS -->
         
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="<c:url value='/asset/js/page/login.js?ver=2'/>" type="text/javascript"></script>
+        <script src="<c:url value='/asset/js/page/login.js'/>" type="text/javascript"></script> 
         <!-- END PAGE LEVEL SCRIPTS -->
 
         <script>
             $(document).ready(function()
             {
+            	var userId = getCookie("cookieUserId");
+            	$("input[name='user_id']").val(userId);
+            	
+            	if($("input[name='user_id']").val() != ""){ // 기억된 아이디가 있어 입력칸에 아이디가 표시된 상태
+            		$("input[name='remember']").attr("checked", true);
+            	}
+            	
+            	$("button[type='submit']", $('.login-form')).click(function(){ // Login Form의 Submit 실행시
+            		if($("input[name='remember']").is(":checked")){ // ID 기억하기 체크시
+            			var userId = $("input[name='user_id']").val();
+            			setCookie("cookieUserId", userId, 7); // 7일동안 쿠키 보관
+            		} else {
+            			deleteCookie("cookieUserId");
+            		}
+            	});            	
+            	
                 $('#clickmewow').click(function()
                 {
                     $('#radio1003').attr('checked', 'checked');
                 });
             })
+            
+            function setCookie(cookieName, value, exdays){
+            	var exdate = new Date();
+            	exdate.setDate(exdate.getDate()+exdays);
+            	var cookieValue = escape(value)+((exdays==null)? "": "; expires="+exdate.toGMTString());
+            	document.cookie = cookieName+"="+cookieValue;
+            }
+            function deleteCookie(cookieName){
+            	var expireDate = new Date();
+            	expireDate.setDate(expireDate.getDate()-1);
+            	document.cookie = cookieName+"= "+"; expires="+expireDate.toGMTString();
+            }
+            function getCookie(cookieName){
+            	cookieName = cookieName + '=';
+            	var cookieData = document.cookie;
+            	var start = cookieData.indexOf(cookieName);
+            	var cookieValue = '';
+            	if(start != -1){
+            		start += cookieName.length;
+            		var end = cookieData.indexOf(';', start);
+            		if(end == -1) end = cookieData.length;
+            		cookieValue = cookieData.substring(start, end);
+            	}
+            	return unescape(cookieValue);
+            	
+            }
         </script>
     </body>
 

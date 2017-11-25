@@ -2,6 +2,7 @@ package moim.user.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,10 +16,12 @@ public class UserInterceptor  extends HandlerInterceptorAdapter{
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws  Exception{
+		HttpSession session = request.getSession();
 		UserVO user = (UserVO) request.getSession().getAttribute("user");
 		
 		if (user==null || user.getUser_id().equals("")) {
 			log.debug("Invalid session.");
+			session.setAttribute("msg", "로그인이 필요한 기능입니다.");
 			response.sendRedirect(request.getContextPath()+"/login.do");
 			return false;
 		}
