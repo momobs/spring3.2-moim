@@ -1,6 +1,6 @@
-package moim.common.vo;
+package moim.common.common;
 
-public class commonVO {
+public class CommonVO {
 	private Boolean result;
 	private String message;
 	

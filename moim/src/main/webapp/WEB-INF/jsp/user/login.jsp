@@ -61,8 +61,9 @@
                         <input type="checkbox" name="remember" value="1" />Remember
                         <span></span>
                     </label>
-                    <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
+                    <%--<a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a> --%>
                 </div>
+                <%--
                 <div class="login-options">
                     <h4>Or login with</h4>
                     <ul class="social-icons">
@@ -80,6 +81,7 @@
                         </li>
                     </ul>
                 </div>
+                 --%>
                 <div class="create-account">
                     <p>
                         <a href="javascript:;" id="register-btn" class="uppercase">Create an account</a>
@@ -121,13 +123,11 @@
                     <label class="control-label visible-ie8 visible-ie9">사용자명</label>
                     <input class="form-control placeholder-no-fix" type="text" placeholder="사용자명" name="user_name" /> 
 				</div>
-                
-                <p class="hint"> 선택입력사항 (Optional)</p>
-
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Email</label>
                     <input class="form-control placeholder-no-fix" type="text" placeholder="E-MAIL" name="email" /> 
-				</div>
+				</div>                
+                <p class="hint"> 선택입력사항 (Optional)</p>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">연락처</label>
                     <input class="form-control placeholder-no-fix" type="tel" placeholder="연락처(00*-000*-0000)" name="phone" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" maxlength="15" />

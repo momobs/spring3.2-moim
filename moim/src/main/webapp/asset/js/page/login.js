@@ -174,7 +174,7 @@ var Login = function() {
                     email: true
                 },
                 address: {
-                    required: true
+                    required: false
                 },
                 tnc: {
                     required: false

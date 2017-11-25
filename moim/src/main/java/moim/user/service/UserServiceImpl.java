@@ -26,7 +26,10 @@ public class UserServiceImpl implements UserService{
 		try {
 			userDAO.insertUser(user);
 		} catch (DuplicateKeyException e) {
-			log.debug("중복키");
+			user.setResult(false);
+			user.setMessage(e.getMessage());
+			
+			log.debug(e.getMessage());
 		}
 		
 	}

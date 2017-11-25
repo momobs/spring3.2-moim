@@ -1,6 +1,8 @@
 package moim.user.vo;
 
-public class UserVO {
+import moim.common.common.CommonVO;
+
+public class UserVO extends CommonVO{
 	private String user_id;
 	private String user_pwd;
 	private String user_name;
