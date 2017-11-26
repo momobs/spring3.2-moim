@@ -20,6 +20,7 @@
     <!-- END HEAD -->
 
     <body class=" login">
+
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="<c:url value='/'/>">
@@ -101,22 +102,28 @@
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">아이디</label>
                     <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="아이디" name="user_id" />
+                    <span id="alertId"></span>
 				</div>
+
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">비밀번호</label>
                     <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="비밀번호" name="user_pwd" />
+                    <span id="alertPwd"></span>
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">비밀번호 재입력</label>
                     <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="비밀번호 재입력" name="user_pwd2" />
+                    <span id="alertPwd2"></span>
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">사용자명</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="사용자명" name="user_name" /> 
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="사용자명" name="user_name" />
+                    <span id="alertName"></span> 
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Email</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="E-MAIL" name="email" /> 
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="E-MAIL" name="email" />
+                    <span id="alertEmail"></span> 
 				</div>                
                 <p class="hint"> 선택입력사항 (Optional)</p>
                 <div class="form-group">
@@ -146,7 +153,7 @@
             </form>
             <!-- END REGISTRATION FORM -->
         </div>
-        <div class="copyright"> 2014 © Metronic. Admin Dashboard Template. </div>
+        <div class="copyright"> 2017 </div>
 
 		<%@ include file="/WEB-INF/include/include-body.jspf" %>
 
@@ -157,14 +164,16 @@
         <!-- END PAGE LEVEL PLUGINS -->
         
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="<c:url value='/asset/js/page/login.js'/>" type="text/javascript"></script> 
+       
+        
+        <script src="<c:url value='/asset/js/page/login.js?${nowTime }'/>" type="text/javascript"></script> 
         <!-- END PAGE LEVEL SCRIPTS -->
 
         <script>
             $(document).ready(function()
             {
             	var userId = getCookie("cookieUserId");
-            	$("input[name='user_id']").val(userId);
+            	$("input[name='user_id']", $(".login-form")).val(userId);
             	
             	if($("input[name='user_id']").val() != ""){ // 기억된 아이디가 있어 입력칸에 아이디가 표시된 상태
             		$("input[name='remember']").attr("checked", true);
@@ -177,39 +186,63 @@
             		} else {
             			deleteCookie("cookieUserId");
             		}
-            	});            	
+            	});
+            	
+            	
+            	// Blur: ID Check
+            	$("input[name='user_id']", $(".register-form")).blur(function(){
+            		var user_id = $("input[name='user_id']", $(".register-form")).val();
+					if (chkId(user_id)==false){ return false; }
+					fn_selectId(user_id);
+            	});
+            	// Blur: Pwd Check 
+            	$("input[name='user_pwd']", $(".register-form")).blur(function(){
+            		var user_pwd = $("input[name='user_pwd']", $(".register-form")).val();
+					if (chkPwd(user_pwd)==false){ return false; }
+            	});
+            	// Blur: Pwd2 Check 
+            	$("input[name='user_pwd2']", $(".register-form")).blur(function(){
+            		var user_pwd = $("input[name='user_pwd']", $(".register-form")).val();
+            		var user_pwd2 = $("input[name='user_pwd2']", $(".register-form")).val();
+					if (chkPwd2(user_pwd, user_pwd2)==false){ return false; }
+            	});
+            	// Blur: Name Check 
+            	$("input[name='user_name']", $(".register-form")).blur(function(){
+            		var user_name = $("input[name='user_name']", $(".register-form")).val();
+					if (chkName(user_name)==false){ return false; }
+            	});
+            	// Blur: Email Check 
+            	$("input[name='email']", $(".register-form")).blur(function(){
+            		var email = $("input[name='email']", $(".register-form")).val();
+					if (chkEmail(email)==false){ return false; }
+            	});
+            	
             	
                 $('#clickmewow').click(function()
                 {
                     $('#radio1003').attr('checked', 'checked');
-                });
+                }); 
             })
             
-            function setCookie(cookieName, value, exdays){
-            	var exdate = new Date();
-            	exdate.setDate(exdate.getDate()+exdays);
-            	var cookieValue = escape(value)+((exdays==null)? "": "; expires="+exdate.toGMTString());
-            	document.cookie = cookieName+"="+cookieValue;
-            }
-            function deleteCookie(cookieName){
-            	var expireDate = new Date();
-            	expireDate.setDate(expireDate.getDate()-1);
-            	document.cookie = cookieName+"= "+"; expires="+expireDate.toGMTString();
-            }
-            function getCookie(cookieName){
-            	cookieName = cookieName + '=';
-            	var cookieData = document.cookie;
-            	var start = cookieData.indexOf(cookieName);
-            	var cookieValue = '';
-            	if(start != -1){
-            		start += cookieName.length;
-            		var end = cookieData.indexOf(';', start);
-            		if(end == -1) end = cookieData.length;
-            		cookieValue = cookieData.substring(start, end);
-            	}
-            	return unescape(cookieValue);
-            	
-            }
+			// 중복 아이디 검사를 위한 Ajax
+			function fn_selectId(user_id){
+				var comAjax = new ComAjax();
+				comAjax.setUrl("<c:url value='/selectId.do' />");
+				comAjax.setCallback("fn_selectIdCallback");
+				comAjax.addParam("user_id", user_id);
+				comAjax.ajax();
+			}
+			
+			//중복 아이디 검사를 위한 Ajax(Callback)
+			function fn_selectIdCallback(data){
+				if (data.result=="true"){
+					$("#alertId").html("<font color='green' size='2'>※ 사용가능한 아이디입니다.</font>");
+				} else {
+					$("#alertId").html("<font color='red' szie='2'>※ 중복된 아이디입니다.</font>");
+				}
+			}
+            
+
         </script>
     </body>
 

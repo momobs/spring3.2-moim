@@ -25,11 +25,11 @@ public class UserServiceImpl implements UserService{
 	public void insertUser(UserVO user) throws Exception{
 		try {
 			userDAO.insertUser(user);
+			user.setResult(true);
 		} catch (DuplicateKeyException e) {
 			user.setResult(false);
 			user.setMessage(e.getMessage());
-			
-			log.debug(e.getMessage());
+			log.info(e.getMessage());
 		}
 		
 	}

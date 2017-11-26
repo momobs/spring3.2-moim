@@ -1,256 +1,150 @@
-var Login = function() {
+var Login = function(){
+	var handleLogin = function(){		
+		var idChk = false;
+		var pwdChk = false;
 
-    var handleLogin = function() {
-
-        $('.login-form').validate({
-            errorElement: 'span', //default input error message container
-            errorClass: 'help-block', // default input error message class
-            focusInvalid: false, // do not focus the last invalid input
-            rules: {
-                user_id: {
-                    required: true
-                },
-                user_pwd: {
-                    required: true
-                },
-                remember: {
-                    required: false
-                }
-            },
-
-            messages: {
-                user_id: {
-                    required: "아이디가 필요합니다."
-                },
-                user_pwd: {
-                    required: "비밀번호가 필요합니다."
-                }
-            },
-
-            invalidHandler: function(event, validator) { //display error alert on form submit
-            	$('#alertMsg').text('ID/PWD를 입력하세요.');
+		// Login Form Submit
+		$("input[name='user_pwd']", $(".login-form")).keydown(function (key){
+			if(key.keyCode ==13){
+				$("button[type='submit']", $(".login-form")).focus();
+			}
+		});
+		$("button[type='submit']", $(".login-form")).click(function(){
+			var user_id = $("input[name='user_id']", $(".login-form")).val();
+			var user_pwd = $("input[name='user_pwd']", $(".login-form")).val();
+			var msg = "";
+			if (user_id==""){
+				$("input[name='user_id']", $(".login-form")).focus();
+				msg = "ID를 입력하시기 바랍니다.";
+			}
+			if (msg=="" && user_pwd==""){
+				$("input[name='user_pwd']", $(".login-form")).focus();
+				msg ="PWD를 입력하시기 바랍니다."
+			}
+			if (msg!=""){
+				$('#alertMsg').text(msg);
             	$('.alert-danger', $('.login-form')).show();
-            },
-
-            highlight: function(element) { // hightlight error inputs
-                $(element)
-                    .closest('.form-group').addClass('has-error'); // set error class to the control group
-            },
-
-            success: function(label) {
-                label.closest('.form-group').removeClass('has-error');
-                label.remove();
-            },
-
-            errorPlacement: function(error, element) {
-                error.insertAfter(element.closest('.input-icon'));
-            },
-
-            submitHandler: function(form) {
-                form.submit(); // form validation success, call ajax form submit
-            }
-        });
-
-        $('.login-form input').keypress(function(e) {
-            if (e.which == 13) {
-                if ($('.login-form').validate().form()) {
-                    $('.login-form').submit(); //form validation success, call ajax form submit
-                }
-                return false;
-            }
-        });
-    }
-
-    var handleForgetPassword = function() {
-        $('.forget-form').validate({
-            errorElement: 'span', //default input error message container
-            errorClass: 'help-block', // default input error message class
-            focusInvalid: false, // do not focus the last invalid input
-            ignore: "",
-            rules: {
-                email: {
-                    required: true,
-                    email: true
-                }
-            },
-
-            messages: {
-                email: {
-                    required: "이메일 주소가 필요합니다."
-                }
-            },
-
-            invalidHandler: function(event, validator) { //display error alert on form submit   
-
-            },
-
-            highlight: function(element) { // hightlight error inputs
-                $(element)
-                    .closest('.form-group').addClass('has-error'); // set error class to the control group
-            },
-
-            success: function(label) {
-                label.closest('.form-group').removeClass('has-error');
-                label.remove();
-            },
-
-            errorPlacement: function(error, element) {
-                error.insertAfter(element.closest('.input-icon'));
-            },
-
-            submitHandler: function(form) {
-                form.submit();
-            }
-        });
-
-        $('.forget-form input').keypress(function(e) {
-            if (e.which == 13) {
-                if ($('.forget-form').validate().form()) {
-                    $('.forget-form').submit();
-                }
-                return false;
-            }
-        });
-
-        jQuery('#forget-password').click(function() {
-            jQuery('.login-form').hide();
-            jQuery('.forget-form').show();
-        });
-
-        jQuery('#back-btn').click(function() {
-            jQuery('.login-form').show();
-            jQuery('.forget-form').hide();
-        });
-
-    }
-
-    var handleRegister = function() {
-
-        function format(state) {
-            if (!state.id) { return state.text; }
-            var $state = $(
-             '<span><img src="../assets/global/img/flags/' + state.element.value.toLowerCase() + '.png" class="img-flag" /> ' + state.text + '</span>'
-            );
-            
-            return $state;
-        }
-
-        if (jQuery().select2 && $('#country_list').size() > 0) {
-            $("#country_list").select2({
-	            placeholder: '<i class="fa fa-map-marker"></i>&nbsp;Select a Country',
-	            templateResult: format,
-                templateSelection: format,
-                width: 'auto', 
-	            escapeMarkup: function(m) {
-	                return m;
-	            }
-	        });
-
-
-	        $('#country_list').change(function() {
-	            $('.register-form').validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
-	        });
-    	}
-
-        $('.register-form').validate({
-            errorElement: 'span', //default input error message container
-            errorClass: 'help-block', // default input error message class
-            focusInvalid: false, // do not focus the last invalid input
-            ignore: "",
-            rules: {
-            	user_id: {
-                    required: true
-                },
-                user_pwd: {
-                    required: true
-                },
-                user_pwd2: {
-                    equalTo: "#register_password"
-                },
-                user_name: {
-                    required: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                address: {
-                    required: false
-                },
-                tnc: {
-                    required: false
-                }
-            },
-
-            messages: { // custom messages for radio buttons and checkboxes
-                tnc: {
-                    required: "약관에 동의하세요."
-                }
-            },
-
-            invalidHandler: function(event, validator) { //display error alert on form submit   
-
-            },
-
-            highlight: function(element) { // hightlight error inputs
-                $(element)
-                    .closest('.form-group').addClass('has-error'); // set error class to the control group
-            },
-
-            success: function(label) {
-                label.closest('.form-group').removeClass('has-error');
-                label.remove();
-            },
-
-            errorPlacement: function(error, element) {
-                if (element.attr("name") == "tnc") { // insert checkbox errors after the container                  
-                    error.insertAfter($('#register_tnc_error'));
-                } else if (element.closest('.input-icon').size() === 1) {
-                    error.insertAfter(element.closest('.input-icon'));
-                } else {
-                    error.insertAfter(element);
-                }
-            },
-
-            submitHandler: function(form) {
-                form[0].submit();
-            }
-        });
-
-        $('.register-form input').keypress(function(e) {
-            if (e.which == 13) {
-                if ($('.register-form').validate().form()) {
-                    $('.register-form').submit();
-                }
-                return false;
-            }
-        });
-
-        jQuery('#register-btn').click(function() {
+            	return false;
+			}
+			return true;
+		});
+		
+		// CREATE AN ACCOUNT
+		jQuery('#register-btn').click(function() {
             jQuery('.login-form').hide();
             jQuery('.register-form').show();
         });
+		
+	}
 
-        jQuery('#register-back-btn').click(function() {
+	// 회원가입 Form
+	var handleRegister = function(){
+
+    	
+		$("button[type='submit']", $(".register-form")).click(function(){
+			if (validate_register()==false){
+				return false;
+			}
+			return true;
+		});
+		
+		// BACK 
+		jQuery('#register-back-btn').click(function() {
             jQuery('.login-form').show();
             jQuery('.register-form').hide();
         });
-    }
-
-    return {
-        //main function to initiate the module
-        init: function() {
-
-            handleLogin();
-            handleForgetPassword();
-            handleRegister();
-
-        }
-
-    };
-
+	}
+	
+	return {
+		init: function(){
+			handleLogin();
+			handleRegister();
+		}
+	}
 }();
 
 jQuery(document).ready(function() {
     Login.init();
 });
+
+//회원가입Form 유효성검사
+function validate_register(){
+	var user_id = $("input[name='user_id']", $(".register-form")).val();
+	var user_pwd = $("input[name='user_pwd']", $(".register-form")).val();
+	var user_pwd2 =$("input[name='user_pwd2']", $(".register-form")).val();
+	var user_name = $("input[name='user_name']", $(".register-form")).val();
+	var email = $("input[name='email']", $(".register-form")).val();
+	var result = true;
+
+	if (chkId(user_id)==false){ result = false; }
+	
+	if (chkPwd(user_pwd)==false){ result = false; }
+	
+	if (chkPwd2(user_pwd, user_pwd2)==false) { result = false; }
+	
+	if (chkName(user_name)==false){ result = false; }
+	
+	if (chkEmail(email)==false){ result = false; }
+	
+	if (result==false){	return false;}
+	
+	return true;
+}
+
+// 유효성 검사: 아이디
+function chkId(str){
+	var reg_id =  /^[a-z0-9_-]{3,16}$/;
+	$("#alertId", $(".register-form")).html("");
+	if (!reg_id.test(str)){
+		$("#alertId", $(".register-form")).html("<font color='red' size='2'>3~16자의 영문/숫자 조합 아이디를 입력하십시오.</font>");
+		return false;
+	}
+	return true;
+}
+
+// 유효성검사: 비밀번호
+function chkPwd(str){
+	//영문, 숫자 혼합하여 6~12자리 이내
+	var reg_pwd = /^.*(?=.{6,12})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+	$("#alertPwd", $(".register-form")).html("");
+	if(!reg_pwd.test(str)){
+		$("#alertPwd", $(".register-form")).html("<font color='red' size='2'>6~12자의 영문/숫자 조합의 비밀번호를 입력하십시오.</font>");
+		return false;
+	}
+	return true;
+}
+
+// 유효성검사: 비밀번호 재확인
+function chkPwd2(str1, str2){
+	$("#alertPwd2", $(".register-form")).html("");
+	if (str1 != str2){
+		alert(str1+"?"+ str2);
+		$("#alertPwd2", $(".register-form")).html("<font color='red' size='2'>비밀번호가 일치하지 않습니다.</font>");
+		return false;
+	}
+	return true;
+}
+
+// 유효성 검사: 이름
+function chkName(str){
+	$("#alertName", $(".register-form")).html("");
+	if (str.length<2) {
+		$("#alertName", $(".register-form")).html("<font color='red' size='2'>이름을 입력하세요.</font>");
+		return false;
+	}
+	return true;
+}
+
+// 유효성 검사: 이메일
+function chkEmail(str){
+	var reg_email =  /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	$("#alertEmail", $(".register-form")).html("");
+	if(!reg_email.test(str)){
+		$("#alertEmail", $(".register-form")).html("<font color='red' size='2'>이메일을 올바른 형식으로 입력하세요.</font>");
+		return false;
+	}
+	return true;
+}
+
+
+

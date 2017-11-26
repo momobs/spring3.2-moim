@@ -3,6 +3,42 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+
+  <!-- ERROR PAGES: START -->
+  <error-page>
+  	<exception-type>java.lang.Throwable</exception-type>
+  	<location>/common/errorThrowable.do</location>
+  </error-page>
+  <error-page>
+  	<exception-type>java.lang.Exception</exception-type>
+  	<location>/common/errorException.do</location>
+  </error-page>
+  <error-page>
+  	<error-code>400</error-code>
+  	<location>/common/error400.do</location>
+  </error-page>
+  <error-page>
+  	<error-code>403</error-code>
+  	<location>/common/error403.do</location>
+  </error-page>
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/common/error404.do</location>
+  </error-page>
+  <error-page>
+  	<error-code>405</error-code>
+  	<location>/common/error405.do</location>
+  </error-page>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/common/error500.do</location>
+  </error-page>
+  <error-page>
+  	<error-code>503</error-code>
+  	<location>/common/error503.do</location>
+  </error-page>
+  <!-- ERROR PAGES: END -->  
+  
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
@@ -11,7 +47,10 @@
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/config/*-servlet.xml</param-value>
+      <param-value>
+      	/WEB-INF/config/*-servlet.xml
+      	/WEB-INF/config/spring-security.xml
+      </param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -35,4 +74,6 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
+  
+
 </web-app>

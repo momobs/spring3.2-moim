@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,34 +22,67 @@ public class UserController{
 	
 	@Resource(name="userService")
 	private UserService userService;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	@RequestMapping(value="/login.do")
     public ModelAndView login(HttpServletRequest request, UserVO user) throws Exception{
-    	ModelAndView mv = new ModelAndView("/user/login");
+    	ModelAndView mv = new ModelAndView("");
     	HttpSession session = request.getSession();
-    	String rtnMsg = (String) session.getAttribute("msg");
+    	String rawPwd = user.getUser_pwd();
+    	String msg = null;
     	
-    	if ( user.getUser_id()!=null ) {
+    	if (session.getAttribute("user")==null) {
     		user = userService.selectUser(user);
-    		if (user!=null) {
-    			request.getSession().setAttribute("user", user);
-    			mv.setViewName("redirect:/");
-    			rtnMsg = null;
-    		} else {
-        		rtnMsg = "유효하지 않은 계정입니다.";
-        	} 
-    	} 
-    	mv.addObject("msg", rtnMsg);
+    		if(user!=null && !passwordEncoder.matches(rawPwd, user.getUser_pwd())) {
+    			msg = "유효하지 않은 계정입니다.";
+    		}
+    	} else {
+    		user = (UserVO) session.getAttribute("user");
+    	}
+    	
+    	if (user!=null&& msg==null) {
+    		mv.setViewName("redirect:/");
+    	} else {
+    		mv.setViewName("/user/login");
+    	}
+    	
+    	session.setAttribute("user", user);
+    	mv.addObject("msg", msg);
+    	
     	return mv;
 	}
 	
 	@RequestMapping(value="/joinus.do")
     public ModelAndView joinus(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
     	ModelAndView mv = new ModelAndView("redirect:/login.do");
-
-    	userService.insertUser(user);
     	
-    	request.getSession().setAttribute("user", user);
+    	if (user.getUser_pwd()!=null) {
+    		user.setUser_pwd(passwordEncoder.encode(user.getUser_pwd()));
+    	}
+    	
+   		userService.insertUser(user);
+   		if (user.getResult()==true) {
+   			request.getSession().setAttribute("user", user);
+   		} else {
+   			mv.setViewName("redirect:/common/errorSQL.do");
+   		}
+    	
+    	return mv;
+	}
+	
+	@RequestMapping(value="/selectId.do")
+    public ModelAndView selectid(HttpServletRequest request, UserVO user) throws Exception{
+    	ModelAndView mv = new ModelAndView("jsonView");
+
+    	user = userService.selectUser(user);
+    	
+    	if ( user!= null) {
+    		mv.addObject("result", "false");
+    	} else {
+    		mv.addObject("result", "true");
+    	}
     	
     	return mv;
 	}

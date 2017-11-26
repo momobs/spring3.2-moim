@@ -6,6 +6,8 @@
 	<script src="<c:url value='/asset/plugin/ie8.fix.min.js'/>"></script> 
 <![endif]-->
 
+<script src="<c:url value='/asset/js/global/common.js'/>" type="text/javascript"></script>
+
 <!-- BEGIN CORE PLUGINS -->
 <script src="<c:url value='/asset/plugin/jquery.min.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/asset/plugin/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
@@ -24,5 +26,6 @@
 <script src="<c:url value='/asset/js/layout/demo.min.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/asset/js/layout/quick-sidebar.min.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/asset/js/layout/quick-nav.min.js'/>" type="text/javascript"></script>
+
 <!-- THEME LAYOUT SCRIPTS:END -->
 <form id="commonForm" name="commonForm"></form>
