@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import moim.common.common.CommandMap;
 import moim.common.service.CommonService;
+import moim.common.util.MessageUtils;
 import moim.user.vo.UserVO;
 
 @Controller
@@ -30,12 +31,24 @@ public class CommonController{
 
 	@Resource(name="commonService")
 	private CommonService commonService;
+
+	@RequestMapping(value="/common/test.do")
+	public ModelAndView test(HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/common/test");
+		String a = null;
+		log.debug(a.length());
+		log.debug("error.common: "+MessageUtils.getMessage("error.common"));
+		log.debug("error.minlength: "+MessageUtils.getMessage("error.minlength", new String[] {"테스트글자", "2"}));
+
+		return mv;
+	}	
+	
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/common/init.do")
 	public ModelAndView init(HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/common/main");
-		
+				
 		mv.addObject("overview", (Map<String,Object>)commonService.selectOverview());
 		
 		HttpSession session = request.getSession();
@@ -79,16 +92,16 @@ public class CommonController{
 		try {
 			int status_code = Integer.parseInt(error_code);
 			switch (status_code) {
-			case 400: msg = "잘못된 요청입니다."; break;
-			case 403: msg = "접근이 금지되었습니다."; break;
-			case 404: msg = "페이지를 찾을 수 없습니다."; break;
-			case 405: msg = "요청된 메소드가 허용되지 않습니다."; break;
-			case 500: msg = "서버에 오류가 발생하였습니다."; break;
-			case 503: msg = "서비스를 사용할 수 없습니다."; break;
-			default: msg = "알 수 없는 오류가 발생하였습니다."; break;
+			case 400: msg = MessageUtils.getMessage("error.err400"); break;
+			case 403: msg = MessageUtils.getMessage("error.err403"); break;
+			case 404: msg = MessageUtils.getMessage("error.err404"); break;
+			case 405: msg = MessageUtils.getMessage("error.err405"); break;
+			case 500: msg = MessageUtils.getMessage("error.err500"); break;
+			case 503: msg = MessageUtils.getMessage("error.err503"); break;
+			default: msg = MessageUtils.getMessage("error.common"); break;
 			}
 		} catch(Exception e) {
-			msg = "기타 오류가 발생했습니다.: "+error_code;
+			msg = MessageUtils.getMessage("error.Exception");
 		} finally {
 			map.put("MESSAGE", msg);
 		}

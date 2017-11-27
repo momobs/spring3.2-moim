@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import moim.common.common.CommandMap;
+import moim.common.util.MessageUtils;
 import moim.user.service.UserService;
 import moim.user.vo.UserVO;
 
@@ -32,23 +33,26 @@ public class UserController{
     	HttpSession session = request.getSession();
     	String rawPwd = user.getUser_pwd();
     	String msg = null;
-    	
-    	if (session.getAttribute("user")==null) {
+
+    	// Login Session이 존재하지 않고 입력된 PWD가 있을때 (Login 수행)
+    	if (rawPwd!=null && session.getAttribute("user")==null) {
     		user = userService.selectUser(user);
-    		if(user!=null && !passwordEncoder.matches(rawPwd, user.getUser_pwd())) {
-    			msg = "유효하지 않은 계정입니다.";
+    		// 조회된 User가 없거나 패스워드가 일치하지 않을 때
+    		if(user==null||!passwordEncoder.matches(rawPwd, user.getUser_pwd())){
+    			msg = MessageUtils.getMessage("login.notfound");
     		}
+    	// Login Session이 존재할 때(회원가입 후 자동로그인)
     	} else {
     		user = (UserVO) session.getAttribute("user");
     	}
     	
-    	if (user!=null&& msg==null) {
+    	if (user != null) {
     		mv.setViewName("redirect:/");
+    		session.setAttribute("user", user);
     	} else {
     		mv.setViewName("/user/login");
     	}
     	
-    	session.setAttribute("user", user);
     	mv.addObject("msg", msg);
     	
     	return mv;

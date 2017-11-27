@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="portlet-body">
                                     <div id="site_statistics_loading">
-                                        <img src="<c:url value='/asset/img/layout/loading.gif'/>" alt="loading" /> </div>
+                                        <img src="<c:url value='/asset/img/theme/loading.gif'/>" alt="loading" /> </div>
                                     <div id="site_statistics_content" class="display-none">
                                         <div id="site_statistics" class="chart"> </div>
                                     </div>

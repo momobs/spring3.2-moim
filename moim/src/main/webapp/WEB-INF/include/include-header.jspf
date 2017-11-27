@@ -13,6 +13,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!-- 개발시 CSS/JS 적용을 위한 Timestamp -->
 <fmt:formatDate value="${now }" pattern="yyyymmddhhmmss" var="nowTime"/>

@@ -101,28 +101,28 @@
                 <p class="hint"> 필수입력사항 (Essential) </p>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">아이디</label>
-                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="아이디" name="user_id" />
+                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="아이디" name="user_id" maxlength="16"/>
                     <span id="alertId"></span>
 				</div>
 
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">비밀번호</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="비밀번호" name="user_pwd" />
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="비밀번호" name="user_pwd" maxlength="20" />
                     <span id="alertPwd"></span>
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">비밀번호 재입력</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="비밀번호 재입력" name="user_pwd2" />
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="비밀번호 재입력" name="user_pwd2" maxlength="20"/>
                     <span id="alertPwd2"></span>
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">사용자명</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="사용자명" name="user_name" />
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="사용자명" name="user_name" maxlength="5"/>
                     <span id="alertName"></span> 
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Email</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="E-MAIL" name="email" />
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="E-MAIL" name="email" maxlength="50"/>
                     <span id="alertEmail"></span> 
 				</div>                
                 <p class="hint"> 선택입력사항 (Optional)</p>
@@ -132,7 +132,7 @@
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">주소</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="주소" name="address" />
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="주소" name="address" maxlength="50"/>
 				</div>
                 
                 <!-- 
@@ -153,7 +153,7 @@
             </form>
             <!-- END REGISTRATION FORM -->
         </div>
-        <div class="copyright"> 2017 </div>
+        <div class="copyright"> Copyright 2017. momobs. All rights reserved. </div>
 
 		<%@ include file="/WEB-INF/include/include-body.jspf" %>
 
