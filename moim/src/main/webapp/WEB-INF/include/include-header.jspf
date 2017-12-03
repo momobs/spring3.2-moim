@@ -20,21 +20,21 @@
 
 <!-- GLOBAL MANDATORY STYLES: BEGIN -->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/asset/plugin/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/asset/plugin/simple-line-icons/simple-line-icons.min.css'/>" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/asset/plugin/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/asset/plugin/bootstrap-switch/css/bootstrap-switch.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resources/plugin/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resources/plugin/simple-line-icons/simple-line-icons.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resources/plugin/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resources/plugin/bootstrap-switch/css/bootstrap-switch.min.css'/>" rel="stylesheet" type="text/css" />
 <!-- GLOBAL MANDATORY STYLES: END -->
 
 <!-- THEME LAYOUT STYLES:START -->
-<link href="<c:url value='/asset/css/layout/layout.css'/>" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/asset/css/layout/darkblue.min.css'/>" rel="stylesheet" type="text/css" id="style_color" />
-<link href="<c:url value='/asset/css/layout/custom.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resources/css/layout/layout.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resources/css/layout/darkblue.min.css'/>" rel="stylesheet" type="text/css" id="style_color" />
+<link href="<c:url value='/resources/css/layout/custom.css'/>" rel="stylesheet" type="text/css" />
 <!-- THEME LAYOUT STYLES:END -->
 
 <!-- THEME GLOBAL STYLES:START -->
-<link href="<c:url value='/asset/css/global/components-rounded.css'/>" rel="stylesheet" id="style_components" type="text/css" />
-<link href="<c:url value='/asset/css/global/plugins.min.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resources/css/global/components-rounded.css'/>" rel="stylesheet" id="style_components" type="text/css" />
+<link href="<c:url value='/resources/css/global/plugins.min.css'/>" rel="stylesheet" type="text/css" />
 <!-- THEME GLOBAL STYLES:END -->
 
 <link rel="shortcut icon" href="favicon.ico" />

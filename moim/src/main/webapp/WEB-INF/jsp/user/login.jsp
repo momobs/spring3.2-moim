@@ -10,12 +10,12 @@
     	<%@ include file="/WEB-INF/include/include-header.jspf" %>
     	
         <!-- PAGE LEVEL PLUGINS:BEGIN -->
-        <link href="<c:url value='/asset/plugin/select2/css/select2.min.css'/>" rel="stylesheet" type="text/css" />
-        <link href="<c:url value='/asset/plugin/select2/css/select2-bootstrap.min.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/resources/plugin/select2/css/select2.min.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/resources/plugin/select2/css/select2-bootstrap.min.css'/>" rel="stylesheet" type="text/css" />
         <!-- PAGE LEVEL PLUGINS:END -->     
         
         <!-- PAGE LEVEL STYLES:BEGIN -->
-        <link href="<c:url value='/asset/css/page/login.css'/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/resources/css/page/login.css'/>" rel="stylesheet" type="text/css" />
         <!-- PAGE LEVEL STYLES:END -->
     <!-- END HEAD -->
 
@@ -24,7 +24,7 @@
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="<c:url value='/'/>">
-                <img src="<c:url value='/asset/img/logo/logo.png'/>" alt="" /> </a>
+                <img src="<c:url value='/resources/img/logo/logo.png'/>" alt="" /> </a>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
@@ -158,15 +158,15 @@
 		<%@ include file="/WEB-INF/include/include-body.jspf" %>
 
         <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="<c:url value='/asset/plugin/jquery-validation/js/jquery.validate.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/asset/plugin/jquery-validation/js/additional-methods.min.js'/>" type="text/javascript"></script>
-        <script src="<c:url value='/asset/plugin/select2/js/select2.full.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/resources/plugin/jquery-validation/js/jquery.validate.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/resources/plugin/jquery-validation/js/additional-methods.min.js'/>" type="text/javascript"></script>
+        <script src="<c:url value='/resources/plugin/select2/js/select2.full.min.js'/>" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
        
         
-        <script src="<c:url value='/asset/js/page/login.js?${nowTime }'/>" type="text/javascript"></script> 
+        <script src="<c:url value='/resources/js/page/login.js?${nowTime }'/>" type="text/javascript"></script> 
         <!-- END PAGE LEVEL SCRIPTS -->
 
         <script>

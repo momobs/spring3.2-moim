@@ -1,31 +1,31 @@
 <%@ page pageEncoding="utf-8"%>
 
 <!--[if lt IE 9]>
-	<script src="<c:url value='/asset/plugin/respond.min.js'/>"></script>
-	<script src="<c:url value='/asset/plugin/excanvas.min.js'/>"></script> 
-	<script src="<c:url value='/asset/plugin/ie8.fix.min.js'/>"></script> 
+	<script src="<c:url value='/resources/plugin/respond.min.js'/>"></script>
+	<script src="<c:url value='/resources/plugin/excanvas.min.js'/>"></script> 
+	<script src="<c:url value='/resources/plugin/ie8.fix.min.js'/>"></script> 
 <![endif]-->
 
-<script src="<c:url value='/asset/js/global/common.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/js/global/common.js'/>" type="text/javascript"></script>
 
 <!-- BEGIN CORE PLUGINS -->
-<script src="<c:url value='/asset/plugin/jquery.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/asset/plugin/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/asset/plugin/js.cookie.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/asset/plugin/jquery-slimscroll/jquery.slimscroll.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/asset/plugin/jquery.blockui.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/asset/plugin/bootstrap-switch/js/bootstrap-switch.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/plugin/jquery.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/plugin/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/plugin/js.cookie.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/plugin/jquery-slimscroll/jquery.slimscroll.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/plugin/jquery.blockui.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/plugin/bootstrap-switch/js/bootstrap-switch.min.js'/>" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
 <!-- THEME GLOBAL SCRIPTS:BEGIN -->
-<script src="<c:url value='/asset/js/global/app.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/js/global/app.min.js'/>" type="text/javascript"></script>
 <!-- THEME GLOBAL SCRIPTS:END -->
 
 <!-- THEME LAYOUT SCRIPTS:BEGIN -->
-<script src="<c:url value='/asset/js/layout/layout.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/asset/js/layout/demo.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/asset/js/layout/quick-sidebar.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/asset/js/layout/quick-nav.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/js/layout/layout.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/js/layout/demo.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/js/layout/quick-sidebar.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/resources/js/layout/quick-nav.min.js'/>" type="text/javascript"></script>
 
 <!-- THEME LAYOUT SCRIPTS:END -->
 <form id="commonForm" name="commonForm"></form>

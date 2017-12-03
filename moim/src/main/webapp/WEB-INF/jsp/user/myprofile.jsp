@@ -10,11 +10,11 @@
 	<%@ include file="/WEB-INF/include/include-header.jspf" %>
  
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
-	<link href="<c:url value='/asset/plugin/bootstrap-fileinput/bootstrap-fileinput.css'/>" rel="stylesheet" type="text/css" />
+	<link href="<c:url value='/resources/plugin/bootstrap-fileinput/bootstrap-fileinput.css'/>" rel="stylesheet" type="text/css" />
 	<!-- END PAGE LEVEL PLUGINS -->
 
 	<!-- BEGIN PAGE LEVEL STYLES -->
-	<link href="<c:url value='/asset/css/page/profile.css'/>" rel="stylesheet" type="text/css" />
+	<link href="<c:url value='/resources/css/page/profile.css'/>" rel="stylesheet" type="text/css" />
 	<!-- END PAGE LEVEL STYLES -->
 </head>
 <!-- END HEAD -->
@@ -171,7 +171,7 @@
                                     <div class="portlet light profile-sidebar-portlet ">
                                         <!-- SIDEBAR USERPIC -->
                                         <div class="profile-userpic">
-                                            <img src="<c:url value='/asset/img/avatar/no_user.png'/>" class="img-responsive" alt=""> </div>
+                                            <img src="<c:url value='/resources/img/avatar/no_user.png'/>" class="img-responsive" alt=""> </div>
                                         <!-- END SIDEBAR USERPIC -->
                                         <!-- SIDEBAR USER TITLE -->
                                         <div class="profile-usertitle">
@@ -247,16 +247,13 @@
                                                     </div>
                                                     <ul class="nav nav-tabs">
                                                         <li class="active">
-                                                            <a href="#tab_1_1" data-toggle="tab">Personal Info</a>
+                                                            <a href="#tab_1_1" data-toggle="tab">개인정보</a>
                                                         </li>
                                                         <li>
-                                                            <a href="#tab_1_2" data-toggle="tab">Change Avatar</a>
+                                                            <a href="#tab_1_2" data-toggle="tab">프로필 사진 변경</a>
                                                         </li>
                                                         <li>
-                                                            <a href="#tab_1_3" data-toggle="tab">Change Password</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#tab_1_4" data-toggle="tab">Privacy Settings</a>
+                                                            <a href="#tab_1_3" data-toggle="tab">비밀번호 변경</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -266,30 +263,27 @@
                                                         <div class="tab-pane active" id="tab_1_1">
                                                             <form role="form" action="#">
                                                                 <div class="form-group">
-                                                                    <label class="control-label">First Name</label>
+                                                                    <label class="control-label">아이디</label>
                                                                     <input type="text" placeholder="John" class="form-control" /> </div>
                                                                 <div class="form-group">
-                                                                    <label class="control-label">Last Name</label>
+                                                                    <label class="control-label">이름</label>
                                                                     <input type="text" placeholder="Doe" class="form-control" /> </div>
                                                                 <div class="form-group">
-                                                                    <label class="control-label">Mobile Number</label>
+                                                                    <label class="control-label">이메일</label>
                                                                     <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control" /> </div>
                                                                 <div class="form-group">
-                                                                    <label class="control-label">Interests</label>
+                                                                    <label class="control-label">연락처</label>
                                                                     <input type="text" placeholder="Design, Web etc." class="form-control" /> </div>
                                                                 <div class="form-group">
-                                                                    <label class="control-label">Occupation</label>
+                                                                    <label class="control-label">주소</label>
                                                                     <input type="text" placeholder="Web Developer" class="form-control" /> </div>
                                                                 <div class="form-group">
-                                                                    <label class="control-label">About</label>
+                                                                    <label class="control-label">소개</label>
                                                                     <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label">Website Url</label>
-                                                                    <input type="text" placeholder="http://www.mywebsite.com" class="form-control" /> </div>
                                                                 <div class="margiv-top-10">
-                                                                    <a href="javascript:;" class="btn green"> Save Changes </a>
-                                                                    <a href="javascript:;" class="btn default"> Cancel </a>
+                                                                    <a href="javascript:;" class="btn green"> 저장 </a>
+                                                                    <a href="javascript:;" class="btn default"> 취소 </a>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -1043,12 +1037,12 @@
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
         
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
-	<script src="<c:url value='/asset/plugin/bootstrap-fileinput/bootstrap-fileinput.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/asset/plugin/jquery.sparkline.min.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/resources/plugin/bootstrap-fileinput/bootstrap-fileinput.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/resources/plugin/jquery.sparkline.min.js'/>" type="text/javascript"></script>
 	<!-- END PAGE LEVEL PLUGINS -->
         
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
-	<script src="<c:url value='/asset/js/page/profile.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/resources/js/page/profile.js'/>" type="text/javascript"></script>
 	<!-- END PAGE LEVEL SCRIPTS -->
 	
 	<script>
