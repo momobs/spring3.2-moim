@@ -9,7 +9,9 @@ public class UserVO extends CommonVO{
 	private String email;
 	private String phone;
 	private String address;
+	private String intro;
 	private String create_date;
+	
 	public String getUser_id() {
 		return user_id;
 	}
@@ -46,12 +48,16 @@ public class UserVO extends CommonVO{
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getIntro() {
+		return intro;
+	}
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}	
 	public String getCreate_date() {
 		return create_date;
 	}
 	public void setCreate_date(String create_date) {
 		this.create_date = create_date;
 	}
-	
-
 }

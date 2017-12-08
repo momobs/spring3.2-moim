@@ -319,8 +319,8 @@
 		                            </a>
 		                            <ul class="dropdown-menu dropdown-menu-default">
 		                                <li>
-		                                    <a href="<c:url value='/user/myprofile.do'/>">
-		                                        <i class="icon-user"></i> My Profile </a>
+		                                    <a href="<c:url value='/user/auth/myprofile.do'/>">
+		                                        <i class="icon-user"></i> 개인정보 </a>
 		                                </li>
 		                                <li>
 		                                    <a href="app_calendar.html">
@@ -344,7 +344,7 @@
 		                                        <i class="icon-lock"></i> Lock Screen </a>
 		                                </li>
 		                                <li>
-		                                    <a href="<c:url value='/user/logout.do'/>"><i class="icon-key"></i> Log Out </a> 
+		                                    <a href="<c:url value='/user/auth/logout.do'/>"><i class="icon-key"></i> 로그아웃 </a> 
 		                                </li>
 		                            </ul>
 		                        </li>
@@ -358,8 +358,8 @@
 		                            </a>
 		                            <ul class="dropdown-menu dropdown-menu-default">
 		                                <li>
-		                                    <a href="<c:url value='/login.do'/>"> 
-		                                        <i class="icon-key"></i> Log In 
+		                                    <a href="<c:url value='/user/login.do'/>"> 
+		                                        <i class="icon-key"></i> 로그인
 		                                    </a>
 		                                </li>
 		                            </ul>

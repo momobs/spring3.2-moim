@@ -8,7 +8,7 @@
 <head>
 	<%@ include file="/WEB-INF/include/include-header.jspf" %>
 	<!-- BEGIN PAGE LEVEL STYLES -->
-	<link href="<c:url value='/asset/css/page/error.css'/>" rel="stylesheet" type="text/css" />
+	<link href="<c:url value='/resources/css/page/error.css'/>" rel="stylesheet" type="text/css" />
 	<!-- END PAGE LEVEL STYLES -->
 </head>
 <body class=" page-404-full-page">

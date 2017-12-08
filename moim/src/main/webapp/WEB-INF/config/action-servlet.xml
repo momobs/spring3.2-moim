@@ -27,7 +27,7 @@
         </mvc:interceptor>
 
         <mvc:interceptor>
-            <mvc:mapping path="/user/*"/>
+            <mvc:mapping path="/user/auth/*"/>
             <bean id="UserInterceptor" class="moim.user.interceptor.UserInterceptor"></bean>
         </mvc:interceptor>
         

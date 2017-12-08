@@ -27,7 +27,7 @@ public class UserController{
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
-	@RequestMapping(value="/login.do")
+	@RequestMapping(value="/user/login.do")
     public ModelAndView login(HttpServletRequest request, UserVO user) throws Exception{
     	ModelAndView mv = new ModelAndView("");
     	HttpSession session = request.getSession();
@@ -58,7 +58,7 @@ public class UserController{
     	return mv;
 	}
 	
-	@RequestMapping(value="/joinus.do")
+	@RequestMapping(value="/user/joinus.do")
     public ModelAndView joinus(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
     	ModelAndView mv = new ModelAndView("redirect:/login.do");
     	
@@ -76,10 +76,11 @@ public class UserController{
     	return mv;
 	}
 	
-	@RequestMapping(value="/selectId.do")
+	@RequestMapping(value="/user/selectId.do")
     public ModelAndView selectid(HttpServletRequest request, UserVO user) throws Exception{
     	ModelAndView mv = new ModelAndView("jsonView");
 
+    	log.debug(user.getUser_id());
     	user = userService.selectUser(user);
     	
     	if ( user!= null) {
@@ -92,7 +93,7 @@ public class UserController{
 	}
 	
 	
-	@RequestMapping(value="/user/logout.do")
+	@RequestMapping(value="/user/auth/logout.do")
     public ModelAndView logout(HttpServletRequest request) throws Exception{
     	ModelAndView mv = new ModelAndView("redirect:/");
     	request.getSession().invalidate();
@@ -102,10 +103,28 @@ public class UserController{
 	
 
 	
-	@RequestMapping(value="/user/myprofile.do")
+	@RequestMapping(value="/user/auth/myprofile.do")
     public ModelAndView myprofile(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
     	ModelAndView mv = new ModelAndView("/user/myprofile");
     	
+    	return mv;
+	}
+	
+	// 미완성
+	@RequestMapping(value="/user/auth/updateInfo.do")
+    public ModelAndView updateInfo(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
+    	ModelAndView mv = new ModelAndView("/user/myprofile");
+    	
+    	return mv;
+	}
+	
+	
+	// 미완성
+	@RequestMapping(value="/user/auth/insertUserPhoto.do")
+    public ModelAndView insertUserPhoto(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
+		log.debug("123");
+    	ModelAndView mv = new ModelAndView("/user/myprofile");
+    	userService.insertUserPhoto(request, user);
     	return mv;
 	}
 }

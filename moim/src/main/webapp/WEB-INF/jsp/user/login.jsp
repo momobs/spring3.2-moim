@@ -30,8 +30,8 @@
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- LOGIN FORM:BEGIN -->
-            <form class="login-form" action="<c:url value='/login.do'/>" method="post">
-                <h3 class="form-title font-green">Sign In</h3>
+            <form class="login-form" action="<c:url value='/user/login.do'/>" method="post">
+                <h3 class="form-title font-green">로그인</h3>
 				
 				<div class="alert alert-danger <c:if test='${msg eq null }'>display-hide</c:if>">
 	                    <button class="close" data-close="alert"></button>
@@ -40,17 +40,17 @@
                	
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">ID</label>
+                    <label class="control-label visible-ie8 visible-ie9">아이디</label>
                     <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="ID" name="user_id" /> 
                 </div>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">PASSWORD</label>
+                    <label class="control-label visible-ie8 visible-ie9">비밀번호</label>
                     <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="PASSWORD" name="user_pwd" />
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn green uppercase">Login</button>
+                    <button type="submit" class="btn green uppercase">로그인</button>
                     <label class="rememberme check mt-checkbox mt-checkbox-outline">
-                        <input type="checkbox" name="remember" value="1" />Remember
+                        <input type="checkbox" name="remember" value="1" />아이디 기억하기
                         <span></span>
                     </label>
                     <%--<a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a> --%>
@@ -76,7 +76,7 @@
                  --%>
                 <div class="create-account">
                     <p>
-                        <a href="javascript:;" id="register-btn" class="uppercase">Create an account</a>
+                        <a href="javascript:;" id="register-btn" class="uppercase">회원가입</a>
                     </p>
                 </div>
             </form>
@@ -96,8 +96,8 @@
             <!-- END FORGOT PASSWORD FORM -->
             
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="<c:url value='/joinus.do'/>" method="post">
-                <h3 class="font-green">Sign Up</h3>
+            <form class="register-form" action="<c:url value='/user/joinus.do'/>" method="post">
+                <h3 class="font-green">회원가입</h3>
                 <p class="hint"> 필수입력사항 (Essential) </p>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">아이디</label>
@@ -147,13 +147,13 @@
                 </div>
  				-->
                 <div class="form-actions">
-                    <button type="button" id="register-back-btn" class="btn green btn-outline">Back</button>
-                    <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>
+                    <button type="button" id="register-back-btn" class="btn green btn-outline">뒤로</button>
+                    <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">가입하기</button>
                 </div>
             </form>
             <!-- END REGISTRATION FORM -->
         </div>
-        <div class="copyright"> Copyright 2017. momobs. All rights reserved. </div>
+        <div class="copyright"> <spring:message code="common.copyright"/> </div>
 
 		<%@ include file="/WEB-INF/include/include-body.jspf" %>
 
@@ -163,84 +163,63 @@
         <script src="<c:url value='/resources/plugin/select2/js/select2.full.min.js'/>" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-       
-        
-        <script src="<c:url value='/resources/js/page/login.js?${nowTime }'/>" type="text/javascript"></script> 
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->       
+        <script src="<c:url value='/resources/js/global/validate.js'/>" type="text/javascript"> </script>
         <!-- END PAGE LEVEL SCRIPTS -->
 
         <script>
             $(document).ready(function()
             {
-            	var userId = getCookie("cookieUserId");
-            	$("input[name='user_id']", $(".login-form")).val(userId);
-            	
-            	if($("input[name='user_id']").val() != ""){ // 기억된 아이디가 있어 입력칸에 아이디가 표시된 상태
-            		$("input[name='remember']").attr("checked", true);
-            	}
-            	
-            	$("button[type='submit']", $('.login-form')).click(function(){ // Login Form의 Submit 실행시
-            		if($("input[name='remember']").is(":checked")){ // ID 기억하기 체크시
-            			var userId = $("input[name='user_id']").val();
-            			setCookie("cookieUserId", userId, 7); // 7일동안 쿠키 보관
-            		} else {
-            			deleteCookie("cookieUserId");
-            		}
-            	});
-            	
-            	
-            	// Blur: ID Check
-            	$("input[name='user_id']", $(".register-form")).blur(function(){
-            		var user_id = $("input[name='user_id']", $(".register-form")).val();
-					if (chkId(user_id)==false){ return false; }
-					fn_selectId(user_id);
-            	});
-            	// Blur: Pwd Check 
-            	$("input[name='user_pwd']", $(".register-form")).blur(function(){
-            		var user_pwd = $("input[name='user_pwd']", $(".register-form")).val();
-					if (chkPwd(user_pwd)==false){ return false; }
-            	});
-            	// Blur: Pwd2 Check 
-            	$("input[name='user_pwd2']", $(".register-form")).blur(function(){
-            		var user_pwd = $("input[name='user_pwd']", $(".register-form")).val();
-            		var user_pwd2 = $("input[name='user_pwd2']", $(".register-form")).val();
-					if (chkPwd2(user_pwd, user_pwd2)==false){ return false; }
-            	});
-            	// Blur: Name Check 
-            	$("input[name='user_name']", $(".register-form")).blur(function(){
-            		var user_name = $("input[name='user_name']", $(".register-form")).val();
-					if (chkName(user_name)==false){ return false; }
-            	});
-            	// Blur: Email Check 
-            	$("input[name='email']", $(".register-form")).blur(function(){
-            		var email = $("input[name='email']", $(".register-form")).val();
-					if (chkEmail(email)==false){ return false; }
-            	});
-            	
-            	
-                $('#clickmewow').click(function()
-                {
-                    $('#radio1003').attr('checked', 'checked');
-                }); 
-            })
+            	var valObj = new ValidateUser();
+            	var alert = "";
+           	// 화면전환:START
+           		// LOGIN TO REGISTER FORM
+        		$("#register-btn").click(function() { $('.login-form').hide(); $('.register-form').show(); });
+           		// REGISTER TO LOGIN FORM
+        		$("#register-back-btn").click(function() { jQuery('.login-form').show(); jQuery('.register-form').hide(); });
+       		// 화면전환:END
+       		
+       		// LOGIN EVENT:START
+				$("input[name='user_pwd']", $(".login-form")).keydown(function (key){
+					if(key.keyCode ==13){ $("button[type='submit']", $(".login-form")).focus();	}				
+				});
+       		
+				$("button[type='submit']", $(".login-form")).click(function(){
+					var user_id = $("input[name='user_id']", $(".login-form")).val();
+					var user_pwd = $("input[name='user_pwd']", $(".login-form")).val();
+					
+					$("input[name='user_id']", $(".login-form")).focus();
+					var result = valObj.checkId(user_id, "N");
+					if (result.get("success")==true){
+						$("input[name='user_pwd']", $(".login-form")).focus();
+						result = valObj.checkPwd(user_pwd);
+					}
+
+					if (result.get("success")==true){
+						$("#alertMsg").text("");
+						$(".alert-danger", $(".login-form")).hide();
+						return true;
+					} else {
+						$("#alertMsg").text(result.get("message"));
+						$(".alert-danger", $(".login-form")).show();
+						return false;
+					}					
+				});       		
+       		// LOGIN EVENT:END
             
-			// 중복 아이디 검사를 위한 Ajax
-			function fn_selectId(user_id){
-				var comAjax = new ComAjax();
-				comAjax.setUrl("<c:url value='/selectId.do' />");
-				comAjax.setCallback("fn_selectIdCallback");
-				comAjax.addParam("user_id", user_id);
-				comAjax.ajax();
-			}
-			
-			//중복 아이디 검사를 위한 Ajax(Callback)
-			function fn_selectIdCallback(data){
-				if (data.result=="true"){
-					$("#alertId").html("<font color='green' size='2'>※ 사용가능한 아이디입니다.</font>");
-				} else {
-					$("#alertId").html("<font color='red' szie='2'>※ 중복된 아이디입니다.</font>");
-				}
-			}
+       		// REGISTER EVENT:START
+				$("input[name='user_id']", $(".register-form")).blur(function(){
+					var user_id = $("input[name='user_id']", $(".register-form")).val();
+					var result = valObj.checkId(user_id, "Y");
+				   	result.get("success")==true ? alert = "<font color='green' size='2'>" : alert="<font color='red' size='2'>";
+				   	alert += result.get("message")+"</font>";
+				   	$("#alertId", $(".register-form")).html(alert);
+				});
+       			
+       		// REGISTER EVENT:END
+       		
+       		
+            })
             
 
         </script>

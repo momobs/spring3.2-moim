@@ -36,88 +36,7 @@
                     <!-- BEGIN CONTENT BODY -->
                     <div class="page-content">
                         <!-- BEGIN PAGE HEADER-->
-                        <!-- BEGIN THEME PANEL -->
-                        <div class="theme-panel hidden-xs hidden-sm">
-                            <div class="toggler"> </div>
-                            <div class="toggler-close"> </div>
-                            <div class="theme-options">
-                                <div class="theme-option theme-colors clearfix">
-                                    <span> THEME COLOR </span>
-                                    <ul>
-                                        <li class="color-default current tooltips" data-style="default" data-container="body" data-original-title="Default"> </li>
-                                        <li class="color-darkblue tooltips" data-style="darkblue" data-container="body" data-original-title="Dark Blue"> </li>
-                                        <li class="color-blue tooltips" data-style="blue" data-container="body" data-original-title="Blue"> </li>
-                                        <li class="color-grey tooltips" data-style="grey" data-container="body" data-original-title="Grey"> </li>
-                                        <li class="color-light tooltips" data-style="light" data-container="body" data-original-title="Light"> </li>
-                                        <li class="color-light2 tooltips" data-style="light2" data-container="body" data-html="true" data-original-title="Light 2"> </li>
-                                    </ul>
-                                </div>
-                                <div class="theme-option">
-                                    <span> Theme Style </span>
-                                    <select class="layout-style-option form-control input-sm">
-                                        <option value="square" selected="selected">Square corners</option>
-                                        <option value="rounded">Rounded corners</option>
-                                    </select>
-                                </div>
-                                <div class="theme-option">
-                                    <span> Layout </span>
-                                    <select class="layout-option form-control input-sm">
-                                        <option value="fluid" selected="selected">Fluid</option>
-                                        <option value="boxed">Boxed</option>
-                                    </select>
-                                </div>
-                                <div class="theme-option">
-                                    <span> Header </span>
-                                    <select class="page-header-option form-control input-sm">
-                                        <option value="fixed" selected="selected">Fixed</option>
-                                        <option value="default">Default</option>
-                                    </select>
-                                </div>
-                                <div class="theme-option">
-                                    <span> Top Menu Dropdown</span>
-                                    <select class="page-header-top-dropdown-style-option form-control input-sm">
-                                        <option value="light" selected="selected">Light</option>
-                                        <option value="dark">Dark</option>
-                                    </select>
-                                </div>
-                                <div class="theme-option">
-                                    <span> Sidebar Mode</span>
-                                    <select class="sidebar-option form-control input-sm">
-                                        <option value="fixed">Fixed</option>
-                                        <option value="default" selected="selected">Default</option>
-                                    </select>
-                                </div>
-                                <div class="theme-option">
-                                    <span> Sidebar Menu </span>
-                                    <select class="sidebar-menu-option form-control input-sm">
-                                        <option value="accordion" selected="selected">Accordion</option>
-                                        <option value="hover">Hover</option>
-                                    </select>
-                                </div>
-                                <div class="theme-option">
-                                    <span> Sidebar Style </span>
-                                    <select class="sidebar-style-option form-control input-sm">
-                                        <option value="default" selected="selected">Default</option>
-                                        <option value="light">Light</option>
-                                    </select>
-                                </div>
-                                <div class="theme-option">
-                                    <span> Sidebar Position </span>
-                                    <select class="sidebar-pos-option form-control input-sm">
-                                        <option value="left" selected="selected">Left</option>
-                                        <option value="right">Right</option>
-                                    </select>
-                                </div>
-                                <div class="theme-option">
-                                    <span> Footer </span>
-                                    <select class="page-footer-option form-control input-sm">
-                                        <option value="fixed">Fixed</option>
-                                        <option value="default" selected="selected">Default</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END THEME PANEL -->
+
                         <!-- BEGIN PAGE BAR -->
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
@@ -131,34 +50,13 @@
                             </ul>
                             <div class="page-toolbar">
                                 <div class="btn-group pull-right">
-                                    <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-                                        <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-bell"></i> Action</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-shield"></i> Another action</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-user"></i> Something else here</a>
-                                        </li>
-                                        <li class="divider"> </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-bag"></i> Separated link</a>
-                                        </li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
                         <!-- END PAGE BAR -->
                         <!-- BEGIN PAGE TITLE-->
-                        <h1 class="page-title"> My Profile
+                        <h1 class="page-title"> 개인정보
                             <small></small>
                         </h1>
                         <!-- END PAGE TITLE-->
@@ -171,12 +69,12 @@
                                     <div class="portlet light profile-sidebar-portlet ">
                                         <!-- SIDEBAR USERPIC -->
                                         <div class="profile-userpic">
-                                            <img src="<c:url value='/resources/img/avatar/no_user.png'/>" class="img-responsive" alt=""> </div>
+                                            <img src="<c:url value='/resources/img/common/no-user.png'/>" class="img-responsive" alt=""> </div>
                                         <!-- END SIDEBAR USERPIC -->
                                         <!-- SIDEBAR USER TITLE -->
                                         <div class="profile-usertitle">
-                                            <div class="profile-usertitle-name"> Marcus Doe </div>
-                                            <div class="profile-usertitle-job"> Developer </div>
+                                            <div class="profile-usertitle-name"> ${sessionScope.user.user_name } </div>
+                                            <div class="profile-usertitle-job"> </div>
                                         </div>
                                         <!-- END SIDEBAR USER TITLE -->
                                         <!-- SIDEBAR BUTTONS -->
@@ -190,20 +88,20 @@
                                             <ul class="nav">
                                                 <li class="active">
                                                     <a href="#">
-                                                        <i class="icon-settings"></i> 프로필 수정 </a>
+                                                        <i class="icon-settings"></i> 기본정보 수정 </a>
                                                 </li>
                                             </ul>
                                         </div>
                                         <!-- END MENU -->
                                     </div>
                                     <!-- END PORTLET MAIN -->
+                                    <%-- 
                                     <!-- PORTLET MAIN -->
-                                    <div class="portlet light ">
-                                        <!-- STAT -->
+                                    <div class="portlet light "> 
                                         <div class="row list-separated profile-stat">
                                             <div class="col-md-4 col-sm-4 col-xs-6">
                                                 <div class="uppercase profile-stat-title"> 37 </div>
-                                                <div class="uppercase profile-stat-text"> Projects </div>
+                                                <div class="uppercase profile-stat-text"> Groups </div>
                                             </div>
                                             <div class="col-md-4 col-sm-4 col-xs-6">
                                                 <div class="uppercase profile-stat-title"> 51 </div>
@@ -214,7 +112,6 @@
                                                 <div class="uppercase profile-stat-text"> Uploads </div>
                                             </div>
                                         </div>
-                                        <!-- END STAT -->
                                         <div>
                                             <h4 class="profile-desc-title">About Marcus Doe</h4>
                                             <span class="profile-desc-text"> Lorem ipsum dolor sit amet diam nonummy nibh dolore. </span>
@@ -233,6 +130,7 @@
                                         </div>
                                     </div>
                                     <!-- END PORTLET MAIN -->
+                                    --%>
                                 </div>
                                 <!-- END BEGIN PROFILE SIDEBAR -->
                                 <!-- BEGIN PROFILE CONTENT -->
@@ -247,10 +145,10 @@
                                                     </div>
                                                     <ul class="nav nav-tabs">
                                                         <li class="active">
-                                                            <a href="#tab_1_1" data-toggle="tab">개인정보</a>
+                                                            <a href="#tab_1_1" data-toggle="tab">기본정보</a>
                                                         </li>
                                                         <li>
-                                                            <a href="#tab_1_2" data-toggle="tab">프로필 사진 변경</a>
+                                                            <a href="#tab_1_2" data-toggle="tab">사진 변경</a>
                                                         </li>
                                                         <li>
                                                             <a href="#tab_1_3" data-toggle="tab">비밀번호 변경</a>
@@ -259,27 +157,25 @@
                                                 </div>
                                                 <div class="portlet-body">
                                                     <div class="tab-content">
-                                                        <!-- PERSONAL INFO TAB -->
+                                                        <!-- 기본정보 수정: START -->
                                                         <div class="tab-pane active" id="tab_1_1">
-                                                            <form role="form" action="#">
-                                                                <div class="form-group">
-                                                                    <label class="control-label">아이디</label>
-                                                                    <input type="text" placeholder="John" class="form-control" /> </div>
+                                                            <form role="form" action="<c:url value='/user/auth/updateInfo.do'/>">
                                                                 <div class="form-group">
                                                                     <label class="control-label">이름</label>
-                                                                    <input type="text" placeholder="Doe" class="form-control" /> </div>
+                                                                    <input name="user_name" type="text" placeholder="이름" class="form-control" value="${sessionScope.user.user_name }"/>
+                                                                </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">이메일</label>
-                                                                    <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control" /> </div>
+                                                                    <input name="email" type="text" placeholder="이메일" class="form-control" value="${sessionScope.user.email }"/> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">연락처</label>
-                                                                    <input type="text" placeholder="Design, Web etc." class="form-control" /> </div>
+                                                                    <input name="phone" type="text" placeholder="연락처" class="form-control" value="${sessionScope.user.phone }"/> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">주소</label>
-                                                                    <input type="text" placeholder="Web Developer" class="form-control" /> </div>
+                                                                    <input name="address" type="text" placeholder="주소" class="form-control" value="${sessionScope.user.address }"/> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">소개</label>
-                                                                    <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
+                                                                    <textarea name="intro" class="form-control" rows="3" placeholder="설명"></textarea>
                                                                 </div>
                                                                 <div class="margiv-top-10">
                                                                     <a href="javascript:;" class="btn green"> 저장 </a>
@@ -287,52 +183,53 @@
                                                                 </div>
                                                             </form>
                                                         </div>
-                                                        <!-- END PERSONAL INFO TAB -->
-                                                        <!-- CHANGE AVATAR TAB -->
+                                                        <!-- 기본정보 수정: END -->
+                                                        
+                                                        <!-- 사진변경: START -->
                                                         <div class="tab-pane" id="tab_1_2">
-                                                            <p> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                                eiusmod. </p>
-                                                            <form action="#" role="form">
+                                                            <p> 프로필 사진을 변경합니다. </p>
+                                                            <form id="uPhotoForm" action="<c:url value='/user/auth/insertUserPhoto.do'/>" role="form" enctype="multipart/form-data">
                                                                 <div class="form-group">
                                                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                                                         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+                                                                            <img src="<c:url value='/resources/img/common/no-img.png'/>" alt="" /> </div>
                                                                         <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                                                         <div>
                                                                             <span class="btn default btn-file">
-                                                                                <span class="fileinput-new"> Select image </span>
-                                                                                <span class="fileinput-exists"> Change </span>
+                                                                                <span class="fileinput-new"> 이미지 선택 </span>
+                                                                                <span class="fileinput-exists"> 이미지 변경 </span>
                                                                                 <input type="file" name="..."> </span>
-                                                                            <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                                            <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> 이미지 제거 </a>
                                                                         </div>
                                                                     </div>
                                                                     <div class="clearfix margin-top-10">
-                                                                        <span class="label label-danger">NOTE! </span>
+                                                                        <span class="label label-danger">NOTE! 2 </span>
                                                                         <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="margin-top-10">
-                                                                    <a href="javascript:;" class="btn green"> Submit </a>
-                                                                    <a href="javascript:;" class="btn default"> Cancel </a>
+                                                                    <a href="javascript:alert('2'); $('#uPhotoForm').submit();" class="btn green"> 등록 </a>
+                                                                    <a href="javascript:;" class="btn default"> 취소 </a>
                                                                 </div>
                                                             </form>
                                                         </div>
-                                                        <!-- END CHANGE AVATAR TAB -->
+                                                        <!-- 사지변경: END -->
+                                                        
                                                         <!-- CHANGE PASSWORD TAB -->
                                                         <div class="tab-pane" id="tab_1_3">
                                                             <form action="#">
                                                                 <div class="form-group">
-                                                                    <label class="control-label">Current Password</label>
+                                                                    <label class="control-label">현재 비밀번호</label>
                                                                     <input type="password" class="form-control" /> </div>
                                                                 <div class="form-group">
-                                                                    <label class="control-label">New Password</label>
+                                                                    <label class="control-label">신규 비밀번호</label>
                                                                     <input type="password" class="form-control" /> </div>
                                                                 <div class="form-group">
-                                                                    <label class="control-label">Re-type New Password</label>
+                                                                    <label class="control-label">신규 비밀번호(재입력)</label>
                                                                     <input type="password" class="form-control" /> </div>
                                                                 <div class="margin-top-10">
-                                                                    <a href="javascript:;" class="btn green"> Change Password </a>
-                                                                    <a href="javascript:;" class="btn default"> Cancel </a>
+                                                                    <a href="javascript:;" class="btn green"> 변경 </a>
+                                                                    <a href="javascript:;" class="btn default"> 취소 </a>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -998,41 +895,6 @@
             </div>
             <!-- END FOOTER -->
         </div>
-        <!-- BEGIN QUICK NAV -->
-        <nav class="quick-nav">
-            <a class="quick-nav-trigger" href="#0">
-                <span aria-hidden="true"></span>
-            </a>
-            <ul>
-                <li>
-                    <a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank" class="active">
-                        <span>Purchase Metronic</span>
-                        <i class="icon-basket"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/reviews/4021469?ref=keenthemes" target="_blank">
-                        <span>Customer Reviews</span>
-                        <i class="icon-users"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://keenthemes.com/showcast/" target="_blank">
-                        <span>Showcase</span>
-                        <i class="icon-user"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://keenthemes.com/metronic-theme/changelog/" target="_blank">
-                        <span>Changelog</span>
-                        <i class="icon-graph"></i>
-                    </a>
-                </li>
-            </ul>
-            <span aria-hidden="true" class="quick-nav-bg"></span>
-        </nav>
-        <div class="quick-nav-overlay"></div>
-        <!-- END QUICK NAV -->
         
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
         

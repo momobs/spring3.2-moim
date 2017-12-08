@@ -1,6 +1,4 @@
 var Login = function(){
-
-	// 로그인:START
 	var handleLogin = function(){		
 		var idChk = false;
 		var pwdChk = false;
@@ -35,22 +33,13 @@ var Login = function(){
 		jQuery('#register-btn').click(function() {
             jQuery('.login-form').hide();
             jQuery('.register-form').show();
-        });		
+        });
+		
 	}
-	// 로그인:END
 
-	// 회원가입:START
+	// 회원가입 Form
 	var handleRegister = function(){
-    	// Blur: ID Check
-    	$("input[name='user_id']", $(".register-form")).blur(function(){
-        	var result =validateObj.checkId($("input[name='user_id']", $(".register-form")).val());
-        	
-        	result.get("success")==true ? alert = "<font color='green' size='2'>" : alert="<font color='red' size='2'>";
-        	
-        	alert += result.get("message")+"</font>";
-        	
-        	$("#alertId", $(".register-form")).html(alert);
-    	});
+
     	/*
 		$("button[type='submit']", $(".register-form")).click(function(){
 			if (validate_register()==false){
@@ -59,13 +48,13 @@ var Login = function(){
 			return true;
 		});
 		*/
+		
 		// BACK 
 		jQuery('#register-back-btn').click(function() {
             jQuery('.login-form').show();
             jQuery('.register-form').hide();
         });
 	}
-	// 회원가입:END
 	
 	return {
 		init: function(){
@@ -78,30 +67,6 @@ var Login = function(){
 jQuery(document).ready(function() {
     Login.init();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 //회원가입Form 유효성검사

@@ -7,7 +7,11 @@
 			SELECT
 				USER_ID,
 				USER_PWD,
-				USER_NAME
+				USER_NAME,
+				EMAIL,
+				PHONE,
+				ADDRESS,
+				INTRO
 			FROM
 				USER
 			WHERE
