@@ -42,12 +42,11 @@ function ValidateUser(){
 		return result;
 	}
 	
-	
 	// 비밀번호 유효성 검사
 	this.checkPwd = function checkPwd(pwd){
 		if(this.regularPwd.test(pwd)){
 			result.set("success", true);
-			result.set("message", "(PWD) 사용가한 비밀번호입니다.");
+			result.set("message", "(PWD) 사용가능한 비밀번호입니다.");
 		} else {
 			result.set("success", false);
 			result.set("message", "(PWD) 영문/숫자 포함 6~12자가 필요합니다.");
@@ -55,14 +54,41 @@ function ValidateUser(){
 		return result;
 	}
 	
-	// 이메일 유효성 검사
-	this.validateEmail = function validateEmail(email){
-		if(regularEmail.test(email)){
+	// 비밀번호(재입력) 유효성 검사
+	this.checkPwd2 = function checkPwd2(pwd1, pwd2){
+		if (pwd1.length<=0){
+			result.set("success", false);
+			result.set("message", "(RE-PWD) 비밀번호를 입력하세요.");
+		} else if (pwd1==pwd2){
+			result.set("success", true); 
+			result.set("message", "(RE-PWD) 비밀번호가 일치합니다.");
+		} else {
+			result.set("success", false); 
+			result.set("message", "(RE-PWD) 비밀번호가 일치하지 않습니다.");
+		}
+		return result;
+	}
+	
+	// 이름 유효성 검사
+	this.checkName = function checkName(name){
+		if (name.length>0) {
 			result.set("success", true);
-			result.set("message", "사용가능한 이메일입니다.");
+			result.set("message", "(NAME) 사용가능한 이름입니다.")
 		} else {
 			result.set("success", false);
-			result.set("message", "이메일 형식이 올바르지 않습니다.");
+			result.set("message", "(NAME) 올바른 이름을 입력하세요.")
+		}
+		return result;
+	}
+
+	// 이메일 유효성 검사
+	this.checkEmail = function checkEmail(email){
+		if(this.regularEmail.test(email)){
+			result.set("success", true);
+			result.set("message", "(EMAIL) 사용가능한 이메일입니다.");
+		} else {
+			result.set("success", false);
+			result.set("message", "(EMAIL) 사용할 수 없는 이메일입니다.");
 		}
 		return result;
 	}

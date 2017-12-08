@@ -60,7 +60,7 @@ public class UserController{
 	
 	@RequestMapping(value="/user/joinus.do")
     public ModelAndView joinus(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
-    	ModelAndView mv = new ModelAndView("redirect:/login.do");
+    	ModelAndView mv = new ModelAndView("redirect:/user/login.do");
     	
     	if (user.getUser_pwd()!=null) {
     		user.setUser_pwd(passwordEncoder.encode(user.getUser_pwd()));

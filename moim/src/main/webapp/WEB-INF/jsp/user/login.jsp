@@ -208,6 +208,7 @@
        		// LOGIN EVENT:END
             
        		// REGISTER EVENT:START
+       			// 아이디 유효성 검사
 				$("input[name='user_id']", $(".register-form")).blur(function(){
 					var user_id = $("input[name='user_id']", $(".register-form")).val();
 					var result = valObj.checkId(user_id, "Y");
@@ -215,6 +216,44 @@
 				   	alert += result.get("message")+"</font>";
 				   	$("#alertId", $(".register-form")).html(alert);
 				});
+       		
+       			// 비밀번호 유효성 검사
+            	$("input[name='user_pwd']", $(".register-form")).blur(function(){
+            		var user_pwd = $("input[name='user_pwd']", $(".register-form")).val();
+            		var result = valObj.checkPwd(user_pwd);
+            		result.get("success")==true ? alert = "<font color='green' size='2'>" : alert="<font color='red' size='2'>";
+                	alert += result.get("message")+"</font>";
+                	$("#alertPwd", $(".register-form")).html(alert);
+            	});
+       			
+       			// 비밀번호(재입력) 유효성 검사
+            	$("input[name='user_pwd2']", $(".register-form")).blur(function(){
+            		var user_pwd = $("input[name='user_pwd']", $(".register-form")).val();
+            		var user_pwd2 = $("input[name='user_pwd2']", $(".register-form")).val();
+					var result = valObj.checkPwd2(user_pwd, user_pwd2);
+					result.get("success")==true ? alert = "<font color='green' size='2'>" : alert="<font color='red' size='2'>";
+				   	alert += result.get("message")+"</font>";
+				   	$("#alertPwd2", $(".register-form")).html(alert);
+            	});
+       			
+            	// 이름 유효성 검사
+            	$("input[name='user_name']", $(".register-form")).blur(function(){
+            		var user_name = $("input[name='user_name']", $(".register-form")).val();
+					var result = valObj.checkName(user_name);
+					result.get("success")==true ? alert = "<font color='green' size='2'>" : alert="<font color='red' size='2'>";
+				   	alert += result.get("message")+"</font>";
+				   	$("#alertName", $(".register-form")).html(alert);
+            	});
+       			
+            	// 이메일 유효성 검사
+            	$("input[name='email']", $(".register-form")).blur(function(){
+            		var email = $("input[name='email']", $(".register-form")).val();
+					var result = valObj.checkEmail(email);
+					result.get("success")==true ? alert = "<font color='green' size='2'>" : alert="<font color='red' size='2'>";
+				   	alert += result.get("message")+"</font>";
+				   	$("#alertEmail", $(".register-form")).html(alert);
+            	});
+       			
        			
        		// REGISTER EVENT:END
        		
