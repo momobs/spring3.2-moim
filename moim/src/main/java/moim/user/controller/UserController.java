@@ -92,7 +92,6 @@ public class UserController{
     	return mv;
 	}
 	
-	
 	@RequestMapping(value="/user/auth/logout.do")
     public ModelAndView logout(HttpServletRequest request) throws Exception{
     	ModelAndView mv = new ModelAndView("redirect:/");

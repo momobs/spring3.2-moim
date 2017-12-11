@@ -128,7 +128,8 @@
                 <p class="hint"> 선택입력사항 (Optional)</p>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">연락처</label>
-                    <input class="form-control placeholder-no-fix" type="tel" placeholder="연락처(00*-000*-0000)" name="phone" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" maxlength="15" />
+                    <input class="form-control placeholder-no-fix" type="tel" placeholder="연락처(00*-000*-0000)" name="phone" maxlength="15" />
+                    <span id="alertPhone"></span>
 				</div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">주소</label>
@@ -164,7 +165,7 @@
         <!-- END PAGE LEVEL PLUGINS -->
         
         <!-- BEGIN PAGE LEVEL SCRIPTS -->       
-        <script src="<c:url value='/resources/js/global/validate.js'/>" type="text/javascript"> </script>
+        <script src="<c:url value='/resources/js/global/validate.js?${nowTime }'/>" type="text/javascript"> </script>
         <!-- END PAGE LEVEL SCRIPTS -->
 
         <script>
@@ -252,6 +253,16 @@
 					result.get("success")==true ? alert = "<font color='green' size='2'>" : alert="<font color='red' size='2'>";
 				   	alert += result.get("message")+"</font>";
 				   	$("#alertEmail", $(".register-form")).html(alert);
+            	});
+            	
+            	// 전화번호 유효성 검사
+            	$("input[name='phone']", $(".register-form")).blur(function(){
+            		var phone = $("input[name='phone']", $(".register-form")).val();
+            		var result = valObj.checkPhone(phone);
+					result.get("success")==true ? alert = "<font color='green' size='2'>" : alert="<font color='red' size='2'>";
+				   	alert += result.get("message")+"</font>";
+				   	$("#alertPhone", $(".register-form")).html(alert);
+				   	$("input[name='phone']", $(".register-form")).val(result.get("data"));
             	});
        			
        			

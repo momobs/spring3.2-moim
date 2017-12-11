@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import moim.common.util.MessageUtils;
 import moim.user.vo.UserVO;
 
 public class UserInterceptor  extends HandlerInterceptorAdapter{
@@ -21,8 +22,8 @@ public class UserInterceptor  extends HandlerInterceptorAdapter{
 		
 		if (user==null || user.getUser_id().equals("")) {
 			log.debug("Invalid session.");
-			session.setAttribute("msg", "로그인이 필요한 기능입니다.");
-			response.sendRedirect(request.getContextPath()+"/login.do");
+			session.setAttribute("msg", MessageUtils.getMessage("login.invalidSession"));
+			response.sendRedirect(request.getContextPath()+"/user/login.do");
 			return false;
 		}
 		

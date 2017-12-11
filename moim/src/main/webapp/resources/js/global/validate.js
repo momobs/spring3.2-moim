@@ -9,6 +9,8 @@ function ValidateUser(){
 	this.regularPwd = /^.*(?=.{6,12})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; 
 	// EMAIL 정규식(영문,숫자포함 6~12자)
 	this.regularEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	// PHONE 정규식(하이픈)
+	//this.regularPhone =;
 	
 	var success = false;
 	var message = "";
@@ -92,5 +94,17 @@ function ValidateUser(){
 		}
 		return result;
 	}
+	
+	// 전화번호 유효성 검사 
+	this.checkPhone = function checkPhone(phone){ 
+		
+		var num = phone.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+		result.set("success", true);
+		result.set("message", "(PHONE) 사용가능한 전화번호입니다.");
+		result.set("data", num);
+		return result;
+	}
+	
+	
 	
 }
