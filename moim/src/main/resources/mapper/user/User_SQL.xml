@@ -19,6 +19,17 @@
 		]]>
 	</select>
 	
+	<select id="selectUserPwd" parameterType="moim.user.vo.UserVO" resultType="java.lang.String">
+		<![CDATA[
+			SELECT
+				USER_PWD
+			FROM 
+				USER
+			WHERE
+				USER_ID = #{user_id}
+		]]>
+	</select>
+	
 	<insert id="insertUser" parameterType="moim.user.vo.UserVO" >
 		<![CDATA[
 			INSERT INTO USER
@@ -43,4 +54,23 @@
 			)
 		]]>
 	</insert>
+	
+	<update id="updateUser" parameterType="hashmap">
+		<![CDATA[
+			UPDATE USER
+			SET USER_NAME = #{user_name},
+				EMAIL = #{email},
+				PHONE = #{phone},
+				ADDRESS = #{address}
+			WHERE USER_ID = #{user_id}
+		]]>
+	</update>
+	
+	<update id="updateUserPwd" parameterType="hashmap">
+		<![CDATA[
+			UPDATE USER
+			SET USER_PWD = #{new_password}
+			WHERE USER_ID = #{user_id}
+		]]>
+	</update>
 </mapper>

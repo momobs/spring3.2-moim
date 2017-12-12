@@ -95,42 +95,6 @@
                                         <!-- END MENU -->
                                     </div>
                                     <!-- END PORTLET MAIN -->
-                                    <%-- 
-                                    <!-- PORTLET MAIN -->
-                                    <div class="portlet light "> 
-                                        <div class="row list-separated profile-stat">
-                                            <div class="col-md-4 col-sm-4 col-xs-6">
-                                                <div class="uppercase profile-stat-title"> 37 </div>
-                                                <div class="uppercase profile-stat-text"> Groups </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4 col-xs-6">
-                                                <div class="uppercase profile-stat-title"> 51 </div>
-                                                <div class="uppercase profile-stat-text"> Tasks </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4 col-xs-6">
-                                                <div class="uppercase profile-stat-title"> 61 </div>
-                                                <div class="uppercase profile-stat-text"> Uploads </div>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h4 class="profile-desc-title">About Marcus Doe</h4>
-                                            <span class="profile-desc-text"> Lorem ipsum dolor sit amet diam nonummy nibh dolore. </span>
-                                            <div class="margin-top-20 profile-desc-link">
-                                                <i class="fa fa-globe"></i>
-                                                <a href="http://www.keenthemes.com">www.keenthemes.com</a>
-                                            </div>
-                                            <div class="margin-top-20 profile-desc-link">
-                                                <i class="fa fa-twitter"></i>
-                                                <a href="http://www.twitter.com/keenthemes/">@keenthemes</a>
-                                            </div>
-                                            <div class="margin-top-20 profile-desc-link">
-                                                <i class="fa fa-facebook"></i>
-                                                <a href="http://www.facebook.com/keenthemes/">keenthemes</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END PORTLET MAIN -->
-                                    --%>
                                 </div>
                                 <!-- END BEGIN PROFILE SIDEBAR -->
                                 <!-- BEGIN PROFILE CONTENT -->
@@ -144,96 +108,117 @@
                                                         <span class="caption-subject font-blue-madison bold uppercase">프로필 수정</span>
                                                     </div>
                                                     <ul class="nav nav-tabs">
-                                                        <li class="active">
-                                                            <a href="#tab_1_1" data-toggle="tab">기본정보</a>
+                                                        <li class="<c:if test="${active eq 'tab_1_1' }">active</c:if>">
+                                                            <a class="tab" href="#tab_1_1" data-toggle="tab">기본정보</a>
                                                         </li>
-                                                        <li>
-                                                            <a href="#tab_1_2" data-toggle="tab">사진 변경</a>
+                                                        <li class="<c:if test="${active eq 'tab_1_2' }">active</c:if>">
+                                                            <a class="tab" href="#tab_1_2" data-toggle="tab">사진 변경</a>
                                                         </li>
-                                                        <li>
-                                                            <a href="#tab_1_3" data-toggle="tab">비밀번호 변경</a>
+                                                        <li class="<c:if test="${active eq 'tab_1_3' }">active</c:if>">
+                                                            <a class="tab" href="#tab_1_3" data-toggle="tab">비밀번호 변경</a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="portlet-body">
                                                     <div class="tab-content">
+
                                                         <!-- 기본정보 수정: START -->
-                                                        <div class="tab-pane active" id="tab_1_1">
-                                                            <form role="form" action="<c:url value='/user/auth/updateInfo.do'/>">
+                                                        <div class="tab-pane <c:if test="${active eq 'tab_1_1' }">active</c:if>" id="tab_1_1">
+                                                            <form id="form-info" action="<c:url value='/user/auth/setProfile.do'/>" method="post">
+																<div class="alert alert-danger <c:if test='${tab_1_1.message eq null }'>display-hide</c:if>">
+																	<button class="close" data-close="alert"></button>
+																	<span>${tab_1_1.message}</span>
+																</div>     
                                                                 <div class="form-group">
                                                                     <label class="control-label">이름</label>
+                                                                    <span id="alert-name"></span>
                                                                     <input name="user_name" type="text" placeholder="이름" class="form-control" value="${sessionScope.user.user_name }"/>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">이메일</label>
+                                                                    <span id="alert-email"></span>
                                                                     <input name="email" type="text" placeholder="이메일" class="form-control" value="${sessionScope.user.email }"/> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">연락처</label>
+                                                                    <span id="alert-phone"></span>
                                                                     <input name="phone" type="text" placeholder="연락처" class="form-control" value="${sessionScope.user.phone }"/> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">주소</label>
+                                                                    <span id="alert-address"></span>
                                                                     <input name="address" type="text" placeholder="주소" class="form-control" value="${sessionScope.user.address }"/> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">소개</label>
-                                                                    <textarea name="intro" class="form-control" rows="3" placeholder="설명"></textarea>
+                                                                    <textarea name="intro" class="form-control" rows="3" placeholder="설명">${sessionScope.user.intro }</textarea>
                                                                 </div>
                                                                 <div class="margiv-top-10">
-                                                                    <a href="javascript:;" class="btn green"> 저장 </a>
-                                                                    <a href="javascript:;" class="btn default"> 취소 </a>
+                                                                    <button id="btn-info-save" class="btn green"> 저장 </button>
                                                                 </div>
                                                             </form>
                                                         </div>
                                                         <!-- 기본정보 수정: END -->
                                                         
-                                                        <!-- 사진변경: START -->
-                                                        <div class="tab-pane" id="tab_1_2">
-                                                            <p> 프로필 사진을 변경합니다. </p>
-                                                            <form id="uPhotoForm" action="<c:url value='/user/auth/insertUserPhoto.do'/>" role="form" enctype="multipart/form-data">
-                                                                <div class="form-group">
-                                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                                            <img src="<c:url value='/resources/img/common/no-img.png'/>" alt="" /> </div>
-                                                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
-                                                                        <div>
-                                                                            <span class="btn default btn-file">
-                                                                                <span class="fileinput-new"> 이미지 선택 </span>
-                                                                                <span class="fileinput-exists"> 이미지 변경 </span>
-                                                                                <input type="file" name="..."> </span>
-                                                                            <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> 이미지 제거 </a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="clearfix margin-top-10">
-                                                                        <span class="label label-danger">NOTE! 2 </span>
-                                                                        <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="margin-top-10">
-                                                                    <a href="javascript:alert('2'); $('#uPhotoForm').submit();" class="btn green"> 등록 </a>
-                                                                    <a href="javascript:;" class="btn default"> 취소 </a>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <!-- 사지변경: END -->
+<!-- 사진변경: START -->
+<div class="tab-pane <c:if test="${active eq 'tab_1_2' }">active</c:if>" id="tab_1_2">
+	<p> 프로필 사진을 변경합니다. </p>
+	<form id="form-photo" action="<c:url value='/user/auth/setProfilePhoto.do'/>" role="form" enctype="multipart/form-data">
+		<div class="alert alert-danger <c:if test='${tab_1_2.message eq null }'>display-hide</c:if>">
+			<button class="close" data-close="alert"></button>
+			<span>${tab_1_2.message}</span>
+		</div>
+		<div class="form-group">
+			<div class="fileinput fileinput-new" data-provides="fileinput">
+				<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+					<img src="<c:url value='/resources/img/common/no-img.png'/>" alt="" />
+				</div>
+				<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+				</div>
+				<div>
+					<span class="btn default btn-file">
+					<span class="fileinput-new"> 이미지 선택 </span>
+					<span class="fileinput-exists"> 이미지 변경 </span>
+					<input type="file" name="..."> </span>
+					<a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> 이미지 제거 </a>
+				</div>
+			</div>
+			<div class="clearfix margin-top-10">
+				<span class="label label-danger">NOTE! </span>
+				<span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+			</div>
+		</div>
+		<div class="margin-top-10">
+			<a href="javascript:alert('2'); $('#uPhotoForm').submit();" class="btn green"> 등록 </a>
+			<a href="javascript:;" class="btn default"> 취소 </a>
+		</div>
+	</form>
+</div>
+<!-- 사진변경: END -->
                                                         
-                                                        <!-- CHANGE PASSWORD TAB -->
-                                                        <div class="tab-pane" id="tab_1_3">
-                                                            <form action="#">
+                                                        <!-- 비밀번호 변경: START -->
+                                                        <div class="tab-pane <c:if test="${active eq 'tab_1_3' }">active</c:if>" id="tab_1_3">
+                                                            <form id="form-password" action="<c:url value='/user/auth/setPassword.do'/>" method="post" >
+																<div class="alert alert-danger <c:if test='${tab_1_3.message eq null }'>display-hide</c:if>">
+																	<button class="close" data-close="alert"></button>
+																	<span>${tab_1_3.message}</span>
+																</div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">현재 비밀번호</label>
-                                                                    <input type="password" class="form-control" /> </div>
+                                                                    <span id="alert-current-password"></span>
+                                                                    <input name="current_password" type="password" class="form-control" /> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">신규 비밀번호</label>
-                                                                    <input type="password" class="form-control" /> </div>
+                                                                    <span id="alert-new-password"></span>
+                                                                    <input name="new_password" type="password" class="form-control" /> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">신규 비밀번호(재입력)</label>
-                                                                    <input type="password" class="form-control" /> </div>
+                                                                    <span id="alert-re-password"></span>
+                                                                    <input name="re_password" type="password" class="form-control" /> </div>
                                                                 <div class="margin-top-10">
-                                                                    <a href="javascript:;" class="btn green"> 변경 </a>
-                                                                    <a href="javascript:;" class="btn default"> 취소 </a>
+                                                                    <button id="btn-password-save" class="btn green"> 변경 </button>
                                                                 </div>
                                                             </form>
                                                         </div>
-                                                        <!-- END CHANGE PASSWORD TAB -->
+                                                        <!-- 비밀번호 변경: END -->
+                                                        
                                                         <!-- PRIVACY SETTINGS TAB -->
                                                         <div class="tab-pane" id="tab_1_4">
                                                             <form action="#">
@@ -320,574 +305,14 @@
                     <!-- END CONTENT BODY -->
                 </div>
                 <!-- END CONTENT -->
-                <!-- BEGIN QUICK SIDEBAR -->
-                <a href="javascript:;" class="page-quick-sidebar-toggler">
-                    <i class="icon-login"></i>
-                </a>
-                <div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
-                    <div class="page-quick-sidebar">
-                        <ul class="nav nav-tabs">
-                            <li class="active">
-                                <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> Users
-                                    <span class="badge badge-danger">2</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab"> Alerts
-                                    <span class="badge badge-success">7</span>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> More
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li>
-                                        <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                            <i class="icon-bell"></i> Alerts </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                            <i class="icon-info"></i> Notifications </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                            <i class="icon-speech"></i> Activities </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                            <i class="icon-settings"></i> Settings </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
-                                <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
-                                    <h3 class="list-heading">Staff</h3>
-                                    <ul class="media-list list-items">
-                                        <li class="media">
-                                            <div class="media-status">
-                                                <span class="badge badge-success">8</span>
-                                            </div>
-                                            <img class="media-object" src="../assets/layouts/layout/img/avatar3.jpg" alt="...">
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Bob Nilson</h4>
-                                                <div class="media-heading-sub"> Project Manager </div>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <img class="media-object" src="../assets/layouts/layout/img/avatar1.jpg" alt="...">
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Nick Larson</h4>
-                                                <div class="media-heading-sub"> Art Director </div>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="media-status">
-                                                <span class="badge badge-danger">3</span>
-                                            </div>
-                                            <img class="media-object" src="../assets/layouts/layout/img/avatar4.jpg" alt="...">
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Deon Hubert</h4>
-                                                <div class="media-heading-sub"> CTO </div>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <img class="media-object" src="../assets/layouts/layout/img/avatar2.jpg" alt="...">
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Ella Wong</h4>
-                                                <div class="media-heading-sub"> CEO </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <h3 class="list-heading">Customers</h3>
-                                    <ul class="media-list list-items">
-                                        <li class="media">
-                                            <div class="media-status">
-                                                <span class="badge badge-warning">2</span>
-                                            </div>
-                                            <img class="media-object" src="../assets/layouts/layout/img/avatar6.jpg" alt="...">
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Lara Kunis</h4>
-                                                <div class="media-heading-sub"> CEO, Loop Inc </div>
-                                                <div class="media-heading-small"> Last seen 03:10 AM </div>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="media-status">
-                                                <span class="label label-sm label-success">new</span>
-                                            </div>
-                                            <img class="media-object" src="../assets/layouts/layout/img/avatar7.jpg" alt="...">
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Ernie Kyllonen</h4>
-                                                <div class="media-heading-sub"> Project Manager,
-                                                    <br> SmartBizz PTL </div>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <img class="media-object" src="../assets/layouts/layout/img/avatar8.jpg" alt="...">
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Lisa Stone</h4>
-                                                <div class="media-heading-sub"> CTO, Keort Inc </div>
-                                                <div class="media-heading-small"> Last seen 13:10 PM </div>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="media-status">
-                                                <span class="badge badge-success">7</span>
-                                            </div>
-                                            <img class="media-object" src="../assets/layouts/layout/img/avatar9.jpg" alt="...">
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Deon Portalatin</h4>
-                                                <div class="media-heading-sub"> CFO, H&D LTD </div>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <img class="media-object" src="../assets/layouts/layout/img/avatar10.jpg" alt="...">
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Irina Savikova</h4>
-                                                <div class="media-heading-sub"> CEO, Tizda Motors Inc </div>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="media-status">
-                                                <span class="badge badge-danger">4</span>
-                                            </div>
-                                            <img class="media-object" src="../assets/layouts/layout/img/avatar11.jpg" alt="...">
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Maria Gomez</h4>
-                                                <div class="media-heading-sub"> Manager, Infomatic Inc </div>
-                                                <div class="media-heading-small"> Last seen 03:10 AM </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="page-quick-sidebar-item">
-                                    <div class="page-quick-sidebar-chat-user">
-                                        <div class="page-quick-sidebar-nav">
-                                            <a href="javascript:;" class="page-quick-sidebar-back-to-list">
-                                                <i class="icon-arrow-left"></i>Back</a>
-                                        </div>
-                                        <div class="page-quick-sidebar-chat-user-messages">
-                                            <div class="post out">
-                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
-                                                <div class="message">
-                                                    <span class="arrow"></span>
-                                                    <a href="javascript:;" class="name">Bob Nilson</a>
-                                                    <span class="datetime">20:15</span>
-                                                    <span class="body"> When could you send me the report ? </span>
-                                                </div>
-                                            </div>
-                                            <div class="post in">
-                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
-                                                <div class="message">
-                                                    <span class="arrow"></span>
-                                                    <a href="javascript:;" class="name">Ella Wong</a>
-                                                    <span class="datetime">20:15</span>
-                                                    <span class="body"> Its almost done. I will be sending it shortly </span>
-                                                </div>
-                                            </div>
-                                            <div class="post out">
-                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
-                                                <div class="message">
-                                                    <span class="arrow"></span>
-                                                    <a href="javascript:;" class="name">Bob Nilson</a>
-                                                    <span class="datetime">20:15</span>
-                                                    <span class="body"> Alright. Thanks! :) </span>
-                                                </div>
-                                            </div>
-                                            <div class="post in">
-                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
-                                                <div class="message">
-                                                    <span class="arrow"></span>
-                                                    <a href="javascript:;" class="name">Ella Wong</a>
-                                                    <span class="datetime">20:16</span>
-                                                    <span class="body"> You are most welcome. Sorry for the delay. </span>
-                                                </div>
-                                            </div>
-                                            <div class="post out">
-                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
-                                                <div class="message">
-                                                    <span class="arrow"></span>
-                                                    <a href="javascript:;" class="name">Bob Nilson</a>
-                                                    <span class="datetime">20:17</span>
-                                                    <span class="body"> No probs. Just take your time :) </span>
-                                                </div>
-                                            </div>
-                                            <div class="post in">
-                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
-                                                <div class="message">
-                                                    <span class="arrow"></span>
-                                                    <a href="javascript:;" class="name">Ella Wong</a>
-                                                    <span class="datetime">20:40</span>
-                                                    <span class="body"> Alright. I just emailed it to you. </span>
-                                                </div>
-                                            </div>
-                                            <div class="post out">
-                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
-                                                <div class="message">
-                                                    <span class="arrow"></span>
-                                                    <a href="javascript:;" class="name">Bob Nilson</a>
-                                                    <span class="datetime">20:17</span>
-                                                    <span class="body"> Great! Thanks. Will check it right away. </span>
-                                                </div>
-                                            </div>
-                                            <div class="post in">
-                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
-                                                <div class="message">
-                                                    <span class="arrow"></span>
-                                                    <a href="javascript:;" class="name">Ella Wong</a>
-                                                    <span class="datetime">20:40</span>
-                                                    <span class="body"> Please let me know if you have any comment. </span>
-                                                </div>
-                                            </div>
-                                            <div class="post out">
-                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
-                                                <div class="message">
-                                                    <span class="arrow"></span>
-                                                    <a href="javascript:;" class="name">Bob Nilson</a>
-                                                    <span class="datetime">20:17</span>
-                                                    <span class="body"> Sure. I will check and buzz you if anything needs to be corrected. </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="page-quick-sidebar-chat-user-form">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Type a message here...">
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn green">
-                                                        <i class="icon-paper-clip"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
-                                <div class="page-quick-sidebar-alerts-list">
-                                    <h3 class="list-heading">General</h3>
-                                    <ul class="feeds list-items">
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-check"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 4 pending tasks.
-                                                            <span class="label label-sm label-warning "> Take action
-                                                                <i class="fa fa-share"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> Just now </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <div class="col1">
-                                                    <div class="cont">
-                                                        <div class="cont-col1">
-                                                            <div class="label label-sm label-success">
-                                                                <i class="fa fa-bar-chart-o"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="cont-col2">
-                                                            <div class="desc"> Finance Report for year 2013 has been released. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col2">
-                                                    <div class="date"> 20 mins </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-danger">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 5 pending membership that requires a quick review. </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 24 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> New order received with
-                                                            <span class="label label-sm label-success"> Reference Number: DR23923 </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 30 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-success">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 5 pending membership that requires a quick review. </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 24 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> Web server hardware needs to be upgraded.
-                                                            <span class="label label-sm label-warning"> Overdue </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 2 hours </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <div class="col1">
-                                                    <div class="cont">
-                                                        <div class="cont-col1">
-                                                            <div class="label label-sm label-default">
-                                                                <i class="fa fa-briefcase"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="cont-col2">
-                                                            <div class="desc"> IPO Report for year 2013 has been released. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col2">
-                                                    <div class="date"> 20 mins </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <h3 class="list-heading">System</h3>
-                                    <ul class="feeds list-items">
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-check"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 4 pending tasks.
-                                                            <span class="label label-sm label-warning "> Take action
-                                                                <i class="fa fa-share"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> Just now </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <div class="col1">
-                                                    <div class="cont">
-                                                        <div class="cont-col1">
-                                                            <div class="label label-sm label-danger">
-                                                                <i class="fa fa-bar-chart-o"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="cont-col2">
-                                                            <div class="desc"> Finance Report for year 2013 has been released. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col2">
-                                                    <div class="date"> 20 mins </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-default">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 5 pending membership that requires a quick review. </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 24 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> New order received with
-                                                            <span class="label label-sm label-success"> Reference Number: DR23923 </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 30 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-success">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 5 pending membership that requires a quick review. </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 24 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-warning">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> Web server hardware needs to be upgraded.
-                                                            <span class="label label-sm label-default "> Overdue </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 2 hours </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <div class="col1">
-                                                    <div class="cont">
-                                                        <div class="cont-col1">
-                                                            <div class="label label-sm label-info">
-                                                                <i class="fa fa-briefcase"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="cont-col2">
-                                                            <div class="desc"> IPO Report for year 2013 has been released. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col2">
-                                                    <div class="date"> 20 mins </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">
-                                <div class="page-quick-sidebar-settings-list">
-                                    <h3 class="list-heading">General Settings</h3>
-                                    <ul class="list-items borderless">
-                                        <li> Enable Notifications
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                        <li> Allow Tracking
-                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="info" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                        <li> Log Errors
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                        <li> Auto Sumbit Issues
-                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                        <li> Enable SMS Alerts
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    </ul>
-                                    <h3 class="list-heading">System Settings</h3>
-                                    <ul class="list-items borderless">
-                                        <li> Security Level
-                                            <select class="form-control input-inline input-sm input-small">
-                                                <option value="1">Normal</option>
-                                                <option value="2" selected>Medium</option>
-                                                <option value="e">High</option>
-                                            </select>
-                                        </li>
-                                        <li> Failed Email Attempts
-                                            <input class="form-control input-inline input-sm input-small" value="5" /> </li>
-                                        <li> Secondary SMTP Port
-                                            <input class="form-control input-inline input-sm input-small" value="3560" /> </li>
-                                        <li> Notify On System Error
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                        <li> Notify On SMTP Error
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    </ul>
-                                    <div class="inner-content">
-                                        <button class="btn btn-success">
-                                            <i class="icon-settings"></i> Save Changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- START QUICK SIDEBAR -->
                 <!-- END QUICK SIDEBAR -->
             </div>
             <!-- END CONTAINER -->
             <!-- BEGIN FOOTER -->
             <div class="page-footer">
-                <div class="page-footer-inner"> 2016 &copy; Metronic Theme By
-                    <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
-                    <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+                <div class="page-footer-inner"> 
+                	<spring:message code="common.copyright"/>
                 </div>
                 <div class="scroll-to-top">
                     <i class="icon-arrow-up"></i>
@@ -904,19 +329,152 @@
 	<!-- END PAGE LEVEL PLUGINS -->
         
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
-	<script src="<c:url value='/resources/js/page/profile.js'/>" type="text/javascript"></script>
+	<!-- <script src="<c:url value='/resources/js/page/profile.js'/>" type="text/javascript"></script>-->
+	<script src="<c:url value='/resources/js/global/validate.js?${nowTime }'/>" type="text/javascript"> </script>
 	<!-- END PAGE LEVEL SCRIPTS -->
 	
 	<script>
 		$(document).ready(function()
 		{
+			var valObj = new ValidateUser();
+			var flagName = false;
+			var flagEmail = false;
+			var flagPhone = false;
+			var flagAddress = false;
+			var flagPwd = false;
+			var flagPwd2 = false;
+			
+        	// 이름 유효성 검사
+        	$("input[name='user_name']").blur(function(){
+				checkName();
+        	});
+   			
+        	// 이메일 유효성 검사
+        	$("input[name='email']").blur(function(){
+        		checkEmail();
+        	});
+        	
+        	// 전화번호 유효성 검사
+        	$("input[name='phone']").blur(function(){
+        		checkPhone();
+        	});
+        	
+        	// 전화번호 유효성 검사
+        	$("input[name='address']").blur(function(){
+        		checkAddress();
+        	});
+
+        	// 기본정보 저장
+        	$("#btn-info-save").click(function(){
+				checkName();
+				checkEmail();
+				checkPhone();
+				checkAddress();
+				if (flagName==true && flagEmail==true && flagPhone==true && flagAddress==true){
+					if (!confirm("저장하시겠습니까?")){
+	        			return false;
+	        		}	
+					$("#form-info").submit();
+				}
+        	});
+        	
+        	// 비밀번호 변경:START
+        	$("#btn-password-save").click(function(){
+        		
+        		var curPwd = $("input[name='current_password']").val();
+        		var newPwd = $("input[name='new_password']").val();
+        		var rePwd = $("input[name='re_password']").val();
+        		
+        		var result = valObj.checkPwd(curPwd);
+        		printAlert("current_password", result);
+        		if (result.get("success")==false){
+        			$("input[name='current_password']").focus();
+        			return false;
+        		}
+        		
+        		result = valObj.checkPwd(newPwd);
+        		printAlert("new_password", result);
+        		if (result.get("success")==false){
+        			$("input[name='new_password']").focus();
+        			return false;
+        		}
+        		
+        		result = valObj.checkPwd2(newPwd, rePwd);
+        		printAlert("re_password", result);
+        		if (result.get("success")==false){
+        			$("input[name='re_password']").focus();
+        			return false;
+        		}
+        		
+        		if (!confirm("비밀번호를 변경하시겠습니까?")){
+        			return false;
+        		}
+        		$("#form-password").submit();
+        		return true;
+        	});
+        	// 비밀번호 변경:END
+        	
+			
 		    $('#clickmewow').click(function()
 		    {
 		        $('#radio1003').attr('checked', 'checked');
 		    });
 		    
 		    $('.sidebar-toggler').trigger('click');
+	       	
+		    function checkName(){
+	       		var user_name = $("input[name='user_name']").val();
+				var result = valObj.checkName(user_name);
+				result.get("success")==true?flagName=true:flagName=false;
+				printAlert("name", result);
+	       	}
+		    
+        	function checkPwd(password){
+        		var user_pwd = $("input[name='user_pwd']").val();
+        		var result = valObj.checkPwd(user_pwd);
+        		result.get("success")==true?flagPwd=true:flagPwd=false;
+        		printAlert("pwd", result);
+        	}
+        	
+        	function checkPwd2(password, password2){
+        		var user_pwd = $("input[name='user_pwd']").val();
+        		var user_pwd2 = $("input[name='user_pwd2']").val();
+				var result = valObj.checkPwd2(user_pwd, user_pwd2);
+				result.get("success")==true?flagPwd2=true:flagPwd2=false;
+				printAlert("pwd2", result);
+        	}
+	       	
+	       	function checkEmail(){
+	       		var email = $("input[name='email']").val();
+				var result = valObj.checkEmail(email);
+				result.get("success")==true?flagEmail=true:flagEmail=false;
+				printAlert("email", result);
+	       	}
+	       	
+	       	function checkPhone(){
+	       		var phone = $("input[name='phone']").val();
+	       		var result = valObj.checkPhone(phone);
+	       		result.get("success")==true?flagPhone=true:flagPhone=false;
+	       		printAlert("phone", result);
+			   	$("input[name='phone']").val(result.get("data"));
+	       	}
+	       	
+	       	function checkAddress(){
+	       		var address = $("input[name='address']").val();
+				var result = valObj.checkAddress(address);
+				result.get("success")==true?flagAddress=true:flagAddress=false;
+				printAlert("address", result);
+	       	}
+			function printAlert(entity, result){
+	    		var message = "";
+	    		result.get("success")==true ? message = "<font color='green' size='2'>" : message="<font color='red' size='2'>";
+	    		message += result.get("message")+"</font>";
+	    		$("#alert-"+entity).html(message);
+	    	}
+			
+
 		})
 	</script>
+	
 </body>
 </html>

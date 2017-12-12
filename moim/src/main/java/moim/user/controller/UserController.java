@@ -1,7 +1,5 @@
 package moim.user.controller;
 
-import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,7 +13,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -106,31 +103,76 @@ public class UserController{
     	return mv;
 	}
 	
+	// 프로필: View 초기화
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/user/auth/getProfile.do")
+    public ModelAndView getProfile(HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/user/myprofile");
+    	Map<String,Object> inputFlashMap = (Map<String,Object>) RequestContextUtils.getInputFlashMap(request);
+    	UserVO loginUser = (UserVO)request.getSession().getAttribute("user");
+    	request.getSession().setAttribute("user", userService.selectUser(loginUser));
+    	
+    	mv.addObject("active", "tab_1_1");
+    	
+    	if (inputFlashMap!=null && inputFlashMap.isEmpty()==false) {
+    		Iterator<Entry<String,Object>> iterator = inputFlashMap.entrySet().iterator();
+    		Entry<String,Object> entry = null;
+    		while(iterator.hasNext()) {
+    			entry = iterator.next();
+    			mv.addObject(entry.getKey(), entry.getValue());
+    		}
+    	} 
 
-	
-	@RequestMapping(value="/user/auth/myprofile.do")
-    public ModelAndView myprofile(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
-    	ModelAndView mv = new ModelAndView("/user/myprofile");
-    	
     	return mv;
 	}
 	
-	// 미완성
-	@RequestMapping(value="/user/auth/updateInfo.do")
-    public ModelAndView updateInfo(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
-    	ModelAndView mv = new ModelAndView("/user/myprofile");
+
+	// 프로필: 기본정보 변경 요청
+	@RequestMapping(value="/user/auth/setProfile.do")
+    public ModelAndView setProfile(RedirectAttributes redirectAttributes, HttpServletRequest request, CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/user/auth/getProfile.do");
+		redirectAttributes.addFlashAttribute("active",  (String)"tab_1_1");
+		redirectAttributes.addFlashAttribute("tab_1_1", userService.updateUser(request, commandMap.getMap()));
     	
     	return mv;
 	}
-	
-	
+
 	// 미완성
-	@RequestMapping(value="/user/auth/insertUserPhoto.do")
-    public ModelAndView insertUserPhoto(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
+	@RequestMapping(value="/user/auth/setProfilePhoto.do")
+    public ModelAndView setUserPhoto(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
 		log.debug("123");
     	ModelAndView mv = new ModelAndView("/user/myprofile");
     	userService.insertUserPhoto(request, user);
     	return mv;
 	}
+
+	// 프로필: 비밀번호 변경 요청
+	@RequestMapping(value="/user/auth/setPassword.do")
+    public ModelAndView setPassword(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
+    	ModelAndView mv = new ModelAndView("redirect:/user/auth/getProfile.do");
+    	UserVO loginUser = (UserVO) request.getSession().getAttribute("user");
+    	String curPwd = (String) commandMap.get("current_password");
+    	String newPwd = (String) commandMap.get("new_password");
+    	String rePwd = (String) commandMap.get("re_password");
+    	
+    	if (passwordEncoder.matches(curPwd, loginUser.getUser_pwd()) && newPwd.equals(rePwd)) {
+    		commandMap.put("user_id", loginUser.getUser_id());
+    		commandMap.put("new_password", passwordEncoder.encode((String)commandMap.get("new_password")));
+    		redirectAttributes.addFlashAttribute("tab_1_3",  userService.updateUserPwd(commandMap.getMap()));	
+    	} else {
+    		commandMap.clear();
+    		commandMap.put("success", false);
+    		commandMap.put("message", MessageUtils.getMessage("password.failure"));
+    		redirectAttributes.addFlashAttribute("tab_1_3", commandMap.getMap());
+    	}
+    	
+    	
+    	
+    	
+    	redirectAttributes.addFlashAttribute("active",  (String)"tab_1_3");
+    	return mv;
+	}
+	
+
 }
 ;

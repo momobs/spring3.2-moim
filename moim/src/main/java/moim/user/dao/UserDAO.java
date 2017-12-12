@@ -1,8 +1,7 @@
 package moim.user.dao;
 
-import java.sql.SQLException;
+import java.util.Map;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import moim.common.dao.AbstractDAO;
@@ -16,9 +15,22 @@ public class UserDAO extends AbstractDAO{
 		return (UserVO)selectOne("user.selectUser", user);
 	}
 	
+	public String selectUserPwd(UserVO user) throws Exception{
+		return (String)selectOne("user.selectUserPwd", user);
+	}
 	
 	public void insertUser(UserVO user) throws Exception{
 		insert("user.insertUser", user);
-
 	}
+	
+	public int updateUser(Map<String,Object> map) throws Exception{
+		return (int)update("user.updateUser", map);
+	}
+	
+	public int updateUserPwd(Map<String,Object> map) throws Exception{
+		return (int)update("user.updateUserPwd", map);
+	}
+	
+	
+	
 }
