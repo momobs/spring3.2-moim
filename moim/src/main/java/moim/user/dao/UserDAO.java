@@ -1,6 +1,8 @@
 package moim.user.dao;
 
-import org.springframework.dao.DuplicateKeyException;
+import java.sql.SQLException;
+
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import moim.common.dao.AbstractDAO;
@@ -17,5 +19,6 @@ public class UserDAO extends AbstractDAO{
 	
 	public void insertUser(UserVO user) throws Exception{
 		insert("user.insertUser", user);
+
 	}
 }

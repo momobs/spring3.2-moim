@@ -1,5 +1,11 @@
 package moim.user.controller;
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,8 +15,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import moim.common.common.CommandMap;
 import moim.common.util.MessageUtils;
@@ -28,52 +37,49 @@ public class UserController{
 	BCryptPasswordEncoder passwordEncoder;
 
 	@RequestMapping(value="/user/login.do")
-    public ModelAndView login(HttpServletRequest request, UserVO user) throws Exception{
+    public ModelAndView login(RedirectAttributes redirectAttributes, HttpServletRequest request, UserVO user) throws Exception{
     	ModelAndView mv = new ModelAndView("");
     	HttpSession session = request.getSession();
-    	String rawPwd = user.getUser_pwd();
-    	String msg = null;
-
-    	// Login Session이 존재하지 않고 입력된 PWD가 있을때 (Login 수행)
-    	if (rawPwd!=null && session.getAttribute("user")==null) {
-    		user = userService.selectUser(user);
-    		// 조회된 User가 없거나 패스워드가 일치하지 않을 때
-    		if(user==null||!passwordEncoder.matches(rawPwd, user.getUser_pwd())){
-    			msg = MessageUtils.getMessage("login.notfound");
-    		}
-    	// Login Session이 존재할 때(회원가입 후 자동로그인)
-    	} else {
-    		user = (UserVO) session.getAttribute("user");
-    	}
+    	UserVO loginUser = (UserVO) session.getAttribute("user");
+    	String inputPwd = "";
     	
-    	if (user != null) {
-    		mv.setViewName("redirect:/");
+    	if (loginUser!=null) { user = loginUser; }
+    	inputPwd = user.getUser_pwd();
+    	
+    	user = userService.selectUser(user);
+    	
+    	if (user!=null&&passwordEncoder.matches(inputPwd, user.getUser_pwd())) {
     		session.setAttribute("user", user);
+    		mv.setViewName("redirect:/");
     	} else {
-    		mv.setViewName("/user/login");
+    		redirectAttributes.addFlashAttribute("msg", MessageUtils.getMessage("login.notmatch"));
+    		mv.setViewName("redirect:/common/call/login.do");
     	}
-    	
-    	mv.addObject("msg", msg);
     	
     	return mv;
 	}
 	
 	@RequestMapping(value="/user/joinus.do")
-    public ModelAndView joinus(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
-    	ModelAndView mv = new ModelAndView("redirect:/user/login.do");
+    public ModelAndView joinus(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
+    	ModelAndView mv = new ModelAndView();
+    	String decPwd = user.getUser_pwd();
+    	String encPwd = passwordEncoder.encode(user.getUser_pwd());
+    	user.setUser_pwd(encPwd);
+    	user = userService.insertUser(user);
     	
-    	if (user.getUser_pwd()!=null) {
-    		user.setUser_pwd(passwordEncoder.encode(user.getUser_pwd()));
+    	if (user.getResult()==true) {
+    		user.setUser_pwd(decPwd);
+    		request.getSession().setAttribute("user", user);
+    		mv.setViewName("redirect:/user/login.do");
+    	} else {
+    		redirectAttributes.addFlashAttribute("inputData", user);
+    		redirectAttributes.addFlashAttribute("msg", user.getMessage());
+    		
+    		mv.setViewName("redirect:/common/call/joinus.do");
     	}
-    	
-   		userService.insertUser(user);
-   		if (user.getResult()==true) {
-   			request.getSession().setAttribute("user", user);
-   		} else {
-   			mv.setViewName("redirect:/common/errorSQL.do");
-   		}
-    	
+		
     	return mv;
+
 	}
 	
 	@RequestMapping(value="/user/selectId.do")
@@ -127,3 +133,4 @@ public class UserController{
     	return mv;
 	}
 }
+;

@@ -33,7 +33,7 @@
 <!-- THEME LAYOUT STYLES:END -->
 
 <!-- THEME GLOBAL STYLES:START -->
-<link href="<c:url value='/resources/css/global/components-rounded.css'/>" rel="stylesheet" id="style_components" type="text/css" />
+<link href="<c:url value='/resources/css/global/components-rounded.css?${nowTime }'/>" rel="stylesheet" id="style_components" type="text/css" />
 <link href="<c:url value='/resources/css/global/plugins.min.css'/>" rel="stylesheet" type="text/css" />
 <!-- THEME GLOBAL STYLES:END -->
 
