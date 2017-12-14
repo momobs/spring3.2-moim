@@ -160,7 +160,7 @@
 <!-- 사진변경: START -->
 <div class="tab-pane <c:if test="${active eq 'tab_1_2' }">active</c:if>" id="tab_1_2">
 	<p> 프로필 사진을 변경합니다. </p>
-	<form id="form-photo" action="<c:url value='/user/auth/setProfilePhoto.do'/>" role="form" enctype="multipart/form-data">
+	<form id="form-photo" action="<c:url value='/user/auth/setPhoto.do'/>" role="form" enctype="multipart/form-data" method="post">
 		<div class="alert alert-danger <c:if test='${tab_1_2.message eq null }'>display-hide</c:if>">
 			<button class="close" data-close="alert"></button>
 			<span>${tab_1_2.message}</span>
@@ -176,7 +176,7 @@
 					<span class="btn default btn-file">
 					<span class="fileinput-new"> 이미지 선택 </span>
 					<span class="fileinput-exists"> 이미지 변경 </span>
-					<input type="file" name="..."> </span>
+					<input type="file" name="file-photo"> </span>
 					<a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> 이미지 제거 </a>
 				</div>
 			</div>
@@ -186,8 +186,7 @@
 			</div>
 		</div>
 		<div class="margin-top-10">
-			<a href="javascript:alert('2'); $('#uPhotoForm').submit();" class="btn green"> 등록 </a>
-			<a href="javascript:;" class="btn default"> 취소 </a>
+			<button id="btn-photo-save" class="btn green"> 등록 </button>
 		</div>
 	</form>
 </div>
@@ -378,7 +377,12 @@
 				}
         	});
         	
-        	// 비밀번호 변경:START
+        	// 프로필 사진 저장
+        	$("#btn-photo-save").click(function(){
+        		$("#form-photo").submit();
+        	});
+        	
+        	// 비밀번호 변경
         	$("#btn-password-save").click(function(){
         		
         		var curPwd = $("input[name='current_password']").val();
@@ -412,7 +416,6 @@
         		$("#form-password").submit();
         		return true;
         	});
-        	// 비밀번호 변경:END
         	
 			
 		    $('#clickmewow').click(function()

@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -137,12 +139,29 @@ public class UserController{
     	return mv;
 	}
 
-	// 미완성
-	@RequestMapping(value="/user/auth/setProfilePhoto.do")
+	// 프로필: 사진 변경 요청
+	@RequestMapping(value="/user/auth/setPhoto.do")
     public ModelAndView setUserPhoto(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
-		log.debug("123");
+		
     	ModelAndView mv = new ModelAndView("/user/myprofile");
-    	userService.insertUserPhoto(request, user);
+    	//userService.insertUserPhoto(request, user);
+    	
+    	MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+    	Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+    	MultipartFile multipartFile = null;
+    	
+    	while(iterator.hasNext()) {
+    		multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+    		if(multipartFile.isEmpty()==false) {
+                log.debug("------------- file start -------------");
+                log.debug("name : "+multipartFile.getName());
+                log.debug("filename : "+multipartFile.getOriginalFilename());
+                log.debug("size : "+multipartFile.getSize());
+                log.debug("-------------- file end --------------\n");
+    		}
+    		
+    	}
+    	
     	return mv;
 	}
 
