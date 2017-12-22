@@ -160,7 +160,7 @@
 <!-- 사진변경: START -->
 <div class="tab-pane <c:if test="${active eq 'tab_1_2' }">active</c:if>" id="tab_1_2">
 	<p> 프로필 사진을 변경합니다. </p>
-	<form id="form-photo" action="<c:url value='/user/auth/setPhoto.do'/>" role="form" enctype="multipart/form-data" method="post">
+	<form id="form-photo" action="<c:url value='/user/auth/insertUserPhoto.do'/>" role="form" enctype="multipart/form-data" method="post">
 		<div class="alert alert-danger <c:if test='${tab_1_2.message eq null }'>display-hide</c:if>">
 			<button class="close" data-close="alert"></button>
 			<span>${tab_1_2.message}</span>

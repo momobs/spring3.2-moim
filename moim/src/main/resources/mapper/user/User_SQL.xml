@@ -55,6 +55,29 @@
 		]]>
 	</insert>
 	
+	<insert id="insertUserFile" parameterType="hashmap" useGeneratedKeys="true" keyProperty="idx">
+		<![CDATA[
+			INSERT INTO FILE_MANAGER
+			(
+				STORED_FILE_NAME,
+				ORIGINAL_FILE_NAME,
+				FILE_SIZE,
+				CREATE_DATE,
+				CREATE_USER,
+				DEL_YN
+			)
+			VALUES
+			(
+				#{stored_file_name},
+				#{original_file_name},
+				#{file_size},
+				now(),
+				#{user_id},
+				'N'
+			)
+		]]>
+	</insert>
+	
 	<update id="updateUser" parameterType="hashmap">
 		<![CDATA[
 			UPDATE USER
@@ -70,6 +93,14 @@
 		<![CDATA[
 			UPDATE USER
 			SET USER_PWD = #{new_password}
+			WHERE USER_ID = #{user_id}
+		]]>
+	</update>
+	
+	<update id="updateUserFile" parameterType="hashmap">
+		<![CDATA[
+			UPDATE USER
+			SET USER_PHOTO = #{idx}
 			WHERE USER_ID = #{user_id}
 		]]>
 	</update>

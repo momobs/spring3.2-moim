@@ -1,19 +1,15 @@
 package moim.user.service;
 
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import moim.common.common.CommonVO;
+import moim.common.util.FileUtils;
 import moim.common.util.MessageUtils;
 import moim.user.dao.UserDAO;
 import moim.user.vo.UserVO;
@@ -24,6 +20,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Resource(name="userDAO")
 	private UserDAO userDAO;
+	
+	@Resource(name="fileUtils")
+    private FileUtils fileUtils;
 
 	@Override
 	public UserVO selectUser(UserVO user) throws Exception{		
@@ -86,16 +85,19 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void insertUserPhoto(HttpServletRequest request, UserVO user) throws Exception{
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		MultipartFile multipartFile = null;
+		List<Map<String,Object>> list = null;
 		
-		while(iterator.hasNext()){
-			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-			
-			if (multipartFile.isEmpty()==false) {
-				log.debug(multipartFile.getOriginalFilename());
+		try {
+			list = fileUtils.parseInsertFileInfo(null, request);
+		
+			for (int i=0, size=list.size(); i<size; i++) {
+				list.get(i).put("user_id", ((UserVO)request.getSession().getAttribute("user")).getUser_id());
+				userDAO.insertUserFile((Map<String,Object>)list.get(i));
+				userDAO.updateUserPhoto((Map<String,Object>)list.get(i));
 			}
+		} catch (Exception e) {
+			fileUtils.parseDeleteFileInfo(list, request);
+			throw e;
 		}
 	}
 	

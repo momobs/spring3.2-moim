@@ -1,5 +1,6 @@
 package moim.user.controller;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -140,27 +141,11 @@ public class UserController{
 	}
 
 	// 프로필: 사진 변경 요청
-	@RequestMapping(value="/user/auth/setPhoto.do")
-    public ModelAndView setUserPhoto(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
-		
+	@RequestMapping(value="/user/auth/insertUserPhoto.do")
+    public ModelAndView insertUserPhoto(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
     	ModelAndView mv = new ModelAndView("/user/myprofile");
-    	//userService.insertUserPhoto(request, user);
-    	
-    	MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-    	Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-    	MultipartFile multipartFile = null;
-    	
-    	while(iterator.hasNext()) {
-    		multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-    		if(multipartFile.isEmpty()==false) {
-                log.debug("------------- file start -------------");
-                log.debug("name : "+multipartFile.getName());
-                log.debug("filename : "+multipartFile.getOriginalFilename());
-                log.debug("size : "+multipartFile.getSize());
-                log.debug("-------------- file end --------------\n");
-    		}
-    		
-    	}
+		
+    	userService.insertUserPhoto(request, user);
     	
     	return mv;
 	}

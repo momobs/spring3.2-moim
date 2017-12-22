@@ -7,35 +7,35 @@
   <!-- ERROR PAGES: START -->
   <error-page>
   	<exception-type>java.lang.Throwable</exception-type>
-  	<location>/common/error/throwable.do</location>
+  	<location>/exception/throwable.do</location>
   </error-page>
   <error-page>
   	<exception-type>java.lang.Exception</exception-type>
-  	<location>/common/error/exception.do</location>
+  	<location>/exception/common.do</location>
   </error-page>
   <error-page>
   	<error-code>400</error-code>
-  	<location>/common/error/http400.do</location>
+  	<location>/exception/http400.do</location>
   </error-page>
   <error-page>
   	<error-code>403</error-code>
-  	<location>/common/error/http403.do</location>
+  	<location>/exception/http403.do</location>
   </error-page>
   <error-page>
   	<error-code>404</error-code>
-  	<location>/common/error/http404.do</location>
+  	<location>/exception/http404.do</location>
   </error-page>
   <error-page>
   	<error-code>405</error-code>
-  	<location>/common/error/http405.do</location>
+  	<location>/exception/http405.do</location>
   </error-page>
   <error-page>
   	<error-code>500</error-code>
-  	<location>/common/error/http500.do</location>
+  	<location>/exception/http500.do</location>
   </error-page>
   <error-page>
   	<error-code>503</error-code>
-  	<location>/common/error/http503.do</location>
+  	<location>/exception/http503.do</location>
   </error-page>
   <!-- ERROR PAGES: END -->  
   

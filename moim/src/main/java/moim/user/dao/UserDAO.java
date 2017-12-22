@@ -23,6 +23,11 @@ public class UserDAO extends AbstractDAO{
 		insert("user.insertUser", user);
 	}
 	
+	public void insertUserFile(Map<String,Object> map) throws Exception{
+		insert("user.insertUserFile", map);
+		log.debug("GEGE: "+ map.get("idx"));
+	}
+	
 	public int updateUser(Map<String,Object> map) throws Exception{
 		return (int)update("user.updateUser", map);
 	}
@@ -31,6 +36,11 @@ public class UserDAO extends AbstractDAO{
 		return (int)update("user.updateUserPwd", map);
 	}
 	
+	public int updateUserPhoto(Map<String,Object> map) throws Exception{
+		return (int)update("user.updateUserPhoto", map);
+	}
+	
+
 	
 	
 }

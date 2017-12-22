@@ -2,7 +2,6 @@ package moim.common.controller;
 
 import java.io.File;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -47,7 +47,7 @@ public class CommonController{
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/common/init.do")
-	public ModelAndView init(HttpServletRequest request) throws Exception{
+	public ModelAndView init(HttpServletRequest request) throws Exception{		
 		ModelAndView mv = new ModelAndView("/common/main");
 				
 		mv.addObject("overview", (Map<String,Object>)commonService.selectOverview());
@@ -59,6 +59,7 @@ public class CommonController{
 		}
 		return mv;
 	}
+	
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/common/call/{page}.do")
@@ -95,35 +96,4 @@ public class CommonController{
 		response.getOutputStream().close();
 	}
 	
-	@RequestMapping(value="/common/error/{error_code}.do")
-	public ModelAndView error(HttpServletRequest request, @PathVariable String error_code) {
-		ModelAndView mv = new ModelAndView("/common/error");
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("STATUS_CODE", request.getAttribute("javax.servlet.error.status_code"));
-		map.put("REQUEST_URI", request.getAttribute("javax.servlet.error.request_uri"));
-		map.put("EXCEPTION_TYPE", request.getAttribute("javax.servlet.error.exception_type"));
-		map.put("EXCEPTION", request.getAttribute("javax.servlet.error.exception"));
-		map.put("SERVLET_NAME", request.getAttribute("javax.servlet.error.servlet_name"));
-		
-		try {
-			map.put("MESSAGE", MessageUtils.getMessage("error."+error_code));
-		} catch (Exception e) {
-			map.put("MESSAGE", (String) request.getAttribute("javax.servlet.error.message"));
-		}
-		
-		mv.addObject("error", map);
-		
-		//logging
-    	if(map.isEmpty() == false ) {
-    		Iterator<Entry<String,Object>> iterator = map.entrySet().iterator();
-    		Entry<String,Object> entry = null;
-    		while(iterator.hasNext()) {
-    			entry = iterator.next();
-    			log.info("key : "+entry.getKey()+", value : "+entry.getValue());
-    		}
-    	}
-		
-    	
-		return mv;
-	}
 }
