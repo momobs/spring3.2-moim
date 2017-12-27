@@ -10,7 +10,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import moim.common.common.CommandMap;
+import moim.common.vo.CommandMap;
+import moim.user.vo.LoginVO;
 
 public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
     @Override
@@ -24,7 +25,9 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
          
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
         Enumeration<?> enumeration = request.getParameterNames();
-         
+        
+        commandMap.put("login", (LoginVO)request.getSession().getAttribute("login"));
+        
         String key = null;
         String[] values = null;
         while(enumeration.hasMoreElements()){

@@ -1,9 +1,14 @@
-package moim.common.common;
+package moim.common.vo;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 public class CommandMap {
 	Map<String,Object> map = new HashMap<String,Object>();

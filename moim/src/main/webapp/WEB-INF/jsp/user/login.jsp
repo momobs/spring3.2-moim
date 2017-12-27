@@ -34,15 +34,15 @@
 		<!-- LOGIN FORM:BEGIN -->
 		<form class="login-form" action="<c:url value='/user/login.do'/>" method="post">
 			<h3 class="form-title font-green">로그인</h3>
-			<div class="alert alert-danger <c:if test='${msg eq null }'>display-hide</c:if>">
+			<div class="alert alert-danger <c:if test='${message eq null }'>display-hide</c:if>">
 				<button class="close" data-close="alert"></button>
-				<span id="alertMsg">${msg}</span>
+				<span id="alertMsg">${message}</span>
 			</div>                	
 			<div class="form-group">
 				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 				<label class="control-label visible-ie8 visible-ie9">아이디</label>
-				<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="ID" name="user_id" /> 
-			</div>
+				<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="ID" name="user_id" />
+			</div> 
 			<div class="form-group">
 				<label class="control-label visible-ie8 visible-ie9">비밀번호</label>
 				<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="PASSWORD" name="user_pwd" />

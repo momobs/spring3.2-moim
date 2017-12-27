@@ -23,12 +23,12 @@ public class UserInterceptor  extends HandlerInterceptorAdapter{
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws  Exception{
-		UserVO loginUser = (UserVO) request.getSession().getAttribute("user");
+		UserVO login = (UserVO) request.getSession().getAttribute("login");
 		FlashMap flashMap = new FlashMap();
 		FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
 		
-		if (loginUser==null || loginUser.getUser_id().equals("")) {
-			flashMap.put("msg", MessageUtils.getMessage("login.invalidSession"));			
+		if (login==null || login.getUser_id().equals("")) {
+			flashMap.put("message", MessageUtils.getMessage("login.invalidSession"));			
 			flashMapManager.saveOutputFlashMap(flashMap, request, response);
 			response.sendRedirect(request.getContextPath()+"/common/call/login.do");
 			return false;

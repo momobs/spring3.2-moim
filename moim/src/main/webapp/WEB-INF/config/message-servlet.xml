@@ -16,6 +16,8 @@
             <list>
                 <value>/WEB-INF/message/message</value>
                 <value>/WEB-INF/message/path</value>
+                <value>/WEB-INF/message/exception</value>
+                <value>/WEB-INF/message/file</value>
             </list>
         </property>       
     </bean>

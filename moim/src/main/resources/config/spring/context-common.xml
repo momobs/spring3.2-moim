@@ -11,6 +11,8 @@
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
                         http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
+	<mvc:annotation-driven />
+	
     <context:component-scan base-package="moim">
     	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>

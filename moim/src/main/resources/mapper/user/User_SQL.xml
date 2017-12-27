@@ -2,6 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="user">
+<!-- 로그인: START -->
+	<select id="selectLoginInfo" parameterType="String" resultType="moim.user.vo.LoginVO">
+		<![CDATA[
+			SELECT A.USER_ID, A.USER_PWD, A.USER_NAME, A.EMAIL,  A.PHONE, A.ADDRESS, A.INTRO, A.CREATE_DATE, A.CREATE_USER, A.DELETE_DATE, A.DELETE_USER, A.USER_PHOTO,
+					IFNULL(B.GROUP_IDX,'')+'-'+IFNULL(B.FILE_IDX,'')+'.'+IFNULL(B.EXTENSION,'') AS PHOTO_NAME
+			FROM USER A 
+				LEFT JOIN FILE_MASTER B ON  (B.GROUP_IDX='1' AND A.USER_PHOTO = B.FILE_IDX )
+			WHERE A.USER_ID = #{user_id}
+			AND IFNULL(A.DEL_YN, 'N') = 'N'		
+		]]>
+	</select>
+<!-- 로그인: END -->
+
+<!-- 아이디/비밀번호 검색: START -->
+	<select id="selectUserId" parameterType="String" resultType="String">
+		<![CDATA[
+			SELECT USER_ID 
+			FROM USER
+			WHERE USER_ID = #{user_id}
+			AND IFNULL(DEL_YN, 'N') = 'N'
+		]]>
+	</select>
+
+
+	<select id="selectUserPwd" parameterType="moim.user.vo.UserVO" resultType="java.lang.String">
+		<![CDATA[
+			SELECT
+				USER_PWD
+			FROM 
+				USER
+			WHERE
+				USER_ID = #{user_id}
+		]]>
+	</select>
+<!-- 아이디/비밀번호 검색: END -->
+
 	<select id="selectUser" parameterType="moim.user.vo.UserVO" resultType="moim.user.vo.UserVO">
 		<![CDATA[
 			SELECT
@@ -18,17 +54,8 @@
 				USER_ID = #{user_id}
 		]]>
 	</select>
-	
-	<select id="selectUserPwd" parameterType="moim.user.vo.UserVO" resultType="java.lang.String">
-		<![CDATA[
-			SELECT
-				USER_PWD
-			FROM 
-				USER
-			WHERE
-				USER_ID = #{user_id}
-		]]>
-	</select>
+
+
 	
 	<insert id="insertUser" parameterType="moim.user.vo.UserVO" >
 		<![CDATA[
@@ -40,7 +67,8 @@
 				EMAIL,
 				PHONE,
 				ADDRESS,
-				CREATE_DATE
+				CREATE_DATE,
+				CREATE_USER
 			)
 			VALUES
 			(
@@ -50,35 +78,13 @@
 				#{email},
 				#{phone},
 				#{address},
-				now()
-			)
-		]]>
-	</insert>
-	
-	<insert id="insertUserFile" parameterType="hashmap" useGeneratedKeys="true" keyProperty="idx">
-		<![CDATA[
-			INSERT INTO FILE_MANAGER
-			(
-				STORED_FILE_NAME,
-				ORIGINAL_FILE_NAME,
-				FILE_SIZE,
-				CREATE_DATE,
-				CREATE_USER,
-				DEL_YN
-			)
-			VALUES
-			(
-				#{stored_file_name},
-				#{original_file_name},
-				#{file_size},
 				now(),
-				#{user_id},
-				'N'
+				#{user_id}
 			)
 		]]>
 	</insert>
-	
-	<update id="updateUser" parameterType="hashmap">
+<!-- 회원정보 변경: START -->	
+	<update id="updateUser" parameterType="moim.user.vo.UserVO">
 		<![CDATA[
 			UPDATE USER
 			SET USER_NAME = #{user_name},
@@ -93,15 +99,17 @@
 		<![CDATA[
 			UPDATE USER
 			SET USER_PWD = #{new_password}
-			WHERE USER_ID = #{user_id}
+			WHERE USER_ID = #{login.user_id}
+			AND IFNULL(DEL_YN,'N')='N'
 		]]>
 	</update>
 	
-	<update id="updateUserFile" parameterType="hashmap">
+	<update id="updateUserPhoto" parameterType="hashmap">
 		<![CDATA[
 			UPDATE USER
 			SET USER_PHOTO = #{idx}
 			WHERE USER_ID = #{user_id}
 		]]>
 	</update>
+<!-- 회원정보 변경: END -->
 </mapper>

@@ -1,11 +1,39 @@
-/**
- * 
- */
+
 function getContextPath(){
     var offset=location.href.indexOf(location.host)+location.host.length;
     var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
     return ctxPath;
 }
+
+function phoneFormat(num,type){
+    var formatNum = '';
+    
+    if(num.length==11){
+        if(type==0){
+            formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-****-$3');
+        }else{
+            formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+        }
+    }else if(num.length==8){
+        formatNum = num.replace(/(\d{4})(\d{4})/, '$1-$2');
+    }else{
+        if(num.indexOf('02')==0){
+            if(type==0){
+                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-****-$3');
+            }else{
+                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+            }
+        }else{
+            if(type==0){
+                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-***-$3');
+            }else{
+                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+            }
+        }
+    }
+    return formatNum;   
+}
+
 
 function ValidateUser(){	
 	var success = false;
@@ -19,7 +47,7 @@ function ValidateUser(){
 	// EMAIL 정규식(영문,숫자포함 6~12자)
 	this.regularEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 	// PHONE 정규식(하이픈)
-	//this.regularPhone =;
+	this.regularPhone = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/; 
 	
 	
 	
@@ -35,7 +63,7 @@ function ValidateUser(){
 					data : "user_id="+id,
 					async : false,
 					success : function(data){
-						if(data.result=="false"){
+						if(data.success=="no"){
 							success = false;
 							message = "중복된 아이디입니다.";
 						}
@@ -108,9 +136,16 @@ function ValidateUser(){
 	
 	// 전화번호 유효성 검사 
 	this.checkPhone = function checkPhone(phone){ 
-		var num = phone.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
-		result.set("success", true);
-		result.set("message", "Verified");
+		// var num = phone.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+		var num = phoneFormat(phone);
+		
+		if(this.regularPhone.test(num)){
+			result.set("success", true);
+			result.set("message", "Verified");
+		} else {
+			result.set("success", false);
+			result.set("message", "올바른 전화번호가 아닙니다.");
+		}
 		result.set("data", num);
 		return result;
 	}

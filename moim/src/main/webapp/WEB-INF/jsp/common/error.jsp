@@ -14,24 +14,27 @@
 <body class=" page-404-full-page">
     <div class="row">
         <div class="col-md-12 page-404">
-            <div class="number font-red"> <c:out value="${error.STATUS_CODE }"/> </div>
+            <div class="number font-red"> <c:out value="${exception.status_code }"/> </div>
             <div class="details">
-                <h3>${error.MESSAGE }</h3>
+                <h3>${exception.message }</h3>
                 <p>
+                	- Request URI: ${exception.request_uri } <br/>
             		<a href="<c:url value='/'/>"> [HOME] </a>을 클릭하시면, 홈으로 돌아갑니다.   
             	</p>
+            	
         	</div>
     	</div>
 	</div>
+	<!--
+	Message
+	<c:forEach items="${exception.stack_message }" var="esm"> 
+		${esm } 
+	</c:forEach>
+	Print StackTrace 
+	<c:forEach items="${exception.stack_trace }" var="est"> 
+		${est } 
+	</c:forEach>
+	-->
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
-	<script>
-		$(document).ready(function()
-		{
-		    $('#clickmewow').click(function()
-		    {
-		        $('#radio1003').attr('checked', 'checked');
-		    });
-		})
-	</script>
 </body>
 </html>

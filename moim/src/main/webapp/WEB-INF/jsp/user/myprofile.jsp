@@ -19,306 +19,152 @@
 </head>
 <!-- END HEAD -->
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-content-white">
-        <div class="page-wrapper">
-            <!-- BEGIN HEADER -->
-			<%@ include file="/WEB-INF/include/include-topbar.jspf" %>
-            <!-- END HEADER -->
-            <!-- BEGIN HEADER & CONTENT DIVIDER -->
-            <div class="clearfix"> </div>
-            <!-- END HEADER & CONTENT DIVIDER -->
-            <!-- BEGIN CONTAINER -->
-            <div class="page-container">
-                <!-- BEGIN SIDEBAR -->
-				<%@ include file="/WEB-INF/include/include-sidebar.jspf" %>
-                <!-- END SIDEBAR -->
-                <!-- BEGIN CONTENT -->
-                <div class="page-content-wrapper">
-                    <!-- BEGIN CONTENT BODY -->
-                    <div class="page-content">
-                        <!-- BEGIN PAGE HEADER-->
+	<div class="page-wrapper">
+		<!-- BEGIN HEADER -->
+		<%@ include file="/WEB-INF/include/include-topbar.jspf" %>
+		<!-- END HEADER -->
+		
+		<!-- BEGIN HEADER & CONTENT DIVIDER -->
+		<div class="clearfix"> </div>
+		<!-- END HEADER & CONTENT DIVIDER -->
 
-                        <!-- BEGIN PAGE BAR -->
-                        <div class="page-bar">
-                            <ul class="page-breadcrumb">
-                                <li>
-                                    <a href="index.html">Home</a>
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                                <li>
-                                    <span>User</span>
-                                </li>
-                            </ul>
-                            <div class="page-toolbar">
-                                <div class="btn-group pull-right">
+		<!-- BEGIN CONTAINER -->
+		<div class="page-container">
+			<!-- SIDEBAR: START -->
+			<%@ include file="/WEB-INF/include/include-sidebar.jspf" %>
+			<!-- SIDEBAR: END -->
 
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END PAGE BAR -->
-                        <!-- BEGIN PAGE TITLE-->
-                        <h1 class="page-title"> 개인정보
-                            <small></small>
-                        </h1>
-                        <!-- END PAGE TITLE-->
-                        <!-- END PAGE HEADER-->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- BEGIN PROFILE SIDEBAR -->
-                                <div class="profile-sidebar">
-                                    <!-- PORTLET MAIN -->
-                                    <div class="portlet light profile-sidebar-portlet ">
-                                        <!-- SIDEBAR USERPIC -->
-                                        <div class="profile-userpic">
-                                            <img src="<c:url value='/resources/img/common/no-user.png'/>" class="img-responsive" alt=""> </div>
-                                        <!-- END SIDEBAR USERPIC -->
-                                        <!-- SIDEBAR USER TITLE -->
-                                        <div class="profile-usertitle">
-                                            <div class="profile-usertitle-name"> ${sessionScope.user.user_name } </div>
-                                            <div class="profile-usertitle-job"> </div>
-                                        </div>
-                                        <!-- END SIDEBAR USER TITLE -->
-                                        <!-- SIDEBAR BUTTONS -->
-                                        <div class="profile-userbuttons">
-                                            <button type="button" class="btn btn-circle green btn-sm">Follow</button>
-                                            <button type="button" class="btn btn-circle red btn-sm">Message</button>
-                                        </div>
-                                        <!-- END SIDEBAR BUTTONS -->
-                                        <!-- SIDEBAR MENU -->
-                                        <div class="profile-usermenu">
-                                            <ul class="nav">
-                                                <li class="active">
-                                                    <a href="#">
-                                                        <i class="icon-settings"></i> 기본정보 수정 </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- END MENU -->
-                                    </div>
-                                    <!-- END PORTLET MAIN -->
-                                </div>
-                                <!-- END BEGIN PROFILE SIDEBAR -->
-                                <!-- BEGIN PROFILE CONTENT -->
-                                <div class="profile-content">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="portlet light ">
-                                                <div class="portlet-title tabbable-line">
-                                                    <div class="caption caption-md">
-                                                        <i class="icon-globe theme-font hide"></i>
-                                                        <span class="caption-subject font-blue-madison bold uppercase">프로필 수정</span>
-                                                    </div>
-                                                    <ul class="nav nav-tabs">
-                                                        <li class="<c:if test="${active eq 'tab_1_1' }">active</c:if>">
-                                                            <a class="tab" href="#tab_1_1" data-toggle="tab">기본정보</a>
-                                                        </li>
-                                                        <li class="<c:if test="${active eq 'tab_1_2' }">active</c:if>">
-                                                            <a class="tab" href="#tab_1_2" data-toggle="tab">사진 변경</a>
-                                                        </li>
-                                                        <li class="<c:if test="${active eq 'tab_1_3' }">active</c:if>">
-                                                            <a class="tab" href="#tab_1_3" data-toggle="tab">비밀번호 변경</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="portlet-body">
-                                                    <div class="tab-content">
+			<!-- CONTENT: START -->
+			<div class="page-content-wrapper">
+    			<!-- CONTENT BODY: START -->
+				<div class="page-content">
+	    			
+	    			<!-- BEGIN PAGE HEADER-->
+					<!-- BEGIN PAGE BAR -->
+					<div class="page-bar">
+						<ul class="page-breadcrumb">
+							<li>
+								<a href="index.html">Home</a>
+								<i class="fa fa-circle"></i>
+							</li>
+							<li>
+								<span>User</span>
+							</li>
+						</ul>
+						<div class="page-toolbar">
+							<div class="btn-group pull-right">
+							</div>
+						</div>
+					</div>
+					<!-- END PAGE BAR -->
 
-                                                        <!-- 기본정보 수정: START -->
-                                                        <div class="tab-pane <c:if test="${active eq 'tab_1_1' }">active</c:if>" id="tab_1_1">
-                                                            <form id="form-info" action="<c:url value='/user/auth/setProfile.do'/>" method="post">
-																<div class="alert alert-danger <c:if test='${tab_1_1.message eq null }'>display-hide</c:if>">
-																	<button class="close" data-close="alert"></button>
-																	<span>${tab_1_1.message}</span>
-																</div>     
-                                                                <div class="form-group">
-                                                                    <label class="control-label">이름</label>
-                                                                    <span id="alert-name"></span>
-                                                                    <input name="user_name" type="text" placeholder="이름" class="form-control" value="${sessionScope.user.user_name }"/>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label">이메일</label>
-                                                                    <span id="alert-email"></span>
-                                                                    <input name="email" type="text" placeholder="이메일" class="form-control" value="${sessionScope.user.email }"/> </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label">연락처</label>
-                                                                    <span id="alert-phone"></span>
-                                                                    <input name="phone" type="text" placeholder="연락처" class="form-control" value="${sessionScope.user.phone }"/> </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label">주소</label>
-                                                                    <span id="alert-address"></span>
-                                                                    <input name="address" type="text" placeholder="주소" class="form-control" value="${sessionScope.user.address }"/> </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label">소개</label>
-                                                                    <textarea name="intro" class="form-control" rows="3" placeholder="설명">${sessionScope.user.intro }</textarea>
-                                                                </div>
-                                                                <div class="margiv-top-10">
-                                                                    <button id="btn-info-save" class="btn green"> 저장 </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <!-- 기본정보 수정: END -->
-                                                        
-<!-- 사진변경: START -->
-<div class="tab-pane <c:if test="${active eq 'tab_1_2' }">active</c:if>" id="tab_1_2">
-	<p> 프로필 사진을 변경합니다. </p>
-	<form id="form-photo" action="<c:url value='/user/auth/insertUserPhoto.do'/>" role="form" enctype="multipart/form-data" method="post">
-		<div class="alert alert-danger <c:if test='${tab_1_2.message eq null }'>display-hide</c:if>">
-			<button class="close" data-close="alert"></button>
-			<span>${tab_1_2.message}</span>
-		</div>
-		<div class="form-group">
-			<div class="fileinput fileinput-new" data-provides="fileinput">
-				<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-					<img src="<c:url value='/resources/img/common/no-img.png'/>" alt="" />
+					<!-- BEGIN PAGE TITLE-->
+					<h1 class="page-title"> 프로필 정보
+						<small>Privacy</small>
+					</h1>
+					<!-- END PAGE TITLE-->
+					<!-- END PAGE HEADER-->
+					
+					<div class="row">
+						<div class="col-md-12">
+							<!-- PROFILE SIDEBAR: START -->
+							<div class="profile-sidebar">
+								<!-- PORTLET MAIN: START -->
+								<div class="portlet light profile-sidebar-portlet ">
+									<!-- SIDEBAR USERPIC: START -->
+									<div class="profile-userpic">
+										<img src="<c:url value='/resources/img/common/no-user.png'/>" class="img-responsive" alt="">
+									</div>
+									<!-- SIDEBAR USERPIC: END -->
+									
+									<!-- SIDEBAR USER TITLE: START -->
+									<div class="profile-usertitle">
+										<div class="profile-usertitle-name"> ${sessionScope.login.user_name } </div>
+										<div class="profile-usertitle-job"> </div>
+									</div>
+									<!-- SIDEBAR USER TITLE: END -->
+
+									<!-- SIDEBAR BUTTONS: START -->
+									<div class="profile-userbuttons">
+										<button type="button" class="btn btn-circle green btn-sm">Follow</button>
+										<button type="button" class="btn btn-circle red btn-sm">Message</button>
+									</div>
+									<!-- SIDEBAR BUTTONS: END -->
+
+									<!-- SIDEBAR MENU: START -->
+									<div class="profile-usermenu">
+									    <ul class="nav">
+									        <li class="active">
+									            <a href="#">
+									                <i class="icon-settings"></i> 기본정보 수정 </a>
+									        </li>
+									    </ul>
+									</div>
+									<!-- SIDEBAR MENU: END -->
+								</div>
+								<!-- PORTLET MAIN: END -->
+							</div>
+							<!-- PROFILE SIDEBAR: END -->
+
+							<!-- PROFILE CONTENT: START -->
+							<div class="profile-content">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="portlet light ">
+											<div class="portlet-title tabbable-line">
+												<div class="caption caption-md">
+													<i class="icon-globe theme-font hide"></i>
+													<span class="caption-subject font-blue-madison bold uppercase">프로필 수정</span>
+												</div>
+												<ul class="nav nav-tabs">
+												    <li class="<c:if test="${active eq 'tab_1_1' }">active</c:if>">
+														<a class="tab" href="#tab_1_1" data-toggle="tab">기본정보</a>
+													</li>
+													<li class="<c:if test="${active eq 'tab_1_2' }">active</c:if>">
+													    <a class="tab" href="#tab_1_2" data-toggle="tab">사진 변경</a>
+													</li>
+													<li class="<c:if test="${active eq 'tab_1_3' }">active</c:if>">
+											            <a class="tab" href="#tab_1_3" data-toggle="tab">비밀번호 변경</a>
+											        </li>
+											    </ul>
+											</div>
+											<div class="portlet-body">
+												<div class="tab-content">
+													<%@ include file="/WEB-INF/include/include-profile-basic.jspf" %>
+													
+													<%@ include file="/WEB-INF/include/include-profile-photo.jspf" %>
+													
+  													<%@ include file="/WEB-INF/include/include-profile-password.jspf" %>                                    
+							                    </div>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+							<!-- PROFILE CONTENT: END -->
+						</div>
+					</div>
 				</div>
-				<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
-				</div>
-				<div>
-					<span class="btn default btn-file">
-					<span class="fileinput-new"> 이미지 선택 </span>
-					<span class="fileinput-exists"> 이미지 변경 </span>
-					<input type="file" name="file-photo"> </span>
-					<a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> 이미지 제거 </a>
-				</div>
+				<!-- CONTENT BODY: END -->
 			</div>
-			<div class="clearfix margin-top-10">
-				<span class="label label-danger">NOTE! </span>
-				<span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+			<!-- END CONTENT -->
+
+			<!-- START QUICK SIDEBAR -->
+			<!-- END QUICK SIDEBAR -->
+
+		</div>
+		<!-- END CONTAINER -->
+		<!-- BEGIN FOOTER -->
+		<div class="page-footer">
+			<div class="page-footer-inner"> 
+				<spring:message code="common.copyright"/>
+			</div>
+			<div class="scroll-to-top">
+				<i class="icon-arrow-up"></i>
 			</div>
 		</div>
-		<div class="margin-top-10">
-			<button id="btn-photo-save" class="btn green"> 등록 </button>
-		</div>
-	</form>
-</div>
-<!-- 사진변경: END -->
-                                                        
-                                                        <!-- 비밀번호 변경: START -->
-                                                        <div class="tab-pane <c:if test="${active eq 'tab_1_3' }">active</c:if>" id="tab_1_3">
-                                                            <form id="form-password" action="<c:url value='/user/auth/setPassword.do'/>" method="post" >
-																<div class="alert alert-danger <c:if test='${tab_1_3.message eq null }'>display-hide</c:if>">
-																	<button class="close" data-close="alert"></button>
-																	<span>${tab_1_3.message}</span>
-																</div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label">현재 비밀번호</label>
-                                                                    <span id="alert-current-password"></span>
-                                                                    <input name="current_password" type="password" class="form-control" /> </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label">신규 비밀번호</label>
-                                                                    <span id="alert-new-password"></span>
-                                                                    <input name="new_password" type="password" class="form-control" /> </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label">신규 비밀번호(재입력)</label>
-                                                                    <span id="alert-re-password"></span>
-                                                                    <input name="re_password" type="password" class="form-control" /> </div>
-                                                                <div class="margin-top-10">
-                                                                    <button id="btn-password-save" class="btn green"> 변경 </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <!-- 비밀번호 변경: END -->
-                                                        
-                                                        <!-- PRIVACY SETTINGS TAB -->
-                                                        <div class="tab-pane" id="tab_1_4">
-                                                            <form action="#">
-                                                                <table class="table table-light table-hover">
-                                                                    <tr>
-                                                                        <td> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.. </td>
-                                                                        <td>
-                                                                            <div class="mt-radio-inline">
-                                                                                <label class="mt-radio">
-                                                                                    <input type="radio" name="optionsRadios1" value="option1" /> Yes
-                                                                                    <span></span>
-                                                                                </label>
-                                                                                <label class="mt-radio">
-                                                                                    <input type="radio" name="optionsRadios1" value="option2" checked/> No
-                                                                                    <span></span>
-                                                                                </label>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                                        <td>
-                                                                            <div class="mt-radio-inline">
-                                                                                <label class="mt-radio">
-                                                                                    <input type="radio" name="optionsRadios11" value="option1" /> Yes
-                                                                                    <span></span>
-                                                                                </label>
-                                                                                <label class="mt-radio">
-                                                                                    <input type="radio" name="optionsRadios11" value="option2" checked/> No
-                                                                                    <span></span>
-                                                                                </label>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                                        <td>
-                                                                            <div class="mt-radio-inline">
-                                                                                <label class="mt-radio">
-                                                                                    <input type="radio" name="optionsRadios21" value="option1" /> Yes
-                                                                                    <span></span>
-                                                                                </label>
-                                                                                <label class="mt-radio">
-                                                                                    <input type="radio" name="optionsRadios21" value="option2" checked/> No
-                                                                                    <span></span>
-                                                                                </label>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                                        <td>
-                                                                            <div class="mt-radio-inline">
-                                                                                <label class="mt-radio">
-                                                                                    <input type="radio" name="optionsRadios31" value="option1" /> Yes
-                                                                                    <span></span>
-                                                                                </label>
-                                                                                <label class="mt-radio">
-                                                                                    <input type="radio" name="optionsRadios31" value="option2" checked/> No
-                                                                                    <span></span>
-                                                                                </label>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                                <!--end profile-settings-->
-                                                                <div class="margin-top-10">
-                                                                    <a href="javascript:;" class="btn red"> Save Changes </a>
-                                                                    <a href="javascript:;" class="btn default"> Cancel </a>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <!-- END PRIVACY SETTINGS TAB -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END PROFILE CONTENT -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END CONTENT BODY -->
-                </div>
-                <!-- END CONTENT -->
-                <!-- START QUICK SIDEBAR -->
-                <!-- END QUICK SIDEBAR -->
-            </div>
-            <!-- END CONTAINER -->
-            <!-- BEGIN FOOTER -->
-            <div class="page-footer">
-                <div class="page-footer-inner"> 
-                	<spring:message code="common.copyright"/>
-                </div>
-                <div class="scroll-to-top">
-                    <i class="icon-arrow-up"></i>
-                </div>
-            </div>
-            <!-- END FOOTER -->
-        </div>
+		<!-- END FOOTER -->
+	</div>
         
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
         
@@ -390,21 +236,21 @@
         		var rePwd = $("input[name='re_password']").val();
         		
         		var result = valObj.checkPwd(curPwd);
-        		printAlert("current_password", result);
+        		printAlert("current-password", result);
         		if (result.get("success")==false){
         			$("input[name='current_password']").focus();
         			return false;
         		}
         		
         		result = valObj.checkPwd(newPwd);
-        		printAlert("new_password", result);
+        		printAlert("new-password", result);
         		if (result.get("success")==false){
         			$("input[name='new_password']").focus();
         			return false;
         		}
         		
         		result = valObj.checkPwd2(newPwd, rePwd);
-        		printAlert("re_password", result);
+        		printAlert("re-password", result);
         		if (result.get("success")==false){
         			$("input[name='re_password']").focus();
         			return false;
@@ -472,10 +318,9 @@
 	    		var message = "";
 	    		result.get("success")==true ? message = "<font color='green' size='2'>" : message="<font color='red' size='2'>";
 	    		message += result.get("message")+"</font>";
+	    		
 	    		$("#alert-"+entity).html(message);
 	    	}
-			
-
 		})
 	</script>
 	

@@ -5,14 +5,19 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import moim.common.dao.AbstractDAO;
+import moim.user.vo.LoginVO;
 import moim.user.vo.UserVO;
 
 @Repository("userDAO")
 public class UserDAO extends AbstractDAO{
 	
 	@SuppressWarnings("unchecked")
-	public UserVO selectUser(UserVO user) throws Exception{
-		return (UserVO)selectOne("user.selectUser", user);
+	public LoginVO selectLoginInfo(String user_id) throws Exception{
+		return (LoginVO)selectOne("user.selectLoginInfo", user_id);
+	}
+	
+	public String selectUserId(String user_id) throws Exception{
+		return (String)selectOne("user.selectUserId", user_id);
 	}
 	
 	public String selectUserPwd(UserVO user) throws Exception{
@@ -28,8 +33,8 @@ public class UserDAO extends AbstractDAO{
 		log.debug("GEGE: "+ map.get("idx"));
 	}
 	
-	public int updateUser(Map<String,Object> map) throws Exception{
-		return (int)update("user.updateUser", map);
+	public int updateUser(UserVO user) throws Exception{
+		return (int)update("user.updateUser", user);
 	}
 	
 	public int updateUserPwd(Map<String,Object> map) throws Exception{
@@ -39,8 +44,4 @@ public class UserDAO extends AbstractDAO{
 	public int updateUserPhoto(Map<String,Object> map) throws Exception{
 		return (int)update("user.updateUserPhoto", map);
 	}
-	
-
-	
-	
 }

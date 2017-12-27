@@ -7,7 +7,5 @@ import moim.user.vo.UserVO;
 
 public interface CommonService {
 	List<Map<String, Object>> selectGroupList(UserVO user) throws Exception;
-	Map<String,Object> selectOverview() throws Exception;
-	Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
-	
+	Map<String,Object> selectOverview() throws Exception;	
 }

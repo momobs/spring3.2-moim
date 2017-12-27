@@ -33,9 +33,9 @@
 		<!-- BEGIN REGISTRATION FORM -->
 		<form class="register-form" action="<c:url value='/user/joinus.do'/>" method="post">
 			<h3 class="font-green">회원가입</h3>
-			<div class="alert alert-danger <c:if test='${msg eq null }'>display-hide</c:if>">
+			<div class="alert alert-danger <c:if test='${message eq null }'>display-hide</c:if>">
 				<button class="close" data-close="alert"></button>
-				<span id="alertMsg">${msg}</span>
+				<span id="alertMsg">${message}</span>
 			</div>        
 			<p class="hint"> 필수입력사항 (Essential) </p>
 			<div class="form-group">
