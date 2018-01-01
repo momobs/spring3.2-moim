@@ -1,7 +1,6 @@
 package moim.user.vo;
 
 import lombok.Data;
-import moim.common.vo.FileVO;
 
 @Data
 public class UserVO{

@@ -26,20 +26,22 @@
 	<mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean id="loggerInterceptor" class="moim.common.logger.LoggerInterceptor"></bean>
+            <bean id="loggerInterceptor" class="moim.common.interceptor.LoggerInterceptor"></bean>
         </mvc:interceptor>
 
         <mvc:interceptor>
-            <mvc:mapping path="/user/auth/*"/>
-            <bean id="UserInterceptor" class="moim.user.interceptor.UserInterceptor"></bean>
+            <mvc:mapping path="/**/auth"/>
+            <bean id="AuthInterceptor" class="moim.common.interceptor.AuthInterceptor"></bean>
         </mvc:interceptor>
-        
     </mvc:interceptors>
      
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+     
     <aop:aspectj-autoproxy/>
-    <bean id="loggerAspect" class="moim.common.logger.LoggerAspect" />
     
-    <bean id="UserAspect" class="moim.user.aspect.UserAspect" />
+    <bean id="loggerAspect" class="moim.common.aspect.LoggerAspect" /> 
+    
+    <bean id="AuthAspect" class="moim.common.aspect.AuthAspect" />
     
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
      
@@ -48,8 +50,11 @@
     <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 
     <bean
-        class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
+        class="org.springframework.web.servlet.view.UrlBasedViewResolver" 
+        p:order="1"
         p:viewClass="org.springframework.web.servlet.view.JstlView"
-        p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
+        p:prefix="/WEB-INF/jsp/" 
+        p:suffix=".jsp"
+        p:contentType="text/html; charset=UTF-8">
     </bean>
 </beans>

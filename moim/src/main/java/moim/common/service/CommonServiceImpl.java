@@ -9,14 +9,29 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import moim.common.dao.CommonDAO;
+import moim.common.util.MessageUtils;
+import moim.exception.custom.CustomException;
 import moim.user.vo.UserVO;
 
 @Service("commonService")
 public class CommonServiceImpl implements CommonService{
-	Logger log = Logger.getLogger(this.getClass());
-	
 	@Resource(name="commonDAO")
 	private CommonDAO commonDAO;
+	
+	Logger log = Logger.getLogger(this.getClass());
+	
+	@Override
+	public Map<String,Object> getLoginInfo(Map<String,Object> map){
+		
+		try {
+			map = commonDAO.selectLoginInfo(map);
+		} catch(Exception e) {
+			log.error("EXCEPTION: "+e.getMessage());
+		}
+		
+		return map;
+	}
+
 	
 	@Override
 	public List<Map<String, Object>> selectGroupList(UserVO user) throws Exception{

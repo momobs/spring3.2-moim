@@ -1,7 +1,6 @@
 package moim.common.util;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -43,7 +42,7 @@ public class FileUtils {
 		String originalFullName = multipartFile.getOriginalFilename();
 		String originalName = originalFullName.substring(0, originalFullName.lastIndexOf("."));
 		String extension = originalFullName.substring(originalFullName.lastIndexOf(".")+1).toUpperCase();
-		String storedName = map.get("FILE_TYPE")+"-"+map.get("FILE_YYMM")+"-"+map.get("FILE_IDX");
+		String storedName = map.get("GROUP_IDX")+"-"+map.get("FILE_IDX");
 		Long fileSize = multipartFile.getSize();
 		
 		map.put("FILE_SIZE", fileSize);

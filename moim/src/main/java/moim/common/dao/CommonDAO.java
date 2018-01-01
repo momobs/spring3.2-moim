@@ -11,6 +11,11 @@ import moim.user.vo.UserVO;
 public class CommonDAO extends AbstractDAO{
 	
 	@SuppressWarnings("unchecked")
+	public Map<String,Object> selectLoginInfo(Map<String,Object> map) throws Exception{
+		return (Map<String,Object>)selectOne("common.selectLoginInfo", map);
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> selectGroupList(UserVO user) throws Exception{
 		return (List<Map<String,Object>>)selectList("common.selectGroupList", user);
 	}

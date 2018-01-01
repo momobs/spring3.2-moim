@@ -1,4 +1,4 @@
-package moim.common.vo;
+package moim.common.common;
 
 import lombok.Data;
 

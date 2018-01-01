@@ -17,6 +17,7 @@
 
 <!-- 개발시 CSS/JS 적용을 위한 Timestamp -->
 <fmt:formatDate value="${now }" pattern="yyyymmddhhmmss" var="nowTime"/>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!-- GLOBAL MANDATORY STYLES: BEGIN -->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
@@ -37,7 +38,7 @@
 <link href="<c:url value='/resources/css/global/plugins.min.css'/>" rel="stylesheet" type="text/css" />
 <!-- THEME GLOBAL STYLES:END -->
 
-<link rel="shortcut icon" href="favicon.ico" />
+<!-- <link rel="shortcut icon" href="favicon.ico" /> -->
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 

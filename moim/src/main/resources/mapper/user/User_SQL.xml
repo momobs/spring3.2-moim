@@ -2,25 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="user">
-<!-- 로그인: START -->
-	<select id="selectLoginInfo" parameterType="String" resultType="moim.user.vo.LoginVO">
-		<![CDATA[
-			SELECT A.USER_ID, A.USER_PWD, A.USER_NAME, A.EMAIL,  A.PHONE, A.ADDRESS, A.INTRO, A.CREATE_DATE, A.CREATE_USER, A.DELETE_DATE, A.DELETE_USER, A.USER_PHOTO,
-					IFNULL(B.GROUP_IDX,'')+'-'+IFNULL(B.FILE_IDX,'')+'.'+IFNULL(B.EXTENSION,'') AS PHOTO_NAME
-			FROM USER A 
-				LEFT JOIN FILE_MASTER B ON  (B.GROUP_IDX='1' AND A.USER_PHOTO = B.FILE_IDX )
-			WHERE A.USER_ID = #{user_id}
-			AND IFNULL(A.DEL_YN, 'N') = 'N'		
-		]]>
-	</select>
-<!-- 로그인: END -->
+
 
 <!-- 아이디/비밀번호 검색: START -->
-	<select id="selectUserId" parameterType="String" resultType="String">
+	<select id="selectUserId" parameterType="hashmap" resultType="String">
 		<![CDATA[
 			SELECT USER_ID 
 			FROM USER
-			WHERE USER_ID = #{user_id}
+			WHERE USER_ID = #{USER_ID}
 			AND IFNULL(DEL_YN, 'N') = 'N'
 		]]>
 	</select>
@@ -57,49 +46,36 @@
 
 
 	
-	<insert id="insertUser" parameterType="moim.user.vo.UserVO" >
+	<insert id="insertUserInfo" parameterType="hashmap" >
 		<![CDATA[
 			INSERT INTO USER
-			(
-				USER_ID,
-				USER_PWD,
-				USER_NAME,
-				EMAIL,
-				PHONE,
-				ADDRESS,
-				CREATE_DATE,
-				CREATE_USER
-			)
+			( USER_ID,    USER_PWD,    USER_NAME,    EMAIL,    PHONE,    ADDRESS,    CREATE_DATE, CREATE_USER )
 			VALUES
-			(
-				#{user_id},
-				#{user_pwd},
-				#{user_name},
-				#{email},
-				#{phone},
-				#{address},
-				now(),
-				#{user_id}
-			)
+			( #{USER_ID}, #{USER_PWD}, #{USER_NAME}, #{EMAIL}, #{PHONE}, #{ADDRESS}, NOW(),       #{USER_ID} )
 		]]>
 	</insert>
 <!-- 회원정보 변경: START -->	
-	<update id="updateUser" parameterType="moim.user.vo.UserVO">
+
+	<update id="updateUserInfo" parameterType="hashmap">
 		<![CDATA[
 			UPDATE USER
-			SET USER_NAME = #{user_name},
-				EMAIL = #{email},
-				PHONE = #{phone},
-				ADDRESS = #{address}
-			WHERE USER_ID = #{user_id}
+			SET USER_NAME = #{USER_NAME},
+				EMAIL = #{EMAIL},
+				PHONE = #{PHONE},
+				ADDRESS = #{ADDRESS},
+				INTRO = #{INTRO},
+				UPDATE_DATE = NOW(),
+				UPDATE_USER = #{LOGIN.USER_ID}
+			WHERE USER_ID = #{LOGIN.USER_ID}
+			AND IFNULL(DEL_YN,'N') = 'N'
 		]]>
 	</update>
 	
 	<update id="updateUserPwd" parameterType="hashmap">
 		<![CDATA[
 			UPDATE USER
-			SET USER_PWD = #{new_password}
-			WHERE USER_ID = #{login.user_id}
+			SET USER_PWD = #{ENC_PASSWORD}
+			WHERE USER_ID = #{LOGIN.USER_ID}
 			AND IFNULL(DEL_YN,'N')='N'
 		]]>
 	</update>

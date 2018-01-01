@@ -7,7 +7,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-	<%@ include file="/WEB-INF/include/include-header.jspf" %>
+	<%@ include file="/WEB-INF/include/include-main-header.jspf" %>
 	<!-- PAGE LEVEL PLUGINS:START -->
 	<link href="<c:url value='/resources/plugin/bootstrap-daterangepicker/daterangepicker.min.css'/>" rel="stylesheet" type="text/css" />
 	<link href="<c:url value='/resources/plugin/morris/morris.css'/>" rel="stylesheet" type="text/css" />
@@ -19,7 +19,7 @@
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
     <div class="page-wrapper">
 		<!-- BEGIN HEADER -->
-		<%@ include file="/WEB-INF/include/include-topbar.jspf" %>
+		<%@ include file="/WEB-INF/include/include-main-topbar.jspf" %>
 		<!-- END HEADER -->
 		<!-- BEGIN HEADER & CONTENT DIVIDER -->
 		<div class="clearfix"> </div>
@@ -27,7 +27,7 @@
 		<!-- BEGIN CONTAINER -->
 		<div class="page-container">
 			<!-- BEGIN SIDEBAR -->
-			<%@ include file="/WEB-INF/include/include-sidebar.jspf" %>
+			<%@ include file="/WEB-INF/include/include-main-sidebar.jspf" %>
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="page-content-wrapper">
@@ -4205,7 +4205,7 @@
     <div class="quick-nav-overlay"></div>
     <!-- END QUICK NAV -->
     
-	<%@ include file="/WEB-INF/include/include-body.jspf" %>
+	<%@ include file="/WEB-INF/include/include-main-body.jspf" %>
 	
     <!-- PAGE LEVEL PLUGINS:START -->
     <script src="<c:url value='/resources/plugin/moment.min.js'/>" type="text/javascript"></script>

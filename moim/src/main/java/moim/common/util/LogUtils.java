@@ -1,11 +1,19 @@
 package moim.common.util;
 
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
+import org.springframework.dao.DataAccessException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
 
 public class LogUtils {
 	public static String getRandomString() {
@@ -44,5 +52,4 @@ public class LogUtils {
     		}
     	}	
 	}
-	
 }

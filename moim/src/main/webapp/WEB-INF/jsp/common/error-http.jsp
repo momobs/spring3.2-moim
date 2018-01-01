@@ -14,26 +14,16 @@
 <body class=" page-404-full-page">
     <div class="row">
         <div class="col-md-12 page-404">
-            <div class="number font-red"> <c:out value="${STATUS_CODE }"/> </div>
+            <div class="number font-red"> 
+            	 ${STATUS_CODE }
+            </div>
             <div class="details">
-                <h3>${ALERT_MESSAGE }</h3>
-                - Request URI: ${REQUEST_URL }<br/>
+                <h3>${MESSAGE }</h3>
             	<a href="<c:url value='/'/>"> [HOME] </a>을 클릭하시면, 홈으로 돌아갑니다.<br/>    
-            	
-            	
         	</div>
     	</div>
 	</div>
 	
-	<p>Message</p>
-	<c:forEach items="${MESSAGE }" var="esm"> 
-		${esm } 
-	</c:forEach>
-	<p> Stack Trace</p> 
-	<c:forEach items="${STACK_TRACE }" var="est"> 
-		${est } 
-	</c:forEach>
-	 
 	<%@ include file="/WEB-INF/include/include-main-body.jspf" %>
 </body>
 </html>

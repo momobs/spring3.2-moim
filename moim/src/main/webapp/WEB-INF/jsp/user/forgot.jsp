@@ -8,7 +8,7 @@
 
 <!-- BEGIN HEAD -->
 <head>
-	<%@ include file="/WEB-INF/include/include-header.jspf" %>
+	<%@ include file="/WEB-INF/include/include-main-header.jspf" %>
 	
 	<!-- PAGE LEVEL PLUGINS:BEGIN -->
 	<link href="<c:url value='/resources/plugin/select2/css/select2.min.css'/>" rel="stylesheet" type="text/css" />
@@ -47,7 +47,7 @@
         </div>
         <div class="copyright"> <spring:message code="common.copyright"/> </div>
 
-		<%@ include file="/WEB-INF/include/include-body.jspf" %>
+		<%@ include file="/WEB-INF/include/include-main-body.jspf" %>
 
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script src="<c:url value='/resources/plugin/jquery-validation/js/jquery.validate.min.js'/>" type="text/javascript"></script>

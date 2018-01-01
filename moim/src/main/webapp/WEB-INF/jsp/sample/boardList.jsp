@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-main-header.jspf" %>
 </head>
 <body>
     <h2>게시판 목록</h2>
@@ -32,7 +32,7 @@
     <br/>
     <a href="#this" class="btn" id="write">글쓰기</a>
      
-    <%@ include file="/WEB-INF/include/include-body.jspf" %>
+    <%@ include file="/WEB-INF/include/include-main-body.jspf" %>
     <script type="text/javascript">
         $(document).ready(function(){
             fn_selectBoardList(1);

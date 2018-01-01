@@ -1,0 +1,41 @@
+<%@ page pageEncoding="utf-8"%>
+
+<!-- 기본정보 수정: START -->
+<div class="tab-pane <c:if test="${ACTIVE eq null || ACTIVE eq 'TAB1' }">active</c:if>" id="tab_1_1">
+	<form id="form-info" action="<c:url value='/user/updateUserInfo/auth'/>" method="post">
+		<input name="USER_ID" type="hidden" placeholder="아이디" class="form-control" value="${sessionScope.LOGIN.USER_ID }" readonly="readonly"/>
+		<div class="alert alert-danger <c:if test='${TAB1_MESSAGE eq null }'>display-hide</c:if>">
+			<button class="close" data-close="alert"></button>
+			<span>${TAB1_MESSAGE}</span>
+		</div>
+		<div class="form-group">
+			<label class="control-label">이름</label>
+			<span id="alert-name"></span>
+			<input name="USER_NAME" type="text" placeholder="이름" class="form-control" value="${sessionScope.LOGIN.USER_NAME }"/>
+		</div>
+		<div class="form-group">
+			<label class="control-label">이메일</label>
+			<span id="alert-email"></span>
+			<input name="EMAIL" type="text" placeholder="이메일" class="form-control" value="${sessionScope.LOGIN.EMAIL }"/> 
+		</div>
+		<div class="form-group">
+			<label class="control-label">연락처</label>
+			<span id="alert-phone"></span>
+			<input name="PHONE" type="text" placeholder="연락처" class="form-control" value="${sessionScope.LOGIN.PHONE }"/>
+		</div>
+		<div class="form-group">
+			<label class="control-label">주소</label>
+			<span id="alert-address"></span>
+			<input name="ADDRESS" type="text" placeholder="주소" class="form-control" value="${sessionScope.LOGIN.ADDRESS }"/> 
+		</div>
+		<div class="form-group">
+			<label class="control-label">소개</label>
+			<textarea name="INTRO" class="form-control" rows="3" placeholder="설명">${sessionScope.LOGIN.INTRO }</textarea>
+		</div>
+			<div class="margiv-top-10">
+			<button id="btn-info-save" type="button" class="btn green"> 저장 </button>
+		</div>
+	</form>
+
+</div>
+<!-- 기본정보 수정: END -->

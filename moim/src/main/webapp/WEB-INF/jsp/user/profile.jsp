@@ -7,7 +7,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-	<%@ include file="/WEB-INF/include/include-header.jspf" %>
+	<%@ include file="/WEB-INF/include/include-main-header.jspf" %>
  
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 	<link href="<c:url value='/resources/plugin/bootstrap-fileinput/bootstrap-fileinput.css'/>" rel="stylesheet" type="text/css" />
@@ -21,7 +21,7 @@
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-content-white">
 	<div class="page-wrapper">
 		<!-- BEGIN HEADER -->
-		<%@ include file="/WEB-INF/include/include-topbar.jspf" %>
+		<%@ include file="/WEB-INF/include/include-main-topbar.jspf" %>
 		<!-- END HEADER -->
 		
 		<!-- BEGIN HEADER & CONTENT DIVIDER -->
@@ -31,7 +31,7 @@
 		<!-- BEGIN CONTAINER -->
 		<div class="page-container">
 			<!-- SIDEBAR: START -->
-			<%@ include file="/WEB-INF/include/include-sidebar.jspf" %>
+			<%@ include file="/WEB-INF/include/include-main-sidebar.jspf" %>
 			<!-- SIDEBAR: END -->
 
 			<!-- CONTENT: START -->
@@ -79,7 +79,7 @@
 									
 									<!-- SIDEBAR USER TITLE: START -->
 									<div class="profile-usertitle">
-										<div class="profile-usertitle-name"> ${sessionScope.login.user_name } </div>
+										<div class="profile-usertitle-name"> ${sessionScope.LOGIN.USER_NAME } </div>
 										<div class="profile-usertitle-job"> </div>
 									</div>
 									<!-- SIDEBAR USER TITLE: END -->
@@ -117,20 +117,21 @@
 													<span class="caption-subject font-blue-madison bold uppercase">프로필 수정</span>
 												</div>
 												<ul class="nav nav-tabs">
-												    <li class="<c:if test="${active eq 'tab_1_1' }">active</c:if>">
+												    <li class="<c:if test="${ACTIVE eq 'TAB_1' }">active</c:if>">
 														<a class="tab" href="#tab_1_1" data-toggle="tab">기본정보</a>
 													</li>
-													<li class="<c:if test="${active eq 'tab_1_2' }">active</c:if>">
+													<li class="<c:if test="${ACTIVE eq 'TAB_2' }">active</c:if>">
 													    <a class="tab" href="#tab_1_2" data-toggle="tab">사진 변경</a>
 													</li>
-													<li class="<c:if test="${active eq 'tab_1_3' }">active</c:if>">
+													<li class="<c:if test="${ACTIVE eq 'TAB_3' }">active</c:if>">
 											            <a class="tab" href="#tab_1_3" data-toggle="tab">비밀번호 변경</a>
 											        </li>
 											    </ul>
 											</div>
 											<div class="portlet-body">
 												<div class="tab-content">
-													<%@ include file="/WEB-INF/include/include-profile-basic.jspf" %>
+
+													<%@ include file="/WEB-INF/include/include-profile-info.jspf" %>
 													
 													<%@ include file="/WEB-INF/include/include-profile-photo.jspf" %>
 													
@@ -166,7 +167,7 @@
 		<!-- END FOOTER -->
 	</div>
         
-	<%@ include file="/WEB-INF/include/include-body.jspf" %>
+	<%@ include file="/WEB-INF/include/include-main-body.jspf" %>
         
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 	<script src="<c:url value='/resources/plugin/bootstrap-fileinput/bootstrap-fileinput.js'/>" type="text/javascript"></script>
@@ -190,35 +191,35 @@
 			var flagPwd2 = false;
 			
         	// 이름 유효성 검사
-        	$("input[name='user_name']").blur(function(){
+        	$("input[name='USER_NAME']").blur(function(){
 				checkName();
         	});
    			
         	// 이메일 유효성 검사
-        	$("input[name='email']").blur(function(){
+        	$("input[name='EMAIL']").blur(function(){
         		checkEmail();
         	});
         	
         	// 전화번호 유효성 검사
-        	$("input[name='phone']").blur(function(){
+        	$("input[name='PHONE']").blur(function(){
         		checkPhone();
         	});
         	
         	// 전화번호 유효성 검사
-        	$("input[name='address']").blur(function(){
+        	$("input[name='ADDRESS']").blur(function(){
         		checkAddress();
         	});
 
         	// 기본정보 저장
         	$("#btn-info-save").click(function(){
-				checkName();
+        		checkName();
 				checkEmail();
 				checkPhone();
 				checkAddress();
-				if (flagName==true && flagEmail==true && flagPhone==true && flagAddress==true){
+				if (flagName==true&&flagEmail==true&&flagPhone==true&&flagAddress==true){
 					if (!confirm("저장하시겠습니까?")){
 	        			return false;
-	        		}	
+	        		}
 					$("#form-info").submit();
 				}
         	});
@@ -231,28 +232,28 @@
         	// 비밀번호 변경
         	$("#btn-password-save").click(function(){
         		
-        		var curPwd = $("input[name='current_password']").val();
-        		var newPwd = $("input[name='new_password']").val();
-        		var rePwd = $("input[name='re_password']").val();
+        		var curPwd = $("input[name='CURRENT_PASSWORD']").val();
+        		var newPwd = $("input[name='NEW_PASSWORD']").val();
+        		var rePwd = $("input[name='RETYPE_PASSWORD']").val();
         		
         		var result = valObj.checkPwd(curPwd);
         		printAlert("current-password", result);
-        		if (result.get("success")==false){
-        			$("input[name='current_password']").focus();
+        		if (result.get("SUCCESS")==false){
+        			$("input[name='CURRENT_PASSWORD']").focus();
         			return false;
         		}
         		
         		result = valObj.checkPwd(newPwd);
         		printAlert("new-password", result);
-        		if (result.get("success")==false){
-        			$("input[name='new_password']").focus();
+        		if (result.get("SUCCESS")==false){
+        			$("input[name='NEW_PASSWORD']").focus();
         			return false;
         		}
         		
         		result = valObj.checkPwd2(newPwd, rePwd);
         		printAlert("re-password", result);
-        		if (result.get("success")==false){
-        			$("input[name='re_password']").focus();
+        		if (result.get("SUCCESS")==false){
+        			$("input[name='RETYPE_PASSWORD']").focus();
         			return false;
         		}
         		
@@ -272,52 +273,52 @@
 		    $('.sidebar-toggler').trigger('click');
 	       	
 		    function checkName(){
-	       		var user_name = $("input[name='user_name']").val();
+	       		var user_name = $("input[name='USER_NAME']").val();
 				var result = valObj.checkName(user_name);
-				result.get("success")==true?flagName=true:flagName=false;
+				result.get("SUCCESS")==true?flagName=true:flagName=false;
 				printAlert("name", result);
 	       	}
 		    
         	function checkPwd(password){
-        		var user_pwd = $("input[name='user_pwd']").val();
+        		var user_pwd = $("input[name='USER_PWD']").val();
         		var result = valObj.checkPwd(user_pwd);
-        		result.get("success")==true?flagPwd=true:flagPwd=false;
+        		result.get("SUCCESS")==true?flagPwd=true:flagPwd=false;
         		printAlert("pwd", result);
         	}
         	
         	function checkPwd2(password, password2){
-        		var user_pwd = $("input[name='user_pwd']").val();
-        		var user_pwd2 = $("input[name='user_pwd2']").val();
+        		var user_pwd = $("input[name='USER_PWD']").val();
+        		var user_pwd2 = $("input[name='USER_PWD2']").val();
 				var result = valObj.checkPwd2(user_pwd, user_pwd2);
-				result.get("success")==true?flagPwd2=true:flagPwd2=false;
+				result.get("SUCCESS")==true?flagPwd2=true:flagPwd2=false;
 				printAlert("pwd2", result);
         	}
 	       	
 	       	function checkEmail(){
-	       		var email = $("input[name='email']").val();
+	       		var email = $("input[name='EMAIL']").val();
 				var result = valObj.checkEmail(email);
-				result.get("success")==true?flagEmail=true:flagEmail=false;
+				result.get("SUCCESS")==true?flagEmail=true:flagEmail=false;
 				printAlert("email", result);
 	       	}
 	       	
 	       	function checkPhone(){
-	       		var phone = $("input[name='phone']").val();
+	       		var phone = $("input[name='PHONE']").val();
 	       		var result = valObj.checkPhone(phone);
-	       		result.get("success")==true?flagPhone=true:flagPhone=false;
+	       		result.get("SUCCESS")==true?flagPhone=true:flagPhone=false;
 	       		printAlert("phone", result);
-			   	$("input[name='phone']").val(result.get("data"));
+			   	$("input[name='PHONE']").val(result.get("data"));
 	       	}
 	       	
 	       	function checkAddress(){
-	       		var address = $("input[name='address']").val();
+	       		var address = $("input[name='ADDRESS']").val();
 				var result = valObj.checkAddress(address);
-				result.get("success")==true?flagAddress=true:flagAddress=false;
+				result.get("SUCCESS")==true?flagAddress=true:flagAddress=false;
 				printAlert("address", result);
 	       	}
 			function printAlert(entity, result){
 	    		var message = "";
-	    		result.get("success")==true ? message = "<font color='green' size='2'>" : message="<font color='red' size='2'>";
-	    		message += result.get("message")+"</font>";
+	    		result.get("SUCCESS")==true ? message = "<font color='green' size='2'>" : message="<font color='red' size='2'>";
+	    		message += result.get("MESSAGE")+"</font>";
 	    		
 	    		$("#alert-"+entity).html(message);
 	    	}

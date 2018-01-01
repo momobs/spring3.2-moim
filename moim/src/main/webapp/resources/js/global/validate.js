@@ -60,7 +60,7 @@ function ValidateUser(){
 				$.ajax({
 					url : getContextPath()+"/user/selectId.do",
 					type : "POST",
-					data : "user_id="+id,
+					data : "USER_ID="+id,
 					async : false,
 					success : function(data){
 						if(data.success=="no"){
@@ -78,19 +78,19 @@ function ValidateUser(){
 			success = false;
 			message = "ID는 3~16자 영문/숫자 조합입니다.";
 		}
-		result.set("success", success);
-		result.set("message", message);
+		result.set("SUCCESS", success);
+		result.set("MESSAGE", message);
 		return result;
 	}
 	
 	// 비밀번호 유효성 검사
 	this.checkPwd = function checkPwd(pwd){
 		if(this.regularPwd.test(pwd)){
-			result.set("success", true);
-			result.set("message", "Verified");
+			result.set("SUCCESS", true);
+			result.set("MESSAGE", "Verified");
 		} else {
-			result.set("success", false);
-			result.set("message", "비밀번호는 영문/숫자 포함 6~12자입니다.");
+			result.set("SUCCESS", false);
+			result.set("MESSAGE", "비밀번호는 영문/숫자 포함 6~12자입니다.");
 		}
 		return result;
 	}
@@ -98,14 +98,14 @@ function ValidateUser(){
 	// 비밀번호(재입력) 유효성 검사
 	this.checkPwd2 = function checkPwd2(pwd1, pwd2){
 		if (pwd1.length<=0){
-			result.set("success", false);
-			result.set("message", "비밀번호를 입력하세요.");
+			result.set("SUCCESS", false);
+			result.set("MESSAGE", "비밀번호를 입력하세요.");
 		} else if (pwd1==pwd2){
-			result.set("success", true); 
-			result.set("message", "Verified");
+			result.set("SUCCESS", true); 
+			result.set("MESSAGE", "Verified");
 		} else {
-			result.set("success", false); 
-			result.set("message", "비밀번호가 일치하지 않습니다.");
+			result.set("SUCCESS", false); 
+			result.set("MESSAGE", "비밀번호가 일치하지 않습니다.");
 		}
 		return result;
 	}
@@ -113,11 +113,11 @@ function ValidateUser(){
 	// 이름 유효성 검사
 	this.checkName = function checkName(name){
 		if (name.length>0) {
-			result.set("success", true);
-			result.set("message", "Verified")
+			result.set("SUCCESS", true);
+			result.set("MESSAGE", "Verified")
 		} else {
-			result.set("success", false);
-			result.set("message", "올바른 이름을 입력하세요.")
+			result.set("SUCCESS", false);
+			result.set("MESSAGE", "올바른 이름을 입력하세요.")
 		}
 		return result;
 	}
@@ -125,11 +125,11 @@ function ValidateUser(){
 	// 이메일 유효성 검사
 	this.checkEmail = function checkEmail(email){
 		if(this.regularEmail.test(email)){
-			result.set("success", true);
-			result.set("message", "Verified");
+			result.set("SUCCESS", true);
+			result.set("MESSAGE", "Verified");
 		} else {
-			result.set("success", false);
-			result.set("message", "사용할 수 없는 이메일입니다.");
+			result.set("SUCCESS", false);
+			result.set("MESSAGE", "사용할 수 없는 이메일입니다.");
 		}
 		return result;
 	}
@@ -140,11 +140,11 @@ function ValidateUser(){
 		var num = phoneFormat(phone);
 		
 		if(this.regularPhone.test(num)){
-			result.set("success", true);
-			result.set("message", "Verified");
+			result.set("SUCCESS", true);
+			result.set("MESSAGE", "Verified");
 		} else {
-			result.set("success", false);
-			result.set("message", "올바른 전화번호가 아닙니다.");
+			result.set("SUCCESS", false);
+			result.set("MESSAGE", "올바른 전화번호가 아닙니다.");
 		}
 		result.set("data", num);
 		return result;
@@ -152,8 +152,8 @@ function ValidateUser(){
 	
 	// 전화번호 유효성 검사 
 	this.checkAddress = function checkAddress(address){ 
-		result.set("success", true);
-		result.set("message", "Verified");
+		result.set("SUCCESS", true);
+		result.set("MESSAGE", "Verified");
 		return result;
 	}
 	

@@ -2,11 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="common">
-
+	<select id="selectLoginInfo" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT A.USER_ID, A.USER_PWD, A.USER_NAME, A.EMAIL,  A.PHONE, A.ADDRESS, A.INTRO, A.CREATE_DATE, A.CREATE_USER, A.DELETE_DATE, A.DELETE_USER, A.USER_PHOTO,
+					IFNULL(B.GROUP_IDX,'')+'-'+IFNULL(B.FILE_IDX,'')+'.'+IFNULL(B.EXTENSION,'') AS PHOTO_NAME,
+					'FALSE' AS UPDATE_FLAG,
+					NOW() AS LOGIN_TIME
+			FROM USER A 
+				LEFT JOIN FILE_MASTER B ON  (B.GROUP_IDX='1' AND A.USER_PHOTO = B.FILE_IDX )
+			WHERE A.USER_ID = #{USER_ID}
+			AND IFNULL(A.DEL_YN, 'N') = 'N'		
+		]]>
+	</select>
+	
 <!-- 파일전송 관련 SQL - START -->
 	<select id="selectFileIndex" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT #{GROUP_IDX} AS GROUP_IDX, IFNULL(MAX(FILE_IDX), 0)+1 AS FILE_IDX
+			SELECT CAST(#{GROUP_IDX} AS UNSIGNED) AS GROUP_IDX, IFNULL(MAX(FILE_IDX), 0)+1 AS FILE_IDX
 			FROM FILE_MASTER
 			WHERE GROUP_IDX = #{GROUP_IDX}
 		]]>
@@ -16,7 +28,7 @@
 			INSERT INTO FILE_MASTER
 			(GROUP_IDX, FILE_IDX, FILE_SIZE, STORED_NAME, ORIGINAL_NAME, EXTENSION, CREATE_USER)
 			VALUES
-			(#{GROUP_IDX}, #{FILE_IDX}, #{FILE_SIZE}, #{STORED_NAME}, #{ORIGINAL_NAME}, #{EXTENSION}, #{USER_ID})
+			(#{GROUP_IDX}, #{FILE_IDX}, #{FILE_SIZE}, #{STORED_NAME}, #{ORIGINAL_NAME}, #{EXTENSION}, #{login.user_id})
 		]]>
 	</insert>
 <!-- 파일전송 관련 SQL - END -->
